@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.smartdse.android" >
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".MainActivity"
+            android:label="@string/app_name" >
+
+        </activity>
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".About"
+            android:label="@string/title_activity_about" >
+        </activity>
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".DSE30List"
+            android:label="@string/title_activity_dse30_list" >
+        </activity>
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".Home"
+            android:label="@string/title_activity_home" >
+
+        </activity>
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".IPOActivity"
+            android:label="@string/title_activity_ipo" >
+        </activity>
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".ItemInfo"
+            android:label="@string/title_activity_item_info" >
+        </activity>
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".NewsActivity"
+            android:label="@string/title_activity_news" >
+        </activity>
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".Portfolio_activity"
+            android:label="@string/title_activity_portfolio_activity" >
+        </activity>
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".Splash_activity"
+            android:label="@string/title_activity_splash_activity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".Top10Gainers"
+            android:label="@string/title_activity_top10_gainers" >
+        </activity>
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".Top10Shares"
+            android:label="@string/title_activity_top10_shares" >
+        </activity>
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".Watch_List_list_view"
+            android:label="@string/title_activity_watch__list_list_view" >
+        </activity>
+    </application>
+
+</manifest>

@@ -1,0 +1,150 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/black" >
+
+    <include
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_above="@+id/portfolio_upbar"
+        layout="@layout/topbar" />
+
+    <LinearLayout
+        android:id="@+id/portfolio_upbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top"
+        android:background="#151515"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:weightSum="5" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1.55"
+            android:gravity="left|center"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|left"
+                android:text="Quantity"
+                android:textColor="@android:color/white"
+                android:textSize="12dp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1.25"
+            android:gravity="center"
+            android:text="Avg Buy Price"
+            android:textColor="@android:color/white"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/portfoli_c_unhfhits"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="LTP"
+            android:textColor="@android:color/white"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right"
+            android:layout_weight="1.2"
+            android:gravity="center|right"
+            android:text="Gain/Loss"
+            android:textColor="@android:color/white"
+            android:textSize="12dp" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/dse_portfolio_listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/totalcalculation"
+        android:layout_below="@+id/portfolio_upbar" >
+    </ListView>
+
+    <LinearLayout
+        android:id="@+id/totalcalculation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/down_panel_rellayout"
+        android:orientation="vertical" >
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="3dp"
+            android:background="#ff33b5e5" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="5dp"
+            android:weightSum="5" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Total"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#ff33b5e5" />
+
+            <TextView
+                android:id="@+id/portfolio_totalpurchase"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1.5"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#ff33b5e5"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/portfolio_totalcurrent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1.25"
+                android:gravity="center"
+                android:text="0"
+                android:textColor="#ff33b5e5"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/portfolio_totalgain_loss"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center|right"
+                android:layout_weight="1.25"
+                android:gravity="center|right"
+                android:text="0"
+                android:textColor="#ff33b5e5"
+                android:textSize="12dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <include
+        android:id="@+id/down_panel_rellayout"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/totalcalculation"
+        layout="@layout/downpanel" />
+
+</RelativeLayout>

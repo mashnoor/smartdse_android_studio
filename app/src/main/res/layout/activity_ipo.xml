@@ -1,0 +1,85 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/black"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/news_header"
+        android:layout_above="@+id/btn"
+        layout="@layout/topbar" />
+
+    <LinearLayout
+        android:id="@+id/btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/news_header"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        android:weightSum="2" >
+
+        <LinearLayout
+            android:id="@+id/btn_news"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="News"
+                android:textColor="@android:color/white"
+                android:textSize="15dp" />
+
+            <LinearLayout
+                android:id="@+id/news_tab_downpanel"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:orientation="horizontal" >
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/btn_toptenlosers"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="IPO"
+                android:textColor="@android:color/white"
+                android:textSize="15dp" />
+
+            <LinearLayout
+                android:id="@+id/ipo_tab_downpanel"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:background="#ff33b5e5"
+                android:orientation="horizontal" >
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <include
+        android:id="@+id/down_panel_rellayout"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/dse_latest_news_list"
+        layout="@layout/downpanel" />
+
+    <WebView
+        android:id="@+id/dse_ipo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="5dp"
+        android:layout_above="@+id/down_panel_rellayout"
+        android:layout_below="@+id/btn" />
+
+</RelativeLayout>

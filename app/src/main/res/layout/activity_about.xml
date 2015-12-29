@@ -1,0 +1,397 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black" >
+
+    <include
+        android:id="@+id/info_topbar"
+        android:layout_alignParentTop="true"
+        layout="@layout/topbar" />
+
+    <ScrollView
+        android:id="@+id/main_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/down_panel_rellayout"
+        android:layout_below="@+id/info_topbar" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="5dp" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SmartDSE"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="#00CCCF" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Version: 1.1.0"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="7dp"
+                android:text="Smartdse is a smart phone application to provide accurate and timely information of Dhaka Stock Exchange. No disturbing advertisement. This application is totally free to download and anyone can use."
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@android:color/white" />
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#00CCCF" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="5dp" >
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:paddingTop="7dp" >
+
+                <ImageView
+                    android:paddingRight="5dp"
+
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+                    android:src="@drawable/itemlist" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Item List"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#00CCCF" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="You can see all DSE items with their last trade price (LTP) and changes."
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
+            </LinearLayout>
+            <!-- Item List End -->
+            <!-- Start Search -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp" >
+
+                <ImageView
+                    android:paddingRight="5dp"
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/search" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Search"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#00CCCF" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Click this icon to get a specific item."
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
+            </LinearLayout>
+            <!-- ENd of search -->
+            <!-- Watchlist -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp" >
+
+                <ImageView
+                    android:paddingRight="5dp"
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/watchlist" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Watchlist"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#00CCCF" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="When you are in item details page and click ADD TO WATCHLIST button, then those items will be displayed here. You can see these item details even using this application offline."
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
+            </LinearLayout>
+            <!-- End of watchlist -->
+            <!-- Portfolio -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp" >
+
+                <ImageView
+                    android:paddingRight="5dp"
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/portfolio" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Portfolio"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#00CCCF" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="You can store, calculate and observe your stock status. Items can be added, reduced, removed and displayed interactively here."
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
+            </LinearLayout>
+            <!-- End of portfolio -->
+            <!-- News and IPO -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp" >
+
+                <ImageView
+                    android:paddingRight="5dp"
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/news" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="News and IPO"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#00CCCF" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="You can see latest news from DSE website and upcoming IPO information."
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
+            </LinearLayout>
+            <!-- End of news and ipo -->
+            <!-- Top 20 -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp" >
+
+                <ImageView
+                    android:paddingRight="5dp"
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/top20" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Top20"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#00CCCF" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Top twenty shares regarding value, volume and trade will be displayed here separately."
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
+            </LinearLayout>
+            <!-- End of top 20 -->
+            <!-- Top Gainers Losers -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp" >
+
+                <ImageView
+                    android:paddingRight="5dp"
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/gainerloser" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Top Gainers and Losers"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textColor="#00CCCF" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="You can see days top ten gainers and losers here."
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textColor="@android:color/white" />
+                </LinearLayout>
+            </LinearLayout>
+            <!-- End of top gainer and loser -->
+
+            <View
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:background="#00CCCF" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="5dp" >
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_reset_cache"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/black_button"
+                android:paddingTop="7dp"
+                android:text="Reset All Data"
+                android:textColor="@android:color/white"
+                android:textSize="12dp" />
+
+
+            <Button
+                android:id="@+id/btn_update_smartdse"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/black_button"
+                android:text="Check for Update"
+                android:textColor="@android:color/white"
+                android:textSize="12dp" />
+
+            <Button
+                android:id="@+id/btn_dse_site"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/black_button"
+                android:text="DSE Official Website"
+                android:textColor="@android:color/white"
+                android:textSize="12dp" />
+
+            <Button
+                android:id="@+id/btn_facebook"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/black_button"
+                android:text="Like Us On Facebook"
+                android:textColor="@android:color/white"
+                android:textSize="12dp" />
+
+            <Button
+                android:id="@+id/btn_smartdse_site"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/black_button"
+                android:text="SmartDSE Website"
+                android:textColor="@android:color/white"
+                android:textSize="12dp" />
+
+            <TextView
+                android:id="@+id/TextView01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingTop="5dp"
+                android:text="All Rights Reserved."
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:textColor="#00CCCF" />
+        </LinearLayout>
+    </ScrollView>
+
+    <include
+        android:id="@+id/down_panel_rellayout"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/main_content"
+        layout="@layout/downpanel" />
+
+</RelativeLayout>
