@@ -28,7 +28,7 @@ public class IPOActivity extends Activity {
 
         setContentView(R.layout.activity_ipo);
         buttonController = new ButtonController(IPOActivity.this);
-        ButtonController.change_down_panel_color(IPOActivity.this, R.id.news_down_layout);
+
         news_tab = findViewById(R.id.btn_news);
         ipo_text = (WebView) findViewById(R.id.dse_ipo);
         ipo_text.getSettings();

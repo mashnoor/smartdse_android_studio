@@ -55,8 +55,7 @@ public class NewsActivity extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.activity_news);
-        ButtonController.change_down_panel_color(NewsActivity.this,
-                R.id.news_down_layout);
+
         dse_latest_news = new ArrayList<DSE_Company_data>();
         buttonController = new ButtonController(NewsActivity.this);
         ipo_activity_tab = findViewById(R.id.btn_ipo);

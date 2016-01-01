@@ -70,8 +70,7 @@ public class Top10Shares extends Activity {
         setContentView(R.layout.activity_top10_shares);
         initializevariable();
         dse_top_shares_datas = new ArrayList<DSE_Company_data>();
-        ButtonController.change_down_panel_color(Top10Shares.this,
-                R.id.top20_down_layout);
+
         buttonController = new ButtonController(Top10Shares.this);
         String[] test = { file_name_byvalue, link_byvalue };
         new read_and_write_data().execute(test);

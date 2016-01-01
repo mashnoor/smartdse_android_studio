@@ -79,8 +79,7 @@ public class Home extends Activity {
         initialize_variable();
         new DrawerBuilder().withActivity(this).build();
 
-        ButtonController.change_down_panel_color(Home.this,
-                R.id.home_down_layout);
+
         buttonController = new ButtonController(Home.this);
 
         // Defining our asynctask manager

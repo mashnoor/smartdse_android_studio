@@ -65,8 +65,7 @@ public class Portfolio_activity extends Activity {
         buttonController.setSentfromportfolioactivity(true);
 
         // dse_Company_datas_for_search = new ArrayList<DSE_Company_data>();
-        ButtonController.change_down_panel_color(Portfolio_activity.this,
-                R.id.portfolio_down_layout);
+
         new read_and_write_data().execute("");
 
     }

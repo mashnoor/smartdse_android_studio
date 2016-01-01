@@ -126,8 +126,6 @@ public class MainActivity extends Activity {
 
             String[] link_file = { ITEM_VALUES_ALL, file_name_all };
             new read_and_write_data().execute(link_file);
-            ButtonController.change_down_panel_color(MainActivity.this,
-                    R.id.itemlist_down_layout);
 
         } else {
             String[] link_file = { ITEM_VALUES, file_name };

@@ -53,8 +53,7 @@ public class Watch_List_list_view extends Activity {
         setContentView(R.layout.activity_main);
         dse_Company_datas = new ArrayList<DSE_Company_data>();
         buttonController = new ButtonController(Watch_List_list_view.this);
-        ButtonController.change_down_panel_color(Watch_List_list_view.this,
-                R.id.watchlist_down_layout);
+
 
         search_text_box = (TextView) findViewById(R.id.dse_list_search_box);
         search_text_box.setVisibility(View.GONE);

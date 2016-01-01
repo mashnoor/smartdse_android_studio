@@ -61,8 +61,7 @@ public class Top10Gainers extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.activity_top10_gainers);
-        ButtonController.change_down_panel_color(Top10Gainers.this,
-                R.id.gainloser_down_layout);
+
         new read_and_write_gainers_data().execute("");
         buttonController = new ButtonController(Top10Gainers.this);
         dse_top_gainers_losers_datas = new ArrayList<DSE_Company_data>();

@@ -30,8 +30,7 @@ public class About extends Activity {
 
         setContentView(R.layout.activity_about);
         buttonController = new ButtonController(About.this);
-        ButtonController.change_down_panel_color(About.this,
-                R.id.about_down_layout);
+
         smartdse_site = (Button) findViewById(R.id.btn_smartdse_site);
         reset_cache = (Button) findViewById(R.id.btn_reset_cache);
         //Update Button

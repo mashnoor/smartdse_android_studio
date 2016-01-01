@@ -92,7 +92,7 @@ public class ButtonController {
         //Adding the Drawer
         new DrawerBuilder().withActivity(sentactivity).build();
         //Adding the items... :D
-        PrimaryDrawerItem home_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.home)).withName("Home");
+        PrimaryDrawerItem home_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.home)).withName("Home").withSelectable(false);
         PrimaryDrawerItem a_z_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.itemlist)).withName("A to Z");
         PrimaryDrawerItem search_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.search)).withName("Search");
         PrimaryDrawerItem watchlist_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.watchlist)).withName("Watchlist");
