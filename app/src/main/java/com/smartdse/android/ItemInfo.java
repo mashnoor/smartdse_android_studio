@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 
 
+
 public class ItemInfo extends Activity {
     public static String tradingcode;
 

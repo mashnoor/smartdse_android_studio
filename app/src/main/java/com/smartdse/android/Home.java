@@ -35,6 +35,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mikepenz.materialdrawer.DrawerBuilder;
 
 
 public class Home extends Activity {
@@ -76,6 +77,7 @@ public class Home extends Activity {
         setContentView(R.layout.activity_home);
 
         initialize_variable();
+        new DrawerBuilder().withActivity(this).build();
 
         ButtonController.change_down_panel_color(Home.this,
                 R.id.home_down_layout);
@@ -347,6 +349,7 @@ public class Home extends Activity {
                 if (Active_net_checking.testInte("104.131.22.246")) {
                     home_data = grabber
                             .grabSource("http://104.131.22.246/dev/smartdsefiles/homedata.txt");
+                    System.out.println(home_data);
                     DevTools.write_file(Home.this, filename, home_data);
 
                     has_active_netconnection = true;

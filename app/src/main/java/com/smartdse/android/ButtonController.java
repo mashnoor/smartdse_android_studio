@@ -21,7 +21,13 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import com.smartdse.android.R;
 
 public class ButtonController {
@@ -76,12 +82,192 @@ public class ButtonController {
 
     public ButtonController(final Activity sentactivity) {
 
-        View logo, home, items, search, watchlist, portfolio, news, top20, gainerloser, close_app, rateus, refresh_button;
+        final View logo, home, items, search, watchlist, portfolio, news, top20, gainerloser, close_app, rateus, refresh_button, menuicon;
         final TextView update_status_tv;
         refresh_button = sentactivity.findViewById(R.id.dse_home_refresh);
 
         // panel_show_hide_button =
         // sentactivity.findViewById(R.id.panel_show_hide);
+
+        //Adding the Drawer
+        new DrawerBuilder().withActivity(sentactivity).build();
+        //Adding the items... :D
+        PrimaryDrawerItem home_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.home)).withName("Home");
+        PrimaryDrawerItem a_z_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.itemlist)).withName("A to Z");
+        PrimaryDrawerItem search_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.search)).withName("Search");
+        PrimaryDrawerItem watchlist_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.watchlist)).withName("Watchlist");
+        PrimaryDrawerItem portfolio_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.portfolio)).withName("Portfolio");
+        PrimaryDrawerItem news_and_ipo_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.news)).withName("News and IPO");
+        PrimaryDrawerItem top20_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.top20)).withName("Top 20");
+        PrimaryDrawerItem gainerloser_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.gainerloser)).withName("Top Gainer Loser");
+        PrimaryDrawerItem rateus_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.rateus)).withName("Rate Us");
+        PrimaryDrawerItem info_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.info)).withName("Info");
+        PrimaryDrawerItem quit_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.quit)).withName("Quit");
+
+
+
+
+
+
+
+
+
+
+//create the drawer and remember the `Drawer` result object
+         int clickedPosition;
+        final Drawer result = new DrawerBuilder()
+
+                .withActivity(sentactivity)
+
+                .addDrawerItems(
+                        home_item,
+                        a_z_item,
+                        search_item,
+                        watchlist_item,
+                        portfolio_item,
+                        news_and_ipo_item,
+                        top20_item,
+                        gainerloser_item,
+                        rateus_item,
+                        info_item,
+                        quit_item
+                        //new SecondaryDrawerItem().withName(R.string.drawer_item_settings)
+                )
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+
+
+                        //Handle the clicks
+                        if (position == 0)
+                        {
+                            MainActivity.show = false;
+                            Intent homeiIntent = new Intent(sentactivity, Home.class);
+                            sentactivity.startActivity(homeiIntent);
+
+
+
+                        }
+                      else if(position == 1)
+                        {
+                            MainActivity.show = false;
+                            Intent itemintent = new Intent(sentactivity,
+                                    MainActivity.class);
+                            sentactivity.startActivity(itemintent);
+                        }
+                        else if(position == 2)
+                        {
+                            if (sentactivity instanceof MainActivity) {
+                                View search_box = sentactivity
+                                        .findViewById(R.id.dse_list_search_box);
+
+                                int search_box_visibility = search_box.getVisibility();
+                                if (search_box_visibility == View.GONE) {
+                                    InputMethodManager imm = (InputMethodManager) sentactivity
+                                            .getSystemService(Context.INPUT_METHOD_SERVICE);
+                                    Animation animation;
+                                    animation = AnimationUtils.loadAnimation(sentactivity,
+                                            R.anim.fade_in);
+                                    sentactivity.findViewById(R.id.dse_list_search_box)
+                                            .setAnimation(animation);
+                                    sentactivity.findViewById(R.id.dse_list_search_box)
+                                            .setVisibility(View.VISIBLE);
+                                    search_box.requestFocus();
+                                    imm.showSoftInput(search_box, 0);
+
+                                } else if (search_box_visibility == View.VISIBLE) {
+                                    InputMethodManager imm = (InputMethodManager) sentactivity
+                                            .getSystemService(Context.INPUT_METHOD_SERVICE);
+                                    Animation animation;
+                                    animation = AnimationUtils.loadAnimation(sentactivity,
+                                            R.anim.fade_out);
+                                    sentactivity.findViewById(R.id.dse_list_search_box)
+                                            .setAnimation(animation);
+                                    sentactivity.findViewById(R.id.dse_list_search_box)
+                                            .setVisibility(View.GONE);
+
+                                    imm.hideSoftInputFromWindow(
+                                            search_box.getWindowToken(), 0);
+                                }
+
+                            } else {
+                                Intent itemintent = new Intent(sentactivity,
+                                        MainActivity.class);
+                                sentactivity.startActivity(itemintent);
+                                MainActivity.show = true;
+                            }
+
+                        }
+                        else if(position == 3)
+                        {
+                            MainActivity.show = false;
+                            Intent watchlist = new Intent(sentactivity,
+                                    Watch_List_list_view.class);
+                            sentactivity.startActivity(watchlist);
+
+                        }
+                        else if (position == 4)
+                        {
+                            MainActivity.show = false;
+                            Intent itemintent = new Intent(sentactivity,
+                                    Portfolio_activity.class);
+                            sentactivity.startActivity(itemintent);
+
+                        }
+                        else if (position == 5)
+                        {
+                            MainActivity.show = false;
+                            Intent itemintent = new Intent(sentactivity,
+                                    NewsActivity.class);
+                            sentactivity.startActivity(itemintent);
+                        }
+                        else if (position == 6)
+                        {
+                            MainActivity.show = false;
+                            Intent itemintent = new Intent(sentactivity,
+                                    Top10Shares.class);
+                            sentactivity.startActivity(itemintent);
+
+                        }
+                        else if(position == 7)
+                        {
+                            MainActivity.show = false;
+                            Intent itemintent = new Intent(sentactivity,
+                                    Top10Gainers.class);
+                            sentactivity.startActivity(itemintent);
+                        }
+                        else if (position == 8)
+                        {
+                            sentactivity.startActivity(new Intent(Intent.ACTION_VIEW, Uri
+                                    .parse("market://details?id=" + sentactivity.getApplicationContext().getPackageName())));
+
+                        }
+                        else if(position == 9)
+                        {
+                            MainActivity.show = false;
+                            Intent intent = new Intent(sentactivity, About.class);
+                            sentactivity.startActivity(intent);
+                        }
+                        else if(position == 10)
+                        {
+                            sentactivity.finish();
+                            Intent intent = new Intent(Intent.ACTION_MAIN);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            intent.addCategory(Intent.CATEGORY_HOME);
+                            sentactivity.startActivity(intent);
+                        }
+
+
+
+
+                      return  true;
+                    }
+                })
+                .build();
+
+
+
+    /***
         home = sentactivity.findViewById(R.id.dhome);
         items = sentactivity.findViewById(R.id.ditem);
         search = sentactivity.findViewById(R.id.dsearch);
@@ -92,9 +278,14 @@ public class ButtonController {
         gainerloser = sentactivity.findViewById(R.id.dgainerloser);
         rateus = sentactivity.findViewById(R.id.drateus);
         close_app = sentactivity.findViewById(R.id.dcloseapp);
+
+     ***/
         logo = sentactivity.findViewById(R.id.sdse_logo);
+        menuicon = sentactivity.findViewById(R.id.menu_icon);
         update_status_tv = (TextView) sentactivity
                 .findViewById(R.id.dse_marketstatus);
+
+
         update_status_tv.setText(update_status);
 
 
@@ -149,6 +340,7 @@ public class ButtonController {
         }
 
         // Logo
+
         if (!(sentactivity instanceof Home)) {
             logo.setOnClickListener(new View.OnClickListener() {
 
@@ -164,6 +356,15 @@ public class ButtonController {
             });
 
         }
+        //Menu Click Listener
+        menuicon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                result.openDrawer();
+
+            }
+        });
 
 		/*
 		 * This if for showing panel show/hide
@@ -205,6 +406,9 @@ public class ButtonController {
 		 * 
 		 * } });
 		 */
+
+        /***
+
         // Home
         home.setOnClickListener(new View.OnClickListener() {
 
@@ -402,6 +606,7 @@ public class ButtonController {
 
             }
         });
+         ***/
         // Refresh Button
         refresh_button.setOnClickListener(new View.OnClickListener() {
 
