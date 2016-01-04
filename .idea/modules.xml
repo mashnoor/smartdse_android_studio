@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SmartDSE.iml" filepath="$PROJECT_DIR$/SmartDSE.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/smartdse_android_studio.iml" filepath="$PROJECT_DIR$/smartdse_android_studio.iml" />
     </modules>
   </component>
 </project>
