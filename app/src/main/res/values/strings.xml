@@ -22,5 +22,6 @@
     <string name="title_activity_ipo">IPOActivity</string>
     <string name="title_activity_about">About</string>
     <string name="title_activity_watch__list_list_view">WatchList</string>
+    <string name="title_activity_agm">AGMActivity</string>
 
 </resources>

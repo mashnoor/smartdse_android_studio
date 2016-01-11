@@ -26,6 +26,7 @@
             android:layout_gravity="center"
             android:gravity="center"
             android:padding="20dp"
+            android:textColor="@color/common_google_signin_btn_text_dark_default"
             android:text="www.smartdse.com"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 

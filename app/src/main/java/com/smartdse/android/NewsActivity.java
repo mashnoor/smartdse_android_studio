@@ -43,7 +43,7 @@ public class NewsActivity extends Activity {
 
     ListView dse_list_view;
     ButtonController buttonController;
-    View ipo_activity_tab;
+    View ipo_activity_tab, agm_activity_tab;
     ArrayAdapter<DSE_Company_data> adapter; // This array adapter will describe
     // how the listview will be shown
     boolean has_active_net = false; // This is for determining if we have a
@@ -58,6 +58,19 @@ public class NewsActivity extends Activity {
 
         dse_latest_news = new ArrayList<DSE_Company_data>();
         buttonController = new ButtonController(NewsActivity.this);
+
+        agm_activity_tab = findViewById(R.id.btn_agm);
+        agm_activity_tab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent agm_activity_intent = new Intent(NewsActivity.this,
+                        AGMActivity.class);
+                startActivity(agm_activity_intent);
+            }
+        });
+
         ipo_activity_tab = findViewById(R.id.btn_ipo);
         ipo_activity_tab.setOnClickListener(new View.OnClickListener() {
 

@@ -20,7 +20,7 @@
         android:padding="5dp"
         android:weightSum="3" >
         <LinearLayout
-            android:id="@+id/btn_toptengainers"
+            android:id="@+id/btn_news"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -39,7 +39,7 @@
                 android:id="@+id/news_tab_downpanel"
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
-                android:background="#ff33b5e5"
+
                 android:orientation="horizontal" >
             </LinearLayout>
         </LinearLayout>
@@ -88,6 +88,7 @@
                 android:id="@+id/agm_tab_downpanel"
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
+                android:background="#ff33b5e5"
                 android:orientation="horizontal" >
             </LinearLayout>
         </LinearLayout>
@@ -99,7 +100,7 @@
 
 
     <ListView
-        android:id="@+id/dse_latest_news_list"
+        android:id="@+id/dse_agm_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/down_panel_rellayout"

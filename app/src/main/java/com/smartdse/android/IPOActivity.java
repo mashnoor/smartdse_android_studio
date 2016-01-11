@@ -21,6 +21,7 @@ public class IPOActivity extends Activity {
     WebView ipo_text;
 
     ButtonController buttonController;
+    View agm_activity_tab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,11 +30,25 @@ public class IPOActivity extends Activity {
         setContentView(R.layout.activity_ipo);
         buttonController = new ButtonController(IPOActivity.this);
 
-        news_tab = findViewById(R.id.btn_news);
+
+        agm_activity_tab = findViewById(R.id.btn_agm);
         ipo_text = (WebView) findViewById(R.id.dse_ipo);
         ipo_text.getSettings();
         ipo_text.setBackgroundColor(Color.BLACK);
 
+
+        agm_activity_tab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Intent agm_activity_intent = new Intent(IPOActivity.this,
+                        AGMActivity.class);
+                startActivity(agm_activity_intent);
+            }
+        });
+
+        news_tab = findViewById(R.id.btn_news);
         news_tab.setOnClickListener(new View.OnClickListener() {
 
             @Override
