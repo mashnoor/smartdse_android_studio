@@ -24,5 +24,6 @@
     <string name="title_activity_watch__list_list_view">WatchList</string>
     <string name="title_activity_agm">AGMActivity</string>
     <string name="title_activity_news_detail">NewsDetail</string>
+    <string name="title_activity_currency">Currency</string>
 
 </resources>

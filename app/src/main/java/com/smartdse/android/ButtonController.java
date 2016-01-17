@@ -100,6 +100,8 @@ public class ButtonController {
         PrimaryDrawerItem news_and_ipo_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.news)).withName("News and IPO");
         PrimaryDrawerItem top20_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.top20)).withName("Top 20");
         PrimaryDrawerItem gainerloser_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.gainerloser)).withName("Top Gainer Loser");
+        PrimaryDrawerItem currency_convert_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.currency)).withName("Currency Conversion");
+
         PrimaryDrawerItem rateus_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.rateus)).withName("Rate Us");
         PrimaryDrawerItem info_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.info)).withName("Info");
         PrimaryDrawerItem quit_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.quit)).withName("Quit");
@@ -128,6 +130,7 @@ public class ButtonController {
                         news_and_ipo_item,
                         top20_item,
                         gainerloser_item,
+                        currency_convert_item,
                         rateus_item,
                         info_item,
                         quit_item
@@ -238,17 +241,25 @@ public class ButtonController {
                         }
                         else if (position == 8)
                         {
+                            MainActivity.show = false;
+                            Intent itemintent = new Intent(sentactivity,
+                                    Currency.class);
+                            sentactivity.startActivity(itemintent);
+                        }
+
+                        else if (position == 9)
+                        {
                             sentactivity.startActivity(new Intent(Intent.ACTION_VIEW, Uri
                                     .parse("market://details?id=" + sentactivity.getApplicationContext().getPackageName())));
 
                         }
-                        else if(position == 9)
+                        else if(position == 10)
                         {
                             MainActivity.show = false;
                             Intent intent = new Intent(sentactivity, About.class);
                             sentactivity.startActivity(intent);
                         }
-                        else if(position == 10)
+                        else if(position == 11)
                         {
                             sentactivity.finish();
                             Intent intent = new Intent(Intent.ACTION_MAIN);

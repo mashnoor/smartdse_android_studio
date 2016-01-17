@@ -5,5 +5,6 @@ package com.smartdse.android;
  */
 public class Constants {
     public static final String AGM_URL ="http://104.131.22.246/dev/smartdsefiles/agm.txt";
+    public static final String CURRENCY_CONVERT = "https://www.google.com/finance/converter?a=1&from=USD&to=BDT";
 
 }

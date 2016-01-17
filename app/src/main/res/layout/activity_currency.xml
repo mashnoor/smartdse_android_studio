@@ -1,0 +1,34 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/black"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/mytopbar"
+android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/topbar" />
+
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/currency_web"
+        android:layout_below="@id/mytopbar"
+        android:layout_above="@id/down_panel_rellayout"
+
+
+       />
+    <include
+        android:id="@+id/down_panel_rellayout"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+
+        layout="@layout/downpanel" />
+
+
+
+</RelativeLayout>
