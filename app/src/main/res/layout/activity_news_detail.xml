@@ -1,0 +1,23 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/black"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/news_header"
+        android:layout_above="@+id/dse_latest_news_list"
+        layout="@layout/topbar" />
+
+
+    <ListView
+        android:id="@+id/dse_news_detail_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/down_panel_rellayout"
+        android:layout_below="@+id/news_header">
+    </ListView>
+    <include android:id="@+id/down_panel_rellayout" layout="@layout/downpanel" android:layout_below="@+id/dse_latest_news_list" android:layout_alignParentBottom="true"/>
+
+
+</RelativeLayout>

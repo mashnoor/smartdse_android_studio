@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ClipData;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
@@ -38,7 +39,7 @@ public class ItemInfo extends Activity {
             dividend_2013, dividend_2014, sp_director, sp_govt, sp_institute,
             sp_foreign, sp_public;
 
-    Button portfolioButton, watchlistButton, show_moreButton;
+    Button portfolioButton, watchlistButton, show_moreButton, show_newsArchiveButton;
     ButtonController buttonController;
     View change_percentage_layout;
     DSE_Company_data portfolio_clicked_data;
@@ -79,6 +80,17 @@ public class ItemInfo extends Activity {
 
             }
         });
+        show_newsArchiveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent newsArchive_Intent = new Intent(ItemInfo.this, NewsDetail.class);
+                newsArchive_Intent.putExtra("company", tradingcode);
+                startActivity(newsArchive_Intent);
+
+
+            }
+        });
+
         portfolioButton.setText(addtoportfolio);
         watchlistButton.setText(addtowatchlist);
         portfolioButton.setOnClickListener(new View.OnClickListener() {
@@ -205,6 +217,7 @@ public class ItemInfo extends Activity {
         portfolioButton = (Button) findViewById(R.id.dse_item_portfolio_button);
         watchlistButton = (Button) findViewById(R.id.dse_item_watchlist_button);
         show_moreButton = (Button) findViewById(R.id.dse_item_detail_showmore);
+        show_newsArchiveButton = (Button) findViewById(R.id.dse_item_detail_newsarchive);
 
         // Layouts
         change_percentage_layout = findViewById(R.id.dse_info_change_layout);

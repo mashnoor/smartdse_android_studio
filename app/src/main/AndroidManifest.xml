@@ -124,6 +124,11 @@
             android:label="@string/title_activity_agm"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+        <activity
+            android:name=".NewsDetail"
+            android:label="@string/title_activity_news_detail"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
     </application>
 
 </manifest>
