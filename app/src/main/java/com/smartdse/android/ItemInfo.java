@@ -8,7 +8,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.ClipData;
+
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
@@ -39,7 +39,7 @@ public class ItemInfo extends Activity {
             dividend_2013, dividend_2014, sp_director, sp_govt, sp_institute,
             sp_foreign, sp_public;
 
-    Button portfolioButton, watchlistButton, show_moreButton, show_newsArchiveButton;
+    Button portfolioButton, watchlistButton, show_moreButton, show_newsArchiveButton, show_marketDepthButton, priceAlertButton;
     ButtonController buttonController;
     View change_percentage_layout;
     DSE_Company_data portfolio_clicked_data;
@@ -64,8 +64,11 @@ public class ItemInfo extends Activity {
 
         setContentView(R.layout.activity_item_info);
 
+
+
         Intent item_info = getIntent();
         tradingcode = item_info.getStringExtra("TradingCode");
+
 
         buttonController = new ButtonController(ItemInfo.this);
         initializetextviews();
@@ -90,6 +93,31 @@ public class ItemInfo extends Activity {
 
             }
         });
+        if(PriceAlertHelper.ifItemExists(this, tradingcode))
+        {
+            priceAlertButton.setText(Constants.CUSTOMIZE_PRICE_ALERT);
+
+        }
+        else
+        {
+            priceAlertButton.setText(Constants.ADD_PRICE_ALERT);
+        }
+
+        priceAlertButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(priceAlertButton.getText().toString().equals(Constants.ADD_PRICE_ALERT))
+                {
+                    PriceAlertHelper.addPriceAlert(ItemInfo.this, tradingcode, lasttrade.getText().toString());
+                }
+                else
+                {
+                    PriceAlertHelper.show_customize_price_alert_dialog(ItemInfo.this, tradingcode);
+                }
+
+            }
+        });
+
 
         portfolioButton.setText(addtoportfolio);
         watchlistButton.setText(addtowatchlist);
@@ -110,8 +138,8 @@ public class ItemInfo extends Activity {
                             json_data);
                 } else if (portfolioButton.getText().toString()
                         .equals(customizeportfolio)) {
-                    String[] portfolio_strings = { "Add Stock", "Reduce Stock",
-                            "Remove Stock" };
+                    String[] portfolio_strings = {"Add Stock", "Reduce Stock",
+                            "Remove Stock"};
                     String[] portfolio_item_helper = Portfolio_menu_helper
                             .get_infos_of_portfolio_item(ItemInfo.this,
                                     tradingcode);
@@ -124,6 +152,16 @@ public class ItemInfo extends Activity {
                             portfolio_clicked_data, portfolio_strings);
 
                 }
+
+            }
+        });
+        show_marketDepthButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent depth_intent = new Intent(ItemInfo.this, MarketDepth.class);
+                depth_intent.putExtra("company", tradingcode);
+                startActivity(depth_intent);
+
 
             }
         });
@@ -218,6 +256,8 @@ public class ItemInfo extends Activity {
         watchlistButton = (Button) findViewById(R.id.dse_item_watchlist_button);
         show_moreButton = (Button) findViewById(R.id.dse_item_detail_showmore);
         show_newsArchiveButton = (Button) findViewById(R.id.dse_item_detail_newsarchive);
+        show_marketDepthButton = (Button) findViewById(R.id.dse_item_detail_see_market_depth);
+        priceAlertButton = (Button) findViewById(R.id.dse_item_detail_add_price_alert);
 
         // Layouts
         change_percentage_layout = findViewById(R.id.dse_info_change_layout);

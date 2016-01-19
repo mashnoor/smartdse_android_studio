@@ -4,8 +4,11 @@ package com.smartdse.android;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URISyntaxException;
+import java.net.URL;
 
 
 /*
@@ -23,13 +26,20 @@ public class SrcGrabber
 
     }
 
-    public String grabSource(String url) throws IOException, URISyntaxException
+    public static String grabSource(String url) throws IOException, URISyntaxException
     {
 
+        URL robotURL = new URL(url);
+        BufferedReader in = new BufferedReader(new InputStreamReader(robotURL.openStream()));
+        String line = null;
+        StringBuilder builder = new StringBuilder();
+        while((line = in.readLine()) != null) {
 
-        Document doc = Jsoup.connect(url).get();
-        return  doc.body().text();
+            builder.append(line);
+        }
+        in.close();
 
+        return builder.toString();
 
     }
 

@@ -17,6 +17,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -59,6 +60,13 @@ public class Splash_activity extends Activity {
 
 
         setContentView(R.layout.splash_activity);
+        Intent i = new Intent(Splash_activity.this, PriceAlertService.class);
+
+        if (!isMyServiceRunning(PriceAlertService.class))
+        {
+            startService(i);
+        }
+
 
 
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
@@ -101,6 +109,16 @@ public class Splash_activity extends Activity {
         super.onResume();
         LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
                 new IntentFilter(QuickstartPreferences.REGISTRATION_COMPLETE));
+    }
+
+    private boolean isMyServiceRunning(Class<?> serviceClass) {
+        ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+        for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+            if (serviceClass.getName().equals(service.service.getClassName())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

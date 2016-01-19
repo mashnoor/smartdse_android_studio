@@ -134,6 +134,17 @@
             android:label="@string/title_activity_currency"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+        <activity
+            android:name=".MarketDepth"
+            android:label="@string/title_activity_market_depth"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+
+        <service
+            android:name=".PriceAlertService"
+            android:enabled="true"
+            android:exported="true" >
+        </service>
     </application>
 
 </manifest>

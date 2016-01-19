@@ -25,5 +25,6 @@
     <string name="title_activity_agm">AGMActivity</string>
     <string name="title_activity_news_detail">NewsDetail</string>
     <string name="title_activity_currency">Currency</string>
+    <string name="title_activity_market_depth">MarketDepth</string>
 
 </resources>
