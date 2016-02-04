@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+
+
+    <LinearLayout
+        android:id="@+id/barid"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="#151515"
+        android:orientation="horizontal"
+        android:padding="7dp"
+        android:weightSum="7"  >
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textSize="14dp"
+            android:text="Symbol"
+            android:textColor="#00CCCF"
+            android:layout_weight="2"
+            android:id="@+id/price_alert_symbol" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="LTP"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:textColor="@color/md_white_1000"
+            android:id="@+id/price_alert_ltp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Low"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textColor="@color/md_white_1000"
+            android:id="@+id/price_alert_low" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="High"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textColor="@color/md_white_1000"
+            android:id="@+id/price_alert_high" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_weight="2"
+
+            android:layout_gravity="center"
+            android:gravity="right"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/price_alert_status"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:gravity="right"
+                android:scaleType="fitXY"
+                android:src="@drawable/top20">
+            </ImageView>
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="#585858" />
+
+
+
+</LinearLayout>
+
+
+
+
+

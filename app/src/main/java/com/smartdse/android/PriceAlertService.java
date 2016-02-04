@@ -132,7 +132,7 @@ public class PriceAlertService extends Service {
 
     //Show Notification
     private void showNotification(String title, String message, int id) {
-        Intent intent = new Intent(this, Home.class);
+        Intent intent = new Intent(this, PriceAlert.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);

@@ -8,13 +8,11 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.concurrent.CompletionService;
 
 /**
  * Created by mashnoor on 1/18/16.
@@ -23,8 +21,79 @@ public class PriceAlertHelper {
 
 
     final static String BUTTON_TEXT = "Add";
+    final static int HIGH = 1;
+    final static int LOW = -1;
+    final static int STABLE = 0;
 
 
+    String item_name;
+    String ltp;
+    String high_price;
+    String low_price;
+    int status;
+
+    public String getItem_name() {
+        return item_name;
+    }
+
+    public String getLtp() {
+        return ltp;
+    }
+
+    public String getHigh_price() {
+        return high_price;
+    }
+
+    public String getLow_price() {
+        return low_price;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public PriceAlertHelper(String item_name, String ltp, String high_price, String low_price) {
+        this.item_name = item_name;
+        this.ltp = ltp;
+        this.high_price = high_price;
+        this.low_price = low_price;
+        if(isParsable(ltp)) {
+            if (Double.parseDouble(ltp) > Double.parseDouble(high_price))
+            {
+                status = HIGH;
+            }
+            else if(Double.parseDouble(ltp) < Double.parseDouble(low_price))
+            {
+                status = LOW;
+            }
+            else
+            {
+                status = STABLE;
+            }
+
+        }
+        else
+        {
+            status = STABLE;
+        }
+
+
+
+    }
+
+    boolean isParsable(String number)
+    {
+        try
+        {
+            Double.parseDouble(number);
+            return true;
+
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
+    }
 
     public static void addPriceAlert(final Activity activity, final String item_name, final String ltp)
     {
@@ -72,6 +141,42 @@ public class PriceAlertHelper {
         final_dialog.show();
 
     }
+
+    public static ArrayList<PriceAlertHelper> getAllItems(Activity activity)
+    {
+        ArrayList<PriceAlertHelper> all_items_array_list = new ArrayList<PriceAlertHelper>();
+        SQLiteDatabase dsebd = activity.openOrCreateDatabase(Constants.DATABASE_NAME,
+                Context.MODE_PRIVATE, null);
+        String db_creation_query = "CREATE TABLE IF NOT EXISTS "+
+                Constants.PRICE_ALERT_TABLE+"(item VARCHAR, high VARCHAR, low VARCHAR, ltp VARCHAR);";
+        dsebd.execSQL(db_creation_query);
+        String select_all_query = "SELECT * FROM " + Constants.PRICE_ALERT_TABLE + ";";
+        Cursor all_item_cursor = dsebd.rawQuery(select_all_query, null);
+        all_item_cursor.moveToFirst();
+        if(all_item_cursor.getCount()<1)
+        {
+            all_item_cursor.close();
+            dsebd.close();
+            return null;
+        }
+        do {
+            String item = all_item_cursor.getString(0);
+            String high = all_item_cursor.getString(1);
+            String low = all_item_cursor.getString(2);
+            String ltp = all_item_cursor.getString(3);
+            PriceAlertHelper alert_item = new PriceAlertHelper(item,ltp, high, low);
+            all_items_array_list.add(alert_item);
+
+        }
+        while (all_item_cursor.moveToNext());
+
+        all_item_cursor.close();
+        dsebd.close();
+
+        return all_items_array_list;
+
+    }
+
 
     private static void addToDatabase(Activity activity, String item_name, String high, String low, String ltp) {
         SQLiteDatabase dsebd = activity.openOrCreateDatabase(Constants.DATABASE_NAME,

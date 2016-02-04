@@ -1,0 +1,92 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@android:color/black"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@+id/mytopbar"
+        layout="@layout/topbar" />
+
+    <LinearLayout
+        android:id="@+id/barid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#151515"
+        android:orientation="horizontal"
+        android:padding="7dp"
+        android:weightSum="7"
+        android:layout_below="@id/mytopbar">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:text="Symbol"
+            android:layout_weight="2"
+            android:textColor="@color/md_white_1000"
+            android:id="@+id/textView10" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="LTP"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:textColor="@color/md_white_1000"
+            android:id="@+id/textView12" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Low"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textColor="@color/md_white_1000"
+            android:id="@+id/textView13" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="High"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:textColor="@color/md_white_1000"
+            android:id="@+id/textView14" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="Status"
+            android:layout_weight="2"
+            android:gravity="center|right"
+            android:textColor="@color/md_white_1000"
+            android:id="@+id/textView11" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/dse_price_alert_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/down_panel_rellayout"
+        android:layout_below="@id/barid" >
+    </ListView>
+
+    <include
+        layout="@layout/downpanel"
+        android:id="@+id/down_panel_rellayout"
+        android:layout_alignParentBottom="true"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+
+
+         />
+
+</RelativeLayout>
