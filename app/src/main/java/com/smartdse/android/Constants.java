@@ -1,5 +1,8 @@
 package com.smartdse.android;
 
+import android.os.AsyncTask;
+import android.util.Log;
+
 /**
  * Created by mashnoor on 1/12/16.
  */
@@ -20,5 +23,47 @@ public class Constants {
     public static final String LPT_VALUES = "http://104.131.22.246/dev/smartdsefiles/itemvalues_portfolio.txt";
 
     public static final String DEBUG_TAG = "SmartDSE";
+
+
+
+    //Timer Counter
+
+    static class LoadAd extends AsyncTask<String, String, String>
+    {
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            ButtonController.loadInterstitialAd();
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            return null;
+        }
+    }
+
+
+    public static Thread showAdThread = new Thread(new Runnable() {
+        @Override
+        public void run() {
+            while (true)
+            {
+                try
+                {
+                    Thread.sleep(30000);
+                    new LoadAd().execute("");
+
+
+
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }
+    });
+
+
 
 }

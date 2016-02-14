@@ -12,15 +12,6 @@
         android:layout_height="1dp"
         android:background="#00CCCF" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Place For Ads"
-        android:textSize="30dp"
-        android:id="@+id/textView"
-        android:textColor="#ffffff"
-        android:layout_gravity="center" />
 
 
 </LinearLayout>

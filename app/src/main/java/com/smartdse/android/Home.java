@@ -35,6 +35,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+import com.facebook.applinks.AppLinkData;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 
 
@@ -69,9 +72,19 @@ public class Home extends Activity {
     // connection or not
     boolean has_active_netconnection = true;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
+        AppLinkData.fetchDeferredAppLinkData(getApplicationContext(), new AppLinkData.CompletionHandler() {
+            @Override
+            public void onDeferredAppLinkDataFetched(AppLinkData appLinkData) {
+
+            }
+        });
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.activity_home);
@@ -117,6 +130,21 @@ public class Home extends Activity {
         };
         layoutclicklistener();
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+
+        // Logs 'install' and 'app activate' App Events.
+        AppEventsLogger.activateApp(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        AppEventsLogger.activateApp(this);
     }
 
     class header_text_thread implements Runnable {

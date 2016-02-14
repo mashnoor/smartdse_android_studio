@@ -280,7 +280,7 @@ public class PriceAlertHelper {
     public static void show_customize_price_alert_dialog(final Activity activity, final String item)
     {
 
-        String[] dialog_items = {"Set new range", "Remove from price alert"};
+        String[] dialog_items = {"Set new range", "Remove from price alert", "See Item Detail"};
         AlertDialog.Builder price_alert_cust_dialog = new AlertDialog.Builder(
                 activity);
 
@@ -299,6 +299,16 @@ public class PriceAlertHelper {
                             removeItemFromPriceAlert(activity, item);
 
                         }
+                        else if(which == 2)
+                        {
+                            Intent detail_info_intent = new Intent(activity,
+                                    ItemInfo.class);
+                            detail_info_intent
+                                    .putExtra("TradingCode",
+                                            item);
+                            activity.startActivity(detail_info_intent);
+                        }
+
 
                     }
 

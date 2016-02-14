@@ -1413,25 +1413,7 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:gravity="center"
-                android:orientation="horizontal" >
-                <Button
-                    android:id="@+id/dse_item_detail_showmore"
-                    android:layout_width="190dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/border_drawer_hex_show_more"
-                    android:gravity="center"
-                    android:minHeight="25dp"
-                    android:textColor="#00CCCF"
-                    android:text="See this item on DSE website"
-                    android:textSize="12dp" />
 
-            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -1469,6 +1451,44 @@
                     android:minHeight="25dp"
                     android:textColor="#00CCCF"
                     android:text="Add to Price Alert"
+                    android:textSize="12dp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal" >
+                <Button
+                    android:id="@+id/dse_item_detail_showgraph"
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_drawer_hex_show_more"
+                    android:gravity="center"
+                    android:minHeight="25dp"
+                    android:textColor="#00CCCF"
+                    android:text="Graph"
+                    android:textSize="12dp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal" >
+                <Button
+                    android:id="@+id/dse_item_detail_showmore"
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/border_drawer_hex_show_more"
+                    android:gravity="center"
+                    android:minHeight="25dp"
+                    android:textColor="#00CCCF"
+                    android:text="See this item on DSE website"
                     android:textSize="12dp" />
 
             </LinearLayout>

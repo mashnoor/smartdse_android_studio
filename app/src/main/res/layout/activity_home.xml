@@ -416,19 +416,14 @@
         </LinearLayout>
     </ScrollView>
 
-    <RelativeLayout
-        android:id="@+id/down_panel_rellayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/main_content" >
 
         <include
-            android:id="@+id/homedownpanel"
+            android:id="@+id/down_panel_rellayout"
             android:layout_alignParentBottom="true"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
 
             layout="@layout/downpanel" />
-    </RelativeLayout>
+
 
 </RelativeLayout>

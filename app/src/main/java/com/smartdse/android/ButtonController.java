@@ -20,9 +20,17 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.ads.Ad;
+import com.facebook.ads.AdError;
+import com.facebook.ads.AdSettings;
+import com.facebook.ads.AdSize;
+import com.facebook.ads.AdView;
+import com.facebook.ads.InterstitialAd;
+import com.facebook.ads.InterstitialAdListener;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
@@ -34,22 +42,18 @@ public class ButtonController {
 
     private boolean sentfromportfolioactivity = false;
     public static String update_status = "Not Updated Yet";
-    final static String header_text_link = "http://104.131.22.246/dev/smartdsefiles/header_text.txt";
+    //Header Text for Version 2.0.0 (Beta Release)
+    final static String header_text_link = "http://104.131.22.246/dev/smartdsefiles/header_text_2.0.0.txt";
     final static String ADV_FILE_NAME = "advertise";
     public static ArrayList<String> header_texts;
     Handler handler;
     Thread thread;
     int i = 0;
+    public static Activity mainActivity;
 
     private volatile boolean thread_flag = false;
 
-    public static void change_down_panel_color(Activity sentacActivity,
-                                               int layout_id) {
-        View down_color;
-        down_color = sentacActivity.findViewById(layout_id);
-        down_color.setBackgroundColor(Color.parseColor("#ff33b5e5"));
-
-    }
+    public static InterstitialAd interstitialAd;
 
     class header_text_thread implements Runnable {
 
@@ -80,12 +84,71 @@ public class ButtonController {
 
     }
 
+
+    public static void loadInterstitialAd(){
+        interstitialAd = new InterstitialAd(mainActivity, "535675923265633_537478036418755");
+        interstitialAd.setAdListener(new InterstitialAdListener() {
+            @Override
+            public void onInterstitialDisplayed(Ad ad) {
+
+            }
+
+            @Override
+            public void onInterstitialDismissed(Ad ad) {
+
+            }
+
+            @Override
+            public void onError(Ad ad, AdError adError) {
+
+            }
+
+            @Override
+            public void onAdLoaded(Ad ad) {
+
+                interstitialAd.show();
+            }
+
+            @Override
+            public void onAdClicked(Ad ad) {
+
+            }
+        });
+        interstitialAd.loadAd();
+    }
+
     public ButtonController(final Activity sentactivity) {
 
         final View logo, home, items, search, watchlist, portfolio, news, top20, gainerloser, close_app, rateus, refresh_button, menuicon;
         final TextView update_status_tv;
         refresh_button = sentactivity.findViewById(R.id.dse_home_refresh);
+        //For Advertisement
 
+        mainActivity = sentactivity;
+
+        AdView adView;
+        LinearLayout downpanel = (LinearLayout) sentactivity.findViewById(R.id.down_panel_rellayout);
+
+        adView = new AdView(sentactivity, "535675923265633_535801366586422", AdSize.BANNER_HEIGHT_50);
+
+        // Find the main layout of your activity
+
+
+        // Add the ad view to your activity layout
+
+        //Ramos Ad
+        //AdSettings.addTestDevice("61d78da414ad51907332a5ba6fe48850");
+        downpanel.addView(adView);
+
+
+        // Request to load an ad
+
+       // AdSettings.addTestDevice("ec28ff02bcceb8adfa267bf2dd96bbd0");
+       // AdSettings.addTestDevice("2b882904b155af13c2e85f9430e63bb2");
+        //loadInterstitialAd();
+        adView.loadAd();
+
+        //
         // panel_show_hide_button =
         // sentactivity.findViewById(R.id.panel_show_hide);
 
@@ -97,7 +160,7 @@ public class ButtonController {
         PrimaryDrawerItem search_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.search)).withName("Search");
         PrimaryDrawerItem watchlist_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.watchlist)).withName("Watchlist");
         PrimaryDrawerItem portfolio_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.portfolio)).withName("Portfolio");
-        PrimaryDrawerItem news_and_ipo_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.news)).withName("News and IPO");
+        PrimaryDrawerItem news_and_ipo_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.news)).withName("News IPO AGM");
         PrimaryDrawerItem top20_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.top20)).withName("Top 20");
         PrimaryDrawerItem gainerloser_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.gainerloser)).withName("Top Gainer Loser");
         PrimaryDrawerItem currency_convert_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.currency)).withName("Currency Conversion");
@@ -128,11 +191,12 @@ public class ButtonController {
                         search_item,
                         watchlist_item,
                         portfolio_item,
+                        price_alert,
                         news_and_ipo_item,
                         top20_item,
                         gainerloser_item,
                         currency_convert_item,
-                        price_alert,
+
                         rateus_item,
                         info_item,
                         quit_item
@@ -219,14 +283,14 @@ public class ButtonController {
                             sentactivity.startActivity(itemintent);
 
                         }
-                        else if (position == 5)
+                        else if (position == 6)
                         {
                             MainActivity.show = false;
                             Intent itemintent = new Intent(sentactivity,
                                     NewsActivity.class);
                             sentactivity.startActivity(itemintent);
                         }
-                        else if (position == 6)
+                        else if (position == 7)
                         {
                             MainActivity.show = false;
                             Intent itemintent = new Intent(sentactivity,
@@ -234,21 +298,21 @@ public class ButtonController {
                             sentactivity.startActivity(itemintent);
 
                         }
-                        else if(position == 7)
+                        else if(position == 8)
                         {
                             MainActivity.show = false;
                             Intent itemintent = new Intent(sentactivity,
                                     Top10Gainers.class);
                             sentactivity.startActivity(itemintent);
                         }
-                        else if (position == 8)
+                        else if (position == 9)
                         {
                             MainActivity.show = false;
                             Intent itemintent = new Intent(sentactivity,
                                     Currency.class);
                             sentactivity.startActivity(itemintent);
                         }
-                        else if (position == 9)
+                        else if (position == 5)
                         {
                             MainActivity.show = false;
                             Intent itemintent = new Intent(sentactivity,

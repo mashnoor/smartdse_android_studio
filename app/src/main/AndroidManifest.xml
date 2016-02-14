@@ -13,9 +13,13 @@
     <!-- [END gcm_permission] -->
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/splash_logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
+
+        <activity android:name="com.facebook.ads.InterstitialAdActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
@@ -58,7 +62,7 @@
         </activity>
         <activity
             android:name=".Splash_activity"
-            android:label="@string/title_activity_splash_activity"
+            android:label="SmartDSE"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

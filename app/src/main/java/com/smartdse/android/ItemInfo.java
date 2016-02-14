@@ -39,7 +39,7 @@ public class ItemInfo extends Activity {
             dividend_2013, dividend_2014, sp_director, sp_govt, sp_institute,
             sp_foreign, sp_public;
 
-    Button portfolioButton, watchlistButton, show_moreButton, show_newsArchiveButton, show_marketDepthButton, priceAlertButton;
+    Button portfolioButton, watchlistButton, show_moreButton, show_newsArchiveButton, show_marketDepthButton, priceAlertButton, graphButton;
     ButtonController buttonController;
     View change_percentage_layout;
     DSE_Company_data portfolio_clicked_data;
@@ -193,6 +193,13 @@ public class ItemInfo extends Activity {
 
             }
         });
+        graphButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ItemInfo.this, "Graph Will be available soon!", Toast.LENGTH_LONG).show();
+
+            }
+        });
 
     }
 
@@ -258,6 +265,7 @@ public class ItemInfo extends Activity {
         show_newsArchiveButton = (Button) findViewById(R.id.dse_item_detail_newsarchive);
         show_marketDepthButton = (Button) findViewById(R.id.dse_item_detail_see_market_depth);
         priceAlertButton = (Button) findViewById(R.id.dse_item_detail_add_price_alert);
+        graphButton = (Button) findViewById(R.id.dse_item_detail_showgraph);
 
         // Layouts
         change_percentage_layout = findViewById(R.id.dse_info_change_layout);

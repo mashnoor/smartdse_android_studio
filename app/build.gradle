@@ -1,16 +1,24 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        SmartDSE {
+            storeFile file('/home/mashnoor/key/debug.keystore')
+            keyAlias 'SmartDSE'
+            keyPassword 'menoncXe13@ctv'
+            storePassword 'menoncXe13@ctv'
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
-
     defaultConfig {
         applicationId "com.smartdse.android"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "2.0.0 (Beta Release)"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.SmartDSE
     }
     buildTypes {
         release {
@@ -18,21 +26,21 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    productFlavors {
+    }
 }
+repositories { mavenCentral() }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
-
-
-
     compile('com.mikepenz:materialdrawer:4.6.3@aar') {
         transitive = true
     }
-    compile files('/home/mashnoor/Old/SmartDSE/libs/okhttp-2.7.0.jar')
-    compile files('/home/mashnoor/Old/SmartDSE/libs/jsoup-1.8.3.jar')
     compile 'com.google.android.gms:play-services-gcm:8.4.0'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
+    compile 'com.facebook.android:facebook-android-sdk:4.6.0'
+    compile files('/home/mashnoor/AndroidStudioProjects/smartdse_android_studio/libs/AudienceNetwork.jar')
 }
 
 

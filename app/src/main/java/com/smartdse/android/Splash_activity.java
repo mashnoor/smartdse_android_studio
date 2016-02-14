@@ -18,11 +18,14 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -109,6 +112,7 @@ public class Splash_activity extends Activity {
         super.onResume();
         LocalBroadcastManager.getInstance(this).registerReceiver(mRegistrationBroadcastReceiver,
                 new IntentFilter(QuickstartPreferences.REGISTRATION_COMPLETE));
+
     }
 
     private boolean isMyServiceRunning(Class<?> serviceClass) {
@@ -166,9 +170,34 @@ public class Splash_activity extends Activity {
             // TODO Auto-generated method stub
             super.onPostExecute(result);
 
-            Intent main_activity = new Intent(Splash_activity.this, Home.class);
-            startActivity(main_activity);
-            finish();
+
+            if(ButtonController.header_texts.get(0).equals("New Version Available!"))
+            {
+                AlertDialog alertDialog = new AlertDialog.Builder(
+                        Splash_activity.this)
+                        .setTitle("New Version Available!")
+                        .setMessage(
+                                "Good News! SmartDSE has been updated!\nNew version is now available to download.")
+                        .setPositiveButton("Update",
+                                new DialogInterface.OnClickListener() {
+
+                                    @Override
+                                    public void onClick(
+                                            DialogInterface arg0,
+                                            int arg1) {
+                                        startActivity(new Intent(Intent.ACTION_VIEW, Uri
+                                                .parse("market://details?id=" + getApplicationContext().getPackageName())));
+
+                                    }
+                                }).setCancelable(false).show();
+            }
+            else {
+                Intent main_activity = new Intent(Splash_activity.this, Home.class);
+                Constants.showAdThread.start();
+                startActivity(main_activity);
+                finish();
+            }
+
 
         }
 
