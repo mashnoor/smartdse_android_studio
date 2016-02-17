@@ -71,6 +71,62 @@
                 android:text="Trading Code: "
                 android:textAppearance="?android:attr/textAppearanceSmall"
                 android:textColor="#ff33b5e5" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:weightSum="2" >
+
+                <Button
+                    android:id="@+id/dse_item_detail_add_price_alert"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_drawer_hex"
+                    android:minHeight="25dp"
+                    android:text="Price Alert"
+                    android:textColor="#00CCCF"
+                    android:textSize="12dp" />
+
+                <Button
+                    android:id="@+id/dse_item_detail_see_market_depth"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_drawer_hex_2"
+                    android:minHeight="25dp"
+                    android:text="Market Depth"
+                    android:textColor="@android:color/black"
+                    android:textSize="12dp" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:weightSum="2" >
+
+                <Button
+                    android:id="@+id/dse_item_detail_newsarchive"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_drawer_hex"
+                    android:minHeight="25dp"
+                    android:text="See news from archive"
+                    android:textColor="#00CCCF"
+                    android:textSize="12dp" />
+
+                <Button
+                    android:id="@+id/dse_item_detail_showgraph"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/border_drawer_hex_2"
+                    android:minHeight="25dp"
+                    android:text="Graph"
+                    android:textColor="@android:color/black"
+                    android:textSize="12dp" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -106,6 +162,7 @@
                         android:textColor="@android:color/white"
                         android:textSize="15dp" />
                 </LinearLayout>
+
 
                 <LinearLayout
                     android:id="@+id/dse_info_change_layout"
@@ -1393,86 +1450,14 @@
             </LinearLayout>
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:gravity="center"
-                android:orientation="horizontal" >
-                <Button
-                    android:id="@+id/dse_item_detail_newsarchive"
-                    android:layout_width="190dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/border_drawer_hex_show_more"
-                    android:gravity="center"
-                    android:minHeight="25dp"
-                    android:textColor="#00CCCF"
-                    android:text="See news from archive"
-                    android:textSize="12dp" />
-
-            </LinearLayout>
 
 
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:gravity="center"
-                android:orientation="horizontal" >
-                <Button
-                    android:id="@+id/dse_item_detail_see_market_depth"
-                    android:layout_width="190dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/border_drawer_hex_show_more"
-                    android:gravity="center"
-                    android:minHeight="25dp"
-                    android:textColor="#00CCCF"
-                    android:text="Market Depth "
-                    android:textSize="12dp" />
 
-            </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:gravity="center"
-                android:orientation="horizontal" >
-                <Button
-                    android:id="@+id/dse_item_detail_add_price_alert"
-                    android:layout_width="190dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/border_drawer_hex_show_more"
-                    android:gravity="center"
-                    android:minHeight="25dp"
-                    android:textColor="#00CCCF"
-                    android:text="Add to Price Alert"
-                    android:textSize="12dp" />
 
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="10dp"
-                android:gravity="center"
-                android:orientation="horizontal" >
-                <Button
-                    android:id="@+id/dse_item_detail_showgraph"
-                    android:layout_width="190dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@drawable/border_drawer_hex_show_more"
-                    android:gravity="center"
-                    android:minHeight="25dp"
-                    android:textColor="#00CCCF"
-                    android:text="Graph"
-                    android:textSize="12dp" />
 
-            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -13,7 +13,7 @@
         layout="@layout/topbar" />
 
     <LinearLayout
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:id="@+id/container"
         android:weightSum="2"
@@ -24,8 +24,8 @@
 
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:id="@+id/buy_layout">
 
@@ -40,7 +40,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="Buy Price"
                     android:textColor="#00CCCF"
                     android:layout_weight="1"
@@ -51,7 +51,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="Buy Volume"
                     android:layout_weight="1"
                     android:gravity="right"
@@ -66,12 +66,12 @@
                 android:id="@+id/buy_list" />
         </LinearLayout>
         <View
-            android:layout_width="fill_parent"
-            android:layout_height="1dp"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
             android:background="#00CCCF" />
         <LinearLayout
             android:orientation="vertical"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:id="@+id/sell_layout" >
@@ -88,7 +88,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="4dp"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="Sell Price"
                     android:textColor="#00CCCF"
                     android:layout_weight="1"
@@ -101,7 +101,7 @@
                     android:layout_weight="1"
                     android:gravity="right"
                     android:padding="4dp"
-                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
                     android:text="Sell Volume"
                     android:id="@+id/textView9"
                     android:textColor="#00CCCF" />

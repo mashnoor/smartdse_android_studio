@@ -159,6 +159,7 @@ public class MainActivity extends Activity {
                                 MainActivity.this, ItemInfo.class);
                         detail_info_intent.putExtra("TradingCode",
                                 clicked_Company_data.getCompany_Name());
+                        
                         startActivity(detail_info_intent);
 
                     }

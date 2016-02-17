@@ -9,6 +9,8 @@ package com.smartdse.android;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,6 +33,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +41,7 @@ import android.widget.Toast;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.applinks.AppLinkData;
+import com.github.mikephil.charting.data.Entry;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 
 
@@ -54,6 +58,10 @@ public class Home extends Activity {
     final static String header_text_link = "http://104.131.22.246/dev/smartdsefiles/header_text.txt";
 
     ButtonController buttonController;
+    GraphDrawer home_graph;
+    Button show_graph;
+
+
 
     Handler handler;
     Thread thread;
@@ -94,6 +102,11 @@ public class Home extends Activity {
 
 
         buttonController = new ButtonController(Home.this);
+
+        //Show Graph
+
+        home_graph = new GraphDrawer(this);
+       // home_graph.drawHomeGraph();
 
         // Defining our asynctask manager
         data_fetching_task = (set_dse_home_datas) new set_dse_home_datas();
@@ -221,6 +234,16 @@ public class Home extends Activity {
             }
         });
 
+        show_graph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                home_graph.drawHomeGraph();
+
+
+            }
+        });
+
     }
 
     // Describing a function to read data from offline file
@@ -260,6 +283,9 @@ public class Home extends Activity {
         dsex_whole = (LinearLayout) findViewById(R.id.dse_x);
         ds30_whole = (LinearLayout) findViewById(R.id.dse_30);
 
+        //Buttons
+        show_graph = (Button) findViewById(R.id.dse_show_graph);
+
         header_server_data = (TextView) findViewById(R.id.header_server_text);
 
     }
@@ -288,6 +314,8 @@ public class Home extends Activity {
             // For testing purpose
 
             thread.start();
+
+
 
             if (!has_active_netconnection) {
                 Toast.makeText(getApplicationContext(),
@@ -372,12 +400,16 @@ public class Home extends Activity {
             String home_data = "";
             SrcGrabber grabber = new SrcGrabber();
 
+
+
             try {
                 if (Active_net_checking.testInte("104.131.22.246")) {
                     home_data = grabber
                             .grabSource("http://104.131.22.246/dev/smartdsefiles/homedata.txt");
+
                     System.out.println(home_data);
                     DevTools.write_file(Home.this, filename, home_data);
+                    //DevTools.write_file(Home.this, );
 
                     has_active_netconnection = true;
                 } else if (DevTools.fileExistance(Home.this, filename)) {
@@ -396,6 +428,7 @@ public class Home extends Activity {
             try {
 
                 JSONArray dse_home_datas = new JSONArray(home_data);
+
 
                 // Json Objects
                 JSONObject dsex_index_object = dse_home_datas.getJSONObject(0);

@@ -30,6 +30,9 @@ android {
     }
 }
 repositories { mavenCentral() }
+repositories {
+    maven { url "https://jitpack.io" }
+}
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -40,6 +43,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
     compile 'com.facebook.android:facebook-android-sdk:4.6.0'
+    compile 'com.github.PhilJay:MPAndroidChart:v2.1.6'
     compile files('/home/mashnoor/AndroidStudioProjects/smartdse_android_studio/libs/AudienceNetwork.jar')
 }
 

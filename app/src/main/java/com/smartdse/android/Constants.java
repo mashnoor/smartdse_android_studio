@@ -12,6 +12,7 @@ public class Constants {
     public static final String CUSTOMIZE_PRICE_ALERT = "Customize price Alert";
     public static final String DATABASE_NAME = "dsedatabase";
     public static final String PRICE_ALERT_TABLE = "pricealertitems";
+    public static final String FAVOURITE_COLOR = "#00CCCF";
 
 
 
@@ -21,6 +22,8 @@ public class Constants {
     public static final String CURRENCY_CONVERT = "https://www.google.com/finance/converter?a=1&from=USD&to=BDT";
     public static final  String MARKET_DEPTH = "http://104.131.22.246/dev/smartdsefiles/depth/";
     public static final String LPT_VALUES = "http://104.131.22.246/dev/smartdsefiles/itemvalues_portfolio.txt";
+    public static final String HOME_GRAPH_LINK = "http://104.131.22.246/dev/smartdsefiles/home_graph.txt";
+
 
     public static final String DEBUG_TAG = "SmartDSE";
 
@@ -50,7 +53,7 @@ public class Constants {
             {
                 try
                 {
-                    Thread.sleep(30000);
+                    Thread.sleep(60000);
                     new LoadAd().execute("");
 
 

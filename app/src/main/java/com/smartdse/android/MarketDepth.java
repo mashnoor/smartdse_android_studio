@@ -49,6 +49,7 @@ public class MarketDepth extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_market_depth);
+        buttonController = new ButtonController(this);
         md_buy_arraylist = new ArrayList<MarketDepthValue>();
         md_sell_arraylist = new ArrayList<MarketDepthValue>();
         Intent grab_intet = getIntent();
