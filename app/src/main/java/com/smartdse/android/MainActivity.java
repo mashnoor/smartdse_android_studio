@@ -159,7 +159,11 @@ public class MainActivity extends Activity {
                                 MainActivity.this, ItemInfo.class);
                         detail_info_intent.putExtra("TradingCode",
                                 clicked_Company_data.getCompany_Name());
-                        
+                        detail_info_intent.putExtra("change_amount", clicked_Company_data.getChange_ammount());
+                        detail_info_intent.putExtra("change_percentage",clicked_Company_data.getChange_percentage());
+                        detail_info_intent.putExtra("ltp", clicked_Company_data.getLaste_trade());
+
+
                         startActivity(detail_info_intent);
 
                     }

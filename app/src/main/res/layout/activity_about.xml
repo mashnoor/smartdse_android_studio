@@ -104,7 +104,7 @@
 
                 <ImageView
                     android:paddingRight="5dp"
-                    android:id="@+id/imageView1"
+                    android:id="@+id/search"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/search" />
@@ -115,7 +115,7 @@
                     android:orientation="vertical" >
 
                     <TextView
-                        android:id="@+id/textView4"
+                        android:id="@+id/searchtext"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Search"
@@ -123,7 +123,7 @@
                         android:textColor="#00CCCF" />
 
                     <TextView
-                        android:id="@+id/textView5"
+                        android:id="@+id/search_desc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Click this icon to get a specific item."
@@ -141,7 +141,7 @@
 
                 <ImageView
                     android:paddingRight="5dp"
-                    android:id="@+id/imageView1"
+                    android:id="@+id/watchlist_ico"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/watchlist" />
@@ -152,7 +152,7 @@
                     android:orientation="vertical" >
 
                     <TextView
-                        android:id="@+id/textView4"
+                        android:id="@+id/watchlist_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Watchlist"
@@ -160,7 +160,7 @@
                         android:textColor="#00CCCF" />
 
                     <TextView
-                        android:id="@+id/textView5"
+                        android:id="@+id/watchlist_desc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="When you are in item details page and click ADD TO WATCHLIST button, then those items will be displayed here. You can see these item details even using this application offline."
@@ -178,7 +178,7 @@
 
                 <ImageView
                     android:paddingRight="5dp"
-                    android:id="@+id/imageView1"
+                    android:id="@+id/portfolio_ico"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/portfolio" />
@@ -189,7 +189,7 @@
                     android:orientation="vertical" >
 
                     <TextView
-                        android:id="@+id/textView4"
+                        android:id="@+id/portfolio_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Portfolio"
@@ -197,7 +197,7 @@
                         android:textColor="#00CCCF" />
 
                     <TextView
-                        android:id="@+id/textView5"
+                        android:id="@+id/portfolio_desc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="You can store, calculate and observe your stock status. Items can be added, reduced, removed and displayed interactively here."
@@ -215,7 +215,7 @@
 
                 <ImageView
                     android:paddingRight="5dp"
-                    android:id="@+id/imageView1"
+                    android:id="@+id/news_ico"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/news" />
@@ -226,7 +226,7 @@
                     android:orientation="vertical" >
 
                     <TextView
-                        android:id="@+id/textView4"
+                        android:id="@+id/news_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="News and IPO"
@@ -234,7 +234,7 @@
                         android:textColor="#00CCCF" />
 
                     <TextView
-                        android:id="@+id/textView5"
+                        android:id="@+id/news_desc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="You can see latest news from DSE website and upcoming IPO information."
@@ -252,7 +252,7 @@
 
                 <ImageView
                     android:paddingRight="5dp"
-                    android:id="@+id/imageView1"
+                    android:id="@+id/top20_ico"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/top20" />
@@ -263,7 +263,7 @@
                     android:orientation="vertical" >
 
                     <TextView
-                        android:id="@+id/textView4"
+                        android:id="@+id/top20_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Top20"
@@ -271,7 +271,7 @@
                         android:textColor="#00CCCF" />
 
                     <TextView
-                        android:id="@+id/textView5"
+                        android:id="@+id/top20_desc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Top twenty shares regarding value, volume and trade will be displayed here separately."
@@ -289,7 +289,7 @@
 
                 <ImageView
                     android:paddingRight="5dp"
-                    android:id="@+id/imageView1"
+                    android:id="@+id/gainerloser_ico"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/gainerloser" />
@@ -300,7 +300,7 @@
                     android:orientation="vertical" >
 
                     <TextView
-                        android:id="@+id/textView4"
+                        android:id="@+id/gainerloser_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Top Gainers and Losers"
@@ -308,7 +308,7 @@
                         android:textColor="#00CCCF" />
 
                     <TextView
-                        android:id="@+id/textView5"
+                        android:id="@+id/gainerloser_desc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="You can see days top ten gainers and losers here."
