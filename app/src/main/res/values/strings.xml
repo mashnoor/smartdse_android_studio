@@ -28,5 +28,6 @@
     <string name="title_activity_market_depth">MarketDepth</string>
     <string name="title_activity_price_alert">PriceAlert</string>
     <string name="facebook_app_id">535675923265633</string>
+    <string name="title_activity_expert_analysis">ExpertAnalysis</string>
 
 </resources>

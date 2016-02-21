@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         SmartDSE {
-            storeFile file('/home/mashnoor/key/debug.keystore')
+            storeFile file('/home/mashnoor/key/doraemon.jks')
             keyAlias 'SmartDSE'
             keyPassword 'menoncXe13@ctv'
             storePassword 'menoncXe13@ctv'

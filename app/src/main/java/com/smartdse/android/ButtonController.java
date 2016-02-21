@@ -169,6 +169,14 @@ public class ButtonController {
         PrimaryDrawerItem rateus_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.rateus)).withName("Rate Us");
         PrimaryDrawerItem info_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.info)).withName("Info");
         PrimaryDrawerItem quit_item = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.quit)).withName("Quit");
+        PrimaryDrawerItem expert_analysis = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.expert_analysis_logo)).withName("Expert Analysis");
+
+        PrimaryDrawerItem group_discussion = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.group_chat_logo)).withName("Group Discussion");
+        PrimaryDrawerItem weekly_report = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.weekly_report_logo)).withName("Weekly Report");
+        PrimaryDrawerItem like_us = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.fb_logo)).withName("Like Us");
+
+
+
 
 
 
@@ -197,6 +205,10 @@ public class ButtonController {
                         gainerloser_item,
                         currency_convert_item,
 
+                        expert_analysis,
+                        group_discussion,
+                        weekly_report,
+                        like_us,
                         rateus_item,
                         info_item,
                         quit_item
@@ -283,6 +295,13 @@ public class ButtonController {
                             sentactivity.startActivity(itemintent);
 
                         }
+                        else if (position == 5)
+                        {
+                            MainActivity.show = false;
+                            Intent itemintent = new Intent(sentactivity,
+                                    PriceAlert.class);
+                            sentactivity.startActivity(itemintent);
+                        }
                         else if (position == 6)
                         {
                             MainActivity.show = false;
@@ -312,27 +331,46 @@ public class ButtonController {
                                     Currency.class);
                             sentactivity.startActivity(itemintent);
                         }
-                        else if (position == 5)
-                        {
-                            MainActivity.show = false;
-                            Intent itemintent = new Intent(sentactivity,
-                                    PriceAlert.class);
-                            sentactivity.startActivity(itemintent);
-                        }
 
                         else if (position == 10)
                         {
+                            MainActivity.show = false;
+                            Intent expert_analysis_intent = new Intent(sentactivity,
+                                    ExpertAnalysis.class);
+                            sentactivity.startActivity(expert_analysis_intent);
+                        }
+                        else if (position == 11)
+                        {
+                          //Group Chat
+                        }
+                        else if (position == 12)
+                        {
+                           //Weekly Report
+                        }
+                        else if (position == 13)
+                        {
+                            try {
+                                sentactivity.getPackageManager().getPackageInfo("com.facebook.katana", 0);
+                                Intent fb_app = new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/790664287641127"));
+                                sentactivity.startActivity(fb_app);
+                            } catch (Exception e) {
+                               Intent i =  new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/790664287641127"));
+                                sentactivity.startActivity(i);
+                            }
+                        }
+                        else if (position == 14) {
                             sentactivity.startActivity(new Intent(Intent.ACTION_VIEW, Uri
                                     .parse("market://details?id=" + sentactivity.getApplicationContext().getPackageName())));
 
                         }
-                        else if(position == 11)
+
+                        else if(position == 15)
                         {
                             MainActivity.show = false;
                             Intent intent = new Intent(sentactivity, About.class);
                             sentactivity.startActivity(intent);
                         }
-                        else if(position == 12)
+                        else if(position == 16)
                         {
                             sentactivity.finish();
                             Intent intent = new Intent(Intent.ACTION_MAIN);
