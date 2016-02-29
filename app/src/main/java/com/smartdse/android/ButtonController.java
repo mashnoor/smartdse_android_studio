@@ -194,24 +194,23 @@ public class ButtonController {
                 .withActivity(sentactivity)
 
                 .addDrawerItems(
-                        home_item,
-                        a_z_item,
-                        search_item,
-                        watchlist_item,
-                        portfolio_item,
-                        price_alert,
-                        news_and_ipo_item,
-                        top20_item,
-                        gainerloser_item,
-                        currency_convert_item,
-
-                        expert_analysis,
-                        group_discussion,
-                        weekly_report,
-                        like_us,
-                        rateus_item,
-                        info_item,
-                        quit_item
+                        home_item, //0
+                        a_z_item,  //1
+                        search_item, //2
+                        watchlist_item,//3
+                        portfolio_item,//4
+                        price_alert,//5
+                        expert_analysis,//6
+                        group_discussion,//7
+                        weekly_report,//8
+                        news_and_ipo_item,//9
+                        currency_convert_item,//10
+                        gainerloser_item,//11
+                        top20_item,//12
+                        like_us,//13
+                        info_item,//14
+                        rateus_item,//15
+                        quit_item//16
                         //new SecondaryDrawerItem().withName(R.string.drawer_item_settings)
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
@@ -222,6 +221,7 @@ public class ButtonController {
                         //Handle the clicks
                         if (position == 0)
                         {
+                            //Home
                             MainActivity.show = false;
                             Intent homeiIntent = new Intent(sentactivity, Home.class);
                             sentactivity.startActivity(homeiIntent);
@@ -231,6 +231,7 @@ public class ButtonController {
                         }
                       else if(position == 1)
                         {
+                            //A2Z
                             MainActivity.show = false;
                             Intent itemintent = new Intent(sentactivity,
                                     MainActivity.class);
@@ -238,6 +239,7 @@ public class ButtonController {
                         }
                         else if(position == 2)
                         {
+                            //Search
                             if (sentactivity instanceof MainActivity) {
                                 View search_box = sentactivity
                                         .findViewById(R.id.dse_list_search_box);
@@ -281,6 +283,7 @@ public class ButtonController {
                         }
                         else if(position == 3)
                         {
+                            //Watchlist
                             MainActivity.show = false;
                             Intent watchlist = new Intent(sentactivity,
                                     Watch_List_list_view.class);
@@ -289,6 +292,7 @@ public class ButtonController {
                         }
                         else if (position == 4)
                         {
+                            //Portfolio
                             MainActivity.show = false;
                             Intent itemintent = new Intent(sentactivity,
                                     Portfolio_activity.class);
@@ -297,6 +301,7 @@ public class ButtonController {
                         }
                         else if (position == 5)
                         {
+                            //Price Alert
                             MainActivity.show = false;
                             Intent itemintent = new Intent(sentactivity,
                                     PriceAlert.class);
@@ -304,51 +309,62 @@ public class ButtonController {
                         }
                         else if (position == 6)
                         {
+                            //Expert Analysis
+                            MainActivity.show = false;
+                            Intent itemintent = new Intent(sentactivity,
+                                    ExpertAnalysis.class);
+                            sentactivity.startActivity(itemintent);
+                        }
+                        else if (position == 7)
+                        {
+                            //Group Discussion
+                           Toast.makeText(sentactivity, "Sit Tight! Feature on the way.", Toast.LENGTH_SHORT).show();
+
+                        }
+                        else if(position == 8)
+                        {
+                            //Weekly Report
+                            MainActivity.show = false;
+                            Intent itemintent = new Intent(sentactivity,
+                                    WeeklyReport.class);
+                            sentactivity.startActivity(itemintent);
+                        }
+                        else if (position == 9)
+                        {
+                            //News IPO AGM
                             MainActivity.show = false;
                             Intent itemintent = new Intent(sentactivity,
                                     NewsActivity.class);
                             sentactivity.startActivity(itemintent);
                         }
-                        else if (position == 7)
-                        {
-                            MainActivity.show = false;
-                            Intent itemintent = new Intent(sentactivity,
-                                    Top10Shares.class);
-                            sentactivity.startActivity(itemintent);
 
-                        }
-                        else if(position == 8)
+                        else if (position == 10)
                         {
+                            //Currency Converter
+                            MainActivity.show = false;
+                            Intent expert_analysis_intent = new Intent(sentactivity,
+                                    Currency.class);
+                            sentactivity.startActivity(expert_analysis_intent);
+                        }
+                        else if (position == 11)
+                        {
+                          //Top Gainer Loser
                             MainActivity.show = false;
                             Intent itemintent = new Intent(sentactivity,
                                     Top10Gainers.class);
                             sentactivity.startActivity(itemintent);
                         }
-                        else if (position == 9)
-                        {
-                            MainActivity.show = false;
-                            Intent itemintent = new Intent(sentactivity,
-                                    Currency.class);
-                            sentactivity.startActivity(itemintent);
-                        }
-
-                        else if (position == 10)
-                        {
-                            MainActivity.show = false;
-                            Intent expert_analysis_intent = new Intent(sentactivity,
-                                    ExpertAnalysis.class);
-                            sentactivity.startActivity(expert_analysis_intent);
-                        }
-                        else if (position == 11)
-                        {
-                          //Group Chat
-                        }
                         else if (position == 12)
                         {
-                           //Weekly Report
+                           //TOP 20
+                            MainActivity.show = false;
+                            Intent itemintent = new Intent(sentactivity,
+                                    Top10Shares.class);
+                            sentactivity.startActivity(itemintent);
                         }
                         else if (position == 13)
                         {
+                            //Like Us
                             try {
                                 sentactivity.getPackageManager().getPackageInfo("com.facebook.katana", 0);
                                 Intent fb_app = new Intent(Intent.ACTION_VIEW, Uri.parse("fb://page/790664287641127"));
@@ -358,20 +374,27 @@ public class ButtonController {
                                 sentactivity.startActivity(i);
                             }
                         }
-                        else if (position == 14) {
-                            sentactivity.startActivity(new Intent(Intent.ACTION_VIEW, Uri
-                                    .parse("market://details?id=" + sentactivity.getApplicationContext().getPackageName())));
+                        else if (position == 14)
+                        {
+                            //Info
+                            MainActivity.show = false;
+                            Intent intent = new Intent(sentactivity, About.class);
+                            sentactivity.startActivity(intent);
 
                         }
 
                         else if(position == 15)
                         {
-                            MainActivity.show = false;
-                            Intent intent = new Intent(sentactivity, About.class);
-                            sentactivity.startActivity(intent);
+                            //Rate Us
+                            sentactivity.startActivity(new Intent(Intent.ACTION_VIEW, Uri
+                                    .parse("market://details?id=" + sentactivity.getApplicationContext().getPackageName())));
+
+
                         }
                         else if(position == 16)
                         {
+
+                            //Exit
                             sentactivity.finish();
                             Intent intent = new Intent(Intent.ACTION_MAIN);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

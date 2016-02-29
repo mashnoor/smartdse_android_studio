@@ -29,5 +29,7 @@
     <string name="title_activity_price_alert">PriceAlert</string>
     <string name="facebook_app_id">535675923265633</string>
     <string name="title_activity_expert_analysis">ExpertAnalysis</string>
+    <string name="title_activity_weekly_report">WeeklyReport</string>
+    <string name="title_activity_full_screen_graph">FullScreenGraph</string>
 
 </resources>

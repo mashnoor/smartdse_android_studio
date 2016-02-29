@@ -85,23 +85,30 @@ public class PriceAlertService extends Service {
             if(PriceAlertHelper.ifItemExists(activity, curr_item))
             {
                 String ltp = ltp_object.getString("lastTrade");
+                Log.d(Constants.DEBUG_TAG, ltp);
                 doTheProcess(activity, curr_item, ltp);
             }
         }
     }
 
     private void doTheProcess(Context activity, String curr_item, String ltp_value) throws Exception{
+
         String[] high_low = PriceAlertHelper.getHighLowValue(activity, curr_item);
         Double high = Double.parseDouble(high_low[0]);
+       //Log.d(Constants.DEBUG_TAG, "High - " + high);
         Double low = Double.parseDouble(high_low[1]);
+        //Log.d(Constants.DEBUG_TAG, "Low  - " + low);
         Double ltp = Double.parseDouble(ltp_value);
+        Log.d(Constants.DEBUG_TAG, "LTP - " + ltp);
         if(!PriceAlertHelper.getLtp(activity, curr_item).equals(ltp_value))
         {
+            Log.d(Constants.DEBUG_TAG, "Entering not logic");
             if(ltp>high)
             {
                 //Send High Notification
                 showNotification(curr_item,"Crossed high value limit!", random.nextInt());
 
+                Log.d(Constants.DEBUG_TAG, "HIGH");
 
                 //Update New ltp
                 PriceAlertHelper.updateLtp(activity, curr_item, ltp_value);
@@ -112,6 +119,7 @@ public class PriceAlertService extends Service {
             {
                 //Send Low Notification
                 showNotification(curr_item, "Crossed low value limit!", random.nextInt());
+                Log.d(Constants.DEBUG_TAG, "LOW");
 
 
                 //Update new ltp

@@ -41,6 +41,8 @@ import android.widget.Toast;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.applinks.AppLinkData;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.data.Entry;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 
@@ -48,13 +50,14 @@ import com.mikepenz.materialdrawer.DrawerBuilder;
 public class Home extends Activity {
 
     // All Text Views
+
     TextView tvdsex_index_data1, tvdsex_index_data2, tvdsex_index_data3,
             tvdses_index_data1, tvdses_index_data2, tvdses_index_data3,
             tvdse30_index_data1, tvdse30_index_data2, tvdse30_index_data3,
             tvdse_total_trade, tvdse_total_volume, tvdse_total_value,
             tvdse_market_status, tvdse_lastupdate, tvdse_issue_advanced,
             tvdse_issue_declined, tvdse_issue_unchanged, header_server_data;
-    LinearLayout dsex_index_Layout, dse30_index_Layout, dsex_whole, ds30_whole;
+    LinearLayout dsex_index_Layout, dse30_index_Layout, dsex_whole, ds30_whole, dsex_graph_layout, volume_graph_layout;
     final static String header_text_link = "http://104.131.22.246/dev/smartdsefiles/header_text.txt";
 
     ButtonController buttonController;
@@ -97,13 +100,19 @@ public class Home extends Activity {
 
         setContentView(R.layout.activity_home);
 
+
         initialize_variable();
+
+        dsex_graph_layout.setVisibility(View.INVISIBLE);
+        volume_graph_layout.setVisibility(View.INVISIBLE);
+
         new DrawerBuilder().withActivity(this).build();
 
 
         buttonController = new ButtonController(Home.this);
 
         //Show Graph
+
 
         home_graph = new GraphDrawer(this);
        // home_graph.drawHomeGraph();
@@ -228,8 +237,8 @@ public class Home extends Activity {
 
             @Override
             public void onClick(View arg0) {
-                Intent dse30listintent = new Intent(Home.this, DSE30List.class);
-                startActivity(dse30listintent);
+               // Intent dse30listintent = new Intent(Home.this, DSE30List.class);
+                //startActivity(dse30listintent);
 
             }
         });
@@ -238,7 +247,13 @@ public class Home extends Activity {
             @Override
             public void onClick(View v) {
 
+                Intent fullScreenGraph = new Intent(Home.this, FullScreenGraph.class);
+                startActivity(fullScreenGraph);
+                /***
+                dsex_graph_layout.setVisibility(View.VISIBLE);
+                volume_graph_layout.setVisibility(View.VISIBLE);
                 home_graph.drawHomeGraph();
+                 ***/
 
 
             }
@@ -282,6 +297,8 @@ public class Home extends Activity {
         dse30_index_Layout = (LinearLayout) findViewById(R.id.ds_30_layout);
         dsex_whole = (LinearLayout) findViewById(R.id.dse_x);
         ds30_whole = (LinearLayout) findViewById(R.id.dse_30);
+        dsex_graph_layout = (LinearLayout) findViewById(R.id.dsex_graph_layout);
+        volume_graph_layout = (LinearLayout) findViewById(R.id.volume_graph_layout);
 
         //Buttons
         show_graph = (Button) findViewById(R.id.dse_show_graph);

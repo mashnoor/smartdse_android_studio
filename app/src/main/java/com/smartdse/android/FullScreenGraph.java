@@ -1,9 +1,14 @@
 package com.smartdse.android;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
@@ -24,34 +29,59 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-/**
- * Created by mashnoor on 2/16/16.
- */
-public class GraphDrawer {
-    Activity activity;
+public class FullScreenGraph extends AppCompatActivity {
+
+    ButtonController buttonController;
+    GraphDrawer graphDrawer;
+    ProgressDialog progressDialog;
     JSONArray home_graph_data;
     JSONArray home_volume_graph_data;
     ArrayList<Entry> dsex_values;
     ArrayList<BarEntry> dsex_volume_values;
     ArrayList<String> dsex_times;
     ArrayList<String> dsex_volume_times;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        setContentView(R.layout.activity_full_screen_graph);
 
-    public GraphDrawer(Activity activity)
 
-    {
+        buttonController = new ButtonController(this);
 
-        this.activity = activity;
+        new grab_and_draw_graph().execute("");
+
+
     }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        if ((progressDialog != null) && progressDialog.isShowing())
+            progressDialog.dismiss();
+        progressDialog = null;
+    }
+
+
+
 
     public class grab_and_draw_graph extends AsyncTask<String, String, String>
     {
 
-        ProgressDialog progressDialog = ProgressDialog.show(activity, "",
-                "Processing Graph", true);
+        protected void onPreExecute() {
+            progressDialog = ProgressDialog.show(FullScreenGraph.this, "", "Generating Graph...",
+                    true);
+        }
+
+
 
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            if ((progressDialog != null) && progressDialog.isShowing()) {
+                progressDialog.dismiss();
+            }
 
 
 
@@ -60,7 +90,7 @@ public class GraphDrawer {
 
             /********************* START OF DRAWING THE BAR CHART ****************************/
 
-            final BarChart volumeChart = (BarChart) activity.findViewById(R.id.home_volume_chart);
+            final BarChart volumeChart = (BarChart) findViewById(R.id.home_volume_chart);
             final BarDataSet volume_dataset = new BarDataSet(dsex_volume_values, "");
             volumeChart.setScaleEnabled(false);
             final BarData volume_data = new BarData(dsex_volume_times, volume_dataset);
@@ -83,7 +113,7 @@ public class GraphDrawer {
             volumeChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
                 @Override
                 public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
-                    Toast.makeText(activity, volume_dataset.getYValForXIndex(e.getXIndex()) + ", " + volumeChart.getXValue(e.getXIndex()), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FullScreenGraph.this, volume_dataset.getYValForXIndex(e.getXIndex()) + ", " + volumeChart.getXValue(e.getXIndex()), Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -101,7 +131,7 @@ public class GraphDrawer {
 
 
             /******************* START of Drawing The Line Chart ********************/
-            final LineChart lineChart = (LineChart) activity.findViewById(R.id.home_chart);
+            final LineChart lineChart = (LineChart) findViewById(R.id.home_chart);
             final LineDataSet dataset = new LineDataSet(dsex_values, "# of Calls");
 
             lineChart.setScaleEnabled(false);
@@ -115,14 +145,14 @@ public class GraphDrawer {
             lineChart.setTouchEnabled(true);
             lineChart.getAxisRight().setStartAtZero(false);
             lineChart.getAxisLeft().setStartAtZero(false);
-           /***
-            lineChart.getAxisLeft().setAxisMinValue(4560f);
-            lineChart.getAxisLeft().setAxisMaxValue(4599f);
-            lineChart.getAxisRight().setAxisMinValue(4560f);
-            lineChart.getAxisRight().setAxisMaxValue(4599f);
+            /***
+             lineChart.getAxisLeft().setAxisMinValue(4560f);
+             lineChart.getAxisLeft().setAxisMaxValue(4599f);
+             lineChart.getAxisRight().setAxisMinValue(4560f);
+             lineChart.getAxisRight().setAxisMaxValue(4599f);
 
 
-            ***/
+             ***/
             lineChart.setBackgroundColor(Color.BLACK);
             lineChart.setGridBackgroundColor(Color.BLACK);
             lineChart.setDrawBorders(true);
@@ -141,7 +171,7 @@ public class GraphDrawer {
             lineChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
                 @Override
                 public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
-                    Toast.makeText(activity, dataset.getYValForXIndex(e.getXIndex()) + ", " + lineChart.getXValue(e.getXIndex()), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(FullScreenGraph.this, dataset.getYValForXIndex(e.getXIndex()) + ", " + lineChart.getXValue(e.getXIndex()), Toast.LENGTH_SHORT).show();
 
                 }
 
@@ -151,10 +181,6 @@ public class GraphDrawer {
                 }
             });
             /***************** End Of Drawing Line Chart *********************/
-
-            if (progressDialog.isShowing() && progressDialog != null) {
-                progressDialog.dismiss();
-            }
 
 
 
@@ -209,12 +235,8 @@ public class GraphDrawer {
         }
     }
 
-    public void drawHomeGraph()
-    {
 
-       new grab_and_draw_graph().execute("");
 
-    }
 
 
 

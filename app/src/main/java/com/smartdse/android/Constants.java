@@ -22,8 +22,10 @@ public class Constants {
     public static final String CURRENCY_CONVERT = "https://www.google.com/finance/converter?a=1&from=USD&to=BDT";
     public static final  String MARKET_DEPTH = "http://104.131.22.246/dev/smartdsefiles/depth/";
     public static final String LPT_VALUES = "http://104.131.22.246/dev/smartdsefiles/itemvalues_portfolio.txt";
-    public static final String HOME_GRAPH_LINK = "http://104.131.22.246/dev/smartdsefiles/home_graph.txt";
+    public static final String HOME_GRAPH_LINK = "http://104.131.22.246/dev/smartdsefiles/dsex_graph.txt";
+    public static final String VOLUME_GRAPH_LINK = "http://104.131.22.246/dev/smartdsefiles/volume_graph.txt";
     public static final String EXPERT_ANALYSIS_LINK = "http://104.131.22.246/dev/smartdsefiles/expert_analysis/analysis.txt";
+    public static final String WEEKLY_REPORT = "http://104.131.22.246/dev/smartdsefiles/weekly_report.txt";
 
 
 
