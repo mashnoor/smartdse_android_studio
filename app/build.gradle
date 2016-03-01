@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         SmartDSE {
-            storeFile file('/home/mashnoor/key/doraemon.jks')
+            storeFile file('/home/mashnoor/AndroidStudioProjects/smartdse_android_studio/SmartDSE2.jks')
             keyAlias 'SmartDSE'
             keyPassword 'menoncXe13@ctv'
             storePassword 'menoncXe13@ctv'
@@ -12,7 +12,7 @@ android {
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
     defaultConfig {
-        applicationId "com.smartdse.android"
+        applicationId "com.smartdse2.android"
         minSdkVersion 15
         targetSdkVersion 23
         versionCode 2
