@@ -30,6 +30,9 @@ public class Constants {
 
     public static final String DEBUG_TAG = "SmartDSE";
 
+    public static final String SHARED_PREF_NAME = "LoginDetail";
+    public static final String USER_NAME = "username";
+
 
 
     //Timer Counter

@@ -9,6 +9,8 @@ package com.smartdse2.android;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,6 +19,10 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -27,6 +33,8 @@ import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
 import android.text.style.UnderlineSpan;
+import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.Animation;
@@ -36,9 +44,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.facebook.appevents.AppEventsLogger;
 import com.facebook.applinks.AppLinkData;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 
 
@@ -58,6 +73,8 @@ public class Home extends Activity {
     ButtonController buttonController;
     GraphDrawer home_graph;
     Button show_graph;
+    private CallbackManager callbackManager;
+    private LoginButton loginButton;
 
 
 
@@ -81,10 +98,14 @@ public class Home extends Activity {
 
 
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
+        callbackManager=CallbackManager.Factory.create();
         AppLinkData.fetchDeferredAppLinkData(getApplicationContext(), new AppLinkData.CompletionHandler() {
             @Override
             public void onDeferredAppLinkDataFetched(AppLinkData appLinkData) {
@@ -94,7 +115,26 @@ public class Home extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.activity_home);
+        loginButton= (LoginButton)findViewById(R.id.login_button);
 
+        loginButton.setReadPermissions("public_profile", "email", "user_friends");
+        loginButton.registerCallback(callbackManager, mCallBack);
+
+
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(
+                    "com.smartdse2.android",
+                    PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+        } catch (PackageManager.NameNotFoundException e) {
+
+        } catch (NoSuchAlgorithmException e) {
+
+        }
 
         initialize_variable();
 
@@ -148,6 +188,67 @@ public class Home extends Activity {
         layoutclicklistener();
 
     }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
+    private FacebookCallback<LoginResult> mCallBack = new FacebookCallback<LoginResult>() {
+        @Override
+        public void onSuccess(LoginResult loginResult) {
+            System.out.println("Entering...");
+
+
+            // App code
+            GraphRequest request = GraphRequest.newMeRequest(
+                    loginResult.getAccessToken(),
+                    new GraphRequest.GraphJSONObjectCallback() {
+                        @Override
+                        public void onCompleted(
+                                JSONObject object,
+                                GraphResponse response) {
+
+                            Log.e("response: ", response + "");
+                            try {
+
+
+                                String userName = object.getString("name").toString();
+                                Log.d("KeyHash:", userName);
+                                SharedPreferences.Editor editor = getSharedPreferences(Constants.SHARED_PREF_NAME, MODE_PRIVATE).edit();
+
+                                editor.putString(Constants.USER_NAME, userName);
+                                editor.commit();
+                                //Intent i = new Intent(Home.this, Chat.class);
+                                //startActivity(i);
+
+
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
+
+
+                        }
+
+                    });
+
+            Bundle parameters = new Bundle();
+            parameters.putString("fields", "id,name,email,gender, birthday");
+            request.setParameters(parameters);
+            request.executeAsync();
+        }
+
+        @Override
+        public void onCancel() {
+
+        }
+
+        @Override
+        public void onError(FacebookException e) {
+
+        }
+    };
 
     @Override
     protected void onResume() {
