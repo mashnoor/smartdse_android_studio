@@ -31,5 +31,6 @@
     <string name="title_activity_expert_analysis">ExpertAnalysis</string>
     <string name="title_activity_weekly_report">WeeklyReport</string>
     <string name="title_activity_full_screen_graph">FullScreenGraph</string>
+    <string name="title_activity_chat">Chat</string>
 
 </resources>

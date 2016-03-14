@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -36,11 +37,13 @@ public class FullScreenGraph extends AppCompatActivity {
     ArrayList<BarEntry> dsex_volume_values;
     ArrayList<String> dsex_times;
     ArrayList<String> dsex_volume_times;
+    TextView dsex_graph_index;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         setContentView(R.layout.activity_full_screen_graph);
+        dsex_graph_index = (TextView) findViewById(R.id.dsex_graph_index);
 
 
         buttonController = new ButtonController(this);
@@ -168,7 +171,10 @@ public class FullScreenGraph extends AppCompatActivity {
             lineChart.setOnChartValueSelectedListener(new OnChartValueSelectedListener() {
                 @Override
                 public void onValueSelected(Entry e, int dataSetIndex, Highlight h) {
-                    Toast.makeText(FullScreenGraph.this, dataset.getYValForXIndex(e.getXIndex()) + ", " + lineChart.getXValue(e.getXIndex()), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(FullScreenGraph.this, dataset.getYValForXIndex(e.getXIndex()) + ", " + lineChart.getXValue(e.getXIndex()), Toast.LENGTH_SHORT).show();
+
+                    String idx_n_time = dataset.getYValForXIndex(e.getXIndex()) + ", " + lineChart.getXValue(e.getXIndex());
+                    dsex_graph_index.setText(idx_n_time);
 
                 }
 

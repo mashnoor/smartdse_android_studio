@@ -29,39 +29,39 @@
             android:name="com.facebook.ads.InterstitialAdActivity"
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
-            android:name="com.smartdse2.android.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.smartdse2.android.About"
+            android:name=".About"
             android:label="@string/title_activity_about"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.smartdse2.android.DSE30List"
+            android:name=".DSE30List"
             android:label="@string/title_activity_dse30_list"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.smartdse2.android.Home"
+            android:name=".Home"
             android:label="@string/title_activity_home"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.smartdse2.android.IPOActivity"
+            android:name=".IPOActivity"
             android:label="@string/title_activity_ipo"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.smartdse2.android.ItemInfo"
+            android:name=".ItemInfo"
             android:label="@string/title_activity_item_info"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.smartdse2.android.NewsActivity"
+            android:name=".NewsActivity"
             android:label="@string/title_activity_news"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.smartdse2.android.Portfolio_activity"
+            android:name=".Portfolio_activity"
             android:label="@string/title_activity_portfolio_activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.smartdse2.android.Splash_activity"
+            android:name=".Splash_activity"
             android:label="SmartDSE"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -71,15 +71,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.smartdse2.android.Top10Gainers"
+            android:name=".Top10Gainers"
             android:label="@string/title_activity_top10_gainers"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.smartdse2.android.Top10Shares"
+            android:name=".Top10Shares"
             android:label="@string/title_activity_top10_shares"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.smartdse2.android.Watch_List_list_view"
+            android:name=".Watch_List_list_view"
             android:label="@string/title_activity_watch__list_list_view"
             android:screenOrientation="portrait" />
 
@@ -99,7 +99,7 @@
 
         <!-- [START gcm_listener] -->
         <service
-            android:name="com.smartdse2.android.MyGcmListenerService"
+            android:name=".MyGcmListenerService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
@@ -108,7 +108,7 @@
         <!-- [END gcm_listener] -->
         <!-- [START instanceId_listener] -->
         <service
-            android:name="com.smartdse2.android.MyInstanceIDListenerService"
+            android:name=".MyInstanceIDListenerService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.android.gms.iid.InstanceID" />
@@ -116,46 +116,50 @@
         </service>
         <!-- [END instanceId_listener] -->
         <service
-            android:name="com.smartdse2.android.RegistrationIntentService"
+            android:name=".RegistrationIntentService"
             android:exported="false" />
 
         <activity
-            android:name="com.smartdse2.android.AGMActivity"
+            android:name=".AGMActivity"
             android:label="@string/title_activity_agm"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.smartdse2.android.NewsDetail"
+            android:name=".NewsDetail"
             android:label="@string/title_activity_news_detail"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.smartdse2.android.Currency"
+            android:name=".Currency"
             android:label="@string/title_activity_currency"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.smartdse2.android.MarketDepth"
+            android:name=".MarketDepth"
             android:label="@string/title_activity_market_depth"
             android:theme="@style/AppTheme.NoActionBar" />
 
         <service
-            android:name="com.smartdse2.android.PriceAlertService"
+            android:name=".PriceAlertService"
             android:enabled="true"
             android:exported="true" />
 
         <activity
-            android:name="com.smartdse2.android.PriceAlert"
+            android:name=".PriceAlert"
             android:label="@string/title_activity_price_alert"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.smartdse2.android.ExpertAnalysis"
+            android:name=".ExpertAnalysis"
             android:label="@string/title_activity_expert_analysis"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.smartdse2.android.WeeklyReport"
+            android:name=".WeeklyReport"
             android:label="@string/title_activity_weekly_report"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.smartdse2.android.FullScreenGraph"
+            android:name=".FullScreenGraph"
             android:label="@string/title_activity_full_screen_graph"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Chat"
+            android:label="@string/title_activity_chat"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

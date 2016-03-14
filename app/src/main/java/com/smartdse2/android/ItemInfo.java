@@ -14,6 +14,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -283,6 +284,25 @@ public class ItemInfo extends Activity {
 
     }
 
+    private String getLtp() throws Exception
+    {
+        String ltp_json = DevTools.read_file(ItemInfo.this, Constants.LTP_FILE);
+        JSONArray ltp_array = new JSONArray(ltp_json);
+        int ltp_array_size = ltp_array.length();
+        JSONObject ltp_object;
+        for (int i = 0; i<ltp_array_size; i++)
+        {
+            ltp_object = ltp_array.getJSONObject(i);
+            String curr_item = ltp_object.getString("company");
+            if(curr_item.equals(tradingcode))
+            {
+                String ltp = ltp_object.getString("lastTrade");
+                return ltp;
+            }
+        }
+        return "--";
+    }
+
     class add_to_watch_list extends AsyncTask<String, String, String> {
 
         @Override
@@ -379,8 +399,10 @@ public class ItemInfo extends Activity {
                     reserveandsurplus.setText(result[17]);
                     bonusissue.setText(result[18]);
                     company.setText(result[19]);
-                    //lasttrade.setText(result[20]);
-                    lasttrade.setText(ltp);
+                    lasttrade.setText(result[20]);
+                    //lasttrade.setText(ltp);
+
+
                     lastagmheld.setText(result[23]);
                     pebasic.setText(result[24]);
                     pediluted.setText(result[25]);
@@ -407,15 +429,15 @@ public class ItemInfo extends Activity {
                     sp_institute.setText(result[44]);
                     sp_foreign.setText(result[45]);
                     sp_public.setText(result[46]);
-                    //change.setText(result[22]);
-                    change.setText(change_percentage);
-                    change_value.setText(change_amout);
-                    //ItemInfo.this.change_value.setText(result[21]);
+                    change.setText(result[22]);
+                    //change.setText(change_percentage);
+                   // change_value.setText(change_amout);
+                    ItemInfo.this.change_value.setText(result[21]);
                     boolean not_traded = false;
                     float change_value;
                     try {
-                        //change_value = Float.parseFloat(result[21]);
-                        change_value = Float.parseFloat(change_amout);
+                        change_value = Float.parseFloat(result[21]);
+                        //change_value = Float.parseFloat(change_amout);
                     } catch (Exception e) {
                         change_value = -1;
                         not_traded = true;

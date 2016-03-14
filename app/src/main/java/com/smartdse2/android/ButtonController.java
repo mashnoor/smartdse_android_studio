@@ -317,6 +317,11 @@ public class ButtonController {
                             //Group Discussion
                            Toast.makeText(sentactivity, "Sit Tight! Feature on the way.", Toast.LENGTH_SHORT).show();
 
+                            MainActivity.show = false;
+                            Intent itemintent = new Intent(sentactivity,
+                                    Chat.class);
+                            sentactivity.startActivity(itemintent);
+
                         }
                         else if(position == 8)
                         {

@@ -99,6 +99,8 @@
     <orderEntry type="library" exported="" name="support-v4-23.1.1" level="project" />
     <orderEntry type="library" exported="" name="appcompat-v7-23.1.1" level="project" />
     <orderEntry type="library" exported="" name="play-services-gcm-8.4.0" level="project" />
+    <orderEntry type="library" exported="" name="commons-lang3-3.4" level="project" />
+    <orderEntry type="library" exported="" name="pubnub-android-debug-3.7.6" level="project" />
     <orderEntry type="library" exported="" name="iconics-core-2.5.3" level="project" />
     <orderEntry type="library" exported="" name="play-services-measurement-8.4.0" level="project" />
   </component>

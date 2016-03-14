@@ -115,26 +115,16 @@ public class Home extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.activity_home);
+        //Test
+
+
+
         loginButton= (LoginButton)findViewById(R.id.login_button);
 
         loginButton.setReadPermissions("public_profile", "email", "user_friends");
         loginButton.registerCallback(callbackManager, mCallBack);
 
 
-        try {
-            PackageInfo info = getPackageManager().getPackageInfo(
-                    "com.smartdse2.android",
-                    PackageManager.GET_SIGNATURES);
-            for (Signature signature : info.signatures) {
-                MessageDigest md = MessageDigest.getInstance("SHA");
-                md.update(signature.toByteArray());
-                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
-            }
-        } catch (PackageManager.NameNotFoundException e) {
-
-        } catch (NoSuchAlgorithmException e) {
-
-        }
 
         initialize_variable();
 

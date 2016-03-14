@@ -1,5 +1,6 @@
 package com.smartdse2.android;
 
+import android.app.Activity;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
@@ -28,7 +29,7 @@ public class PriceAlertService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
 
-        Log.i(Constants.DEBUG_TAG, "Starting.....");
+        //Log.i(Constants.DEBUG_TAG, "Starting.....");
         Runnable r = new Runnable() {
             @Override
             public void run() {
@@ -37,7 +38,7 @@ public class PriceAlertService extends Service {
                     try
                     {
                         check_everything();
-                        Log.i(Constants.DEBUG_TAG, "Running");
+                        //Log.i(Constants.DEBUG_TAG, "Running");
                         Thread.sleep(10000);
 
                     }
@@ -72,6 +73,7 @@ public class PriceAlertService extends Service {
     }
     private void check_everything() throws Exception{
         String ltp_json = SrcGrabber.grabSource(Constants.LPT_VALUES);
+        DevTools.write_file(activity, Constants.LTP_FILE, ltp_json);
         JSONArray ltp_array = new JSONArray(ltp_json);
         int ltp_array_size = ltp_array.length();
         JSONObject ltp_object;

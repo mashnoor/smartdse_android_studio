@@ -32,6 +32,8 @@ public class Constants {
 
     public static final String SHARED_PREF_NAME = "LoginDetail";
     public static final String USER_NAME = "username";
+    public static final String CHANNEL_NAME = "SmartDSE_bla";
+    public static final String LTP_FILE = "ltp_values.txt";
 
 
 
@@ -59,7 +61,7 @@ public class Constants {
             {
                 try
                 {
-                    Thread.sleep(60000);
+                    Thread.sleep(90000);
                     new LoadAd().execute("");
 
 

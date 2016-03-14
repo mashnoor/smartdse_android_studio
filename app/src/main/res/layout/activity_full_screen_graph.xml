@@ -31,10 +31,22 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-
         android:orientation="vertical"
         android:weightSum="2"
         android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/dsex_graph_index"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Click on the graph"
+            android:gravity="center"
+            android:padding="3dp"
+            android:textSize="15dp"
+            android:textColor="#00CCCF"
+            />
+
+
+
 
         <LinearLayout
             android:orientation="horizontal"

@@ -45,6 +45,19 @@ public class DevTools {
         }
 
     }
+    public static void write_file(Context current_activity, String file,
+                                  String data) throws IOException {
+        FileOutputStream fos;
+        try {
+            fos = current_activity.openFileOutput(file, Context.MODE_PRIVATE);
+            fos.write(data.getBytes());
+            fos.close();
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    }
 
     // Method for checking file existance
     public static boolean fileExistance(Activity current_activity, String file) {

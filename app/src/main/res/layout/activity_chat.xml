@@ -1,0 +1,66 @@
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/md_black_1000"
+    android:layout_height="match_parent" >
+
+    <include
+        android:id="@+id/home_toppanel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        layout="@layout/topbar" />
+
+    <ListView
+        android:id="@+id/chatList"
+
+        android:layout_width="match_parent"
+        android:layout_below="@id/home_toppanel"
+
+        android:stackFromBottom="true"
+        android:transcriptMode="normal"
+
+        android:layout_above="@+id/chat_box"
+
+        android:layout_height="match_parent"
+
+
+
+
+        />
+
+
+    <LinearLayout
+        android:id="@+id/chat_box"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+
+
+
+        android:layout_alignParentBottom="true"
+
+        android:weightSum="4"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:inputType="textMultiLine"
+            android:ems="10"
+            android:textColor="@color/md_white_1000"
+            android:layout_weight="3"
+            android:id="@+id/chatmsgBox" />
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Send"
+            android:id="@+id/chatBtn" />
+    </LinearLayout>
+
+  </RelativeLayout>
+
+
+
