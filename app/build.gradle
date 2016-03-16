@@ -1,5 +1,7 @@
 apply plugin: 'com.android.application'
 
+
+apply plugin: 'com.google.gms.google-services'
 android {
     signingConfigs {
         SmartDSE {
@@ -15,8 +17,8 @@ android {
         applicationId "com.smartdse2.android"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 2
-        versionName "2.0.0 (Beta Release)"
+        versionCode 3
+        versionName "2.0.2 (Beta Release)"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.SmartDSE
     }
@@ -39,7 +41,8 @@ dependencies {
     compile('com.mikepenz:materialdrawer:4.6.3@aar') {
         transitive = true
     }
-    compile 'com.google.android.gms:play-services-gcm:8.4.0'
+    compile 'com.google.android.gms:play-services-gcm:8.3.0'
+    compile 'com.google.android.gms:play-services-auth:8.3.0'
     compile 'com.android.support:appcompat-v7:23.1.1'
     compile 'com.android.support:design:23.1.1'
     compile 'com.facebook.android:facebook-android-sdk:4.6.0'
@@ -49,6 +52,3 @@ dependencies {
 }
 
 
-
-
-apply plugin: 'com.google.gms.google-services'

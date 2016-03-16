@@ -25,6 +25,7 @@ public class DSE_Company_data {
     private String news;
     private String concernvalue;
 
+
     public String getCompany_Name() {
         return company_Name;
     }
@@ -84,13 +85,14 @@ public class DSE_Company_data {
     }
 
     public DSE_Company_data(String company_Name, String laste_trade,
-                            String change_ammount, String change_percentage, int dse_item_color) {
+                            String change_ammount, String change_percentage, String volume, int dse_item_color) {
 
         this.company_Name = company_Name;
         this.laste_trade = laste_trade;
         this.change_ammount = change_ammount;
         this.change_percentage = change_percentage;
         this.dse_item_color = dse_item_color;
+        this.volume = volume;
     }
 
     // Constructor for portfolio

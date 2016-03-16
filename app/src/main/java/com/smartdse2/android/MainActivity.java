@@ -197,6 +197,7 @@ public class MainActivity extends Activity {
                     .findViewById(R.id.dse_change_percentage);
             View percentage_backgroud = workingView
                     .findViewById(R.id.dse_item_like_percent6ageback);
+            TextView tvvolume = (TextView) workingView.findViewById(R.id.dse_volume);
 
             tvcompany.setText(current.getCompany_Name());
             percentage_backgroud.setBackgroundDrawable(getResources()
@@ -204,6 +205,7 @@ public class MainActivity extends Activity {
             tvchangepercentage.setText(current.getChange_percentage());
             tvchangetrade.setText(current.getChange_ammount());
             tvlasttrade.setText(current.getLaste_trade());
+            tvvolume.setText(current.getVolume());
 
             return workingView;
         }
@@ -249,14 +251,14 @@ public class MainActivity extends Activity {
 
         @Override
         protected String doInBackground(String... link_file) {
-            SrcGrabber grabber = new SrcGrabber();
+
             String string = null;
             String currfile = link_file[1];
             String currlink = link_file[0];
 
             try {
                 if (Active_net_checking.testInte("104.131.22.246")) {
-                    string = grabber.grabSource(currlink);
+                    string = SrcGrabber.grabSource(currlink);
                     //DevTools.write_file(MainActivity.this, currfile, string);
                     has_active_net = true;
                 } else if (DevTools.fileExistance(MainActivity.this, currfile)) {
@@ -290,6 +292,7 @@ public class MainActivity extends Activity {
                             .getString("changeAmount");
                     String changePercent = dse_json_object
                             .getString("changePercent") + "%";
+                    String volume = dse_json_object.getString("volume");
                     float change_ammount = -1;
                     try {
                         change_ammount = Float.parseFloat(changeAmount);
@@ -307,7 +310,7 @@ public class MainActivity extends Activity {
                         if (!changePercent.equals("Not Traded Today%")) {
                             DSE_Company_data currentCompany_data = new DSE_Company_data(
                                     companyString, lastTrade, changeAmount,
-                                    changePercent, item_color);
+                                    changePercent,volume, item_color);
                             dse_Company_datas.add(currentCompany_data);
                         }
 

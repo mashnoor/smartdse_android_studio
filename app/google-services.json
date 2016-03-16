@@ -11,10 +11,16 @@
         "client_id": "android:com.mashnoor.test",
         "client_type": 1,
         "android_client_info": {
-          "package_name": "com.mashnoor.test"
+          "package_name": "com.mashnoor.test",
+          "certificate_hash": []
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "425183610067-lqejkeu47ugomkiqlucah61mq0cnhpkq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [],
       "services": {
         "analytics_service": {
@@ -39,13 +45,27 @@
     {
       "client_info": {
         "mobilesdk_app_id": "1:425183610067:android:3e4a6c4b762a7801",
-        "client_id": "android:com.smartdse.android",
+        "client_id": "android:com.smartdse2.android",
         "client_type": 1,
         "android_client_info": {
-          "package_name": "com.smartdse2.android"
+          "package_name": "com.smartdse2.android",
+          "certificate_hash": []
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "425183610067-1rjbhc7fsg0vbjk0o3r3tureqceg6o46.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.smartdse.android",
+            "certificate_hash": "7AE9D9F7DD941789A3F7F0F5FC15A7F902455EB7"
+          }
+        },
+        {
+          "client_id": "425183610067-lqejkeu47ugomkiqlucah61mq0cnhpkq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [],
       "services": {
         "analytics_service": {
@@ -60,7 +80,7 @@
           "other_platform_oauth_client": []
         },
         "google_signin_service": {
-          "status": 1
+          "status": 2
         },
         "ads_service": {
           "status": 1

@@ -73,9 +73,6 @@ public class Home extends Activity {
     ButtonController buttonController;
     GraphDrawer home_graph;
     Button show_graph;
-    private CallbackManager callbackManager;
-    private LoginButton loginButton;
-
 
 
     Handler handler;
@@ -105,7 +102,7 @@ public class Home extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
-        callbackManager=CallbackManager.Factory.create();
+
         AppLinkData.fetchDeferredAppLinkData(getApplicationContext(), new AppLinkData.CompletionHandler() {
             @Override
             public void onDeferredAppLinkDataFetched(AppLinkData appLinkData) {
@@ -119,17 +116,11 @@ public class Home extends Activity {
 
 
 
-        loginButton= (LoginButton)findViewById(R.id.login_button);
-
-        loginButton.setReadPermissions("public_profile", "email", "user_friends");
-        loginButton.registerCallback(callbackManager, mCallBack);
-
-
 
         initialize_variable();
 
 //        dsex_graph_layout.setVisibility(View.INVISIBLE);
-  //      volume_graph_layout.setVisibility(View.INVISIBLE);
+        //      volume_graph_layout.setVisibility(View.INVISIBLE);
 
         new DrawerBuilder().withActivity(this).build();
 
@@ -140,7 +131,7 @@ public class Home extends Activity {
 
 
         home_graph = new GraphDrawer(this);
-       // home_graph.drawHomeGraph();
+        // home_graph.drawHomeGraph();
 
         // Defining our asynctask manager
         data_fetching_task = (set_dse_home_datas) new set_dse_home_datas();
@@ -180,65 +171,7 @@ public class Home extends Activity {
     }
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-    }
-    private FacebookCallback<LoginResult> mCallBack = new FacebookCallback<LoginResult>() {
-        @Override
-        public void onSuccess(LoginResult loginResult) {
-            System.out.println("Entering...");
 
-
-            // App code
-            GraphRequest request = GraphRequest.newMeRequest(
-                    loginResult.getAccessToken(),
-                    new GraphRequest.GraphJSONObjectCallback() {
-                        @Override
-                        public void onCompleted(
-                                JSONObject object,
-                                GraphResponse response) {
-
-                            Log.e("response: ", response + "");
-                            try {
-
-
-                                String userName = object.getString("name").toString();
-                                Log.d("KeyHash:", userName);
-                                SharedPreferences.Editor editor = getSharedPreferences(Constants.SHARED_PREF_NAME, MODE_PRIVATE).edit();
-
-                                editor.putString(Constants.USER_NAME, userName);
-                                editor.commit();
-                                //Intent i = new Intent(Home.this, Chat.class);
-                                //startActivity(i);
-
-
-                            }catch (Exception e){
-                                e.printStackTrace();
-                            }
-
-
-                        }
-
-                    });
-
-            Bundle parameters = new Bundle();
-            parameters.putString("fields", "id,name,email,gender, birthday");
-            request.setParameters(parameters);
-            request.executeAsync();
-        }
-
-        @Override
-        public void onCancel() {
-
-        }
-
-        @Override
-        public void onError(FacebookException e) {
-
-        }
-    };
 
     @Override
     protected void onResume() {
@@ -323,7 +256,7 @@ public class Home extends Activity {
 
             @Override
             public void onClick(View arg0) {
-               // Intent dse30listintent = new Intent(Home.this, DSE30List.class);
+                // Intent dse30listintent = new Intent(Home.this, DSE30List.class);
                 //startActivity(dse30listintent);
 
             }
@@ -336,9 +269,9 @@ public class Home extends Activity {
                 Intent fullScreenGraph = new Intent(Home.this, FullScreenGraph.class);
                 startActivity(fullScreenGraph);
                 /***
-                dsex_graph_layout.setVisibility(View.VISIBLE);
-                volume_graph_layout.setVisibility(View.VISIBLE);
-                home_graph.drawHomeGraph();
+                 dsex_graph_layout.setVisibility(View.VISIBLE);
+                 volume_graph_layout.setVisibility(View.VISIBLE);
+                 home_graph.drawHomeGraph();
                  ***/
 
 

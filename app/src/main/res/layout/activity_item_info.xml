@@ -112,7 +112,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/border_drawer_hex"
                     android:minHeight="25dp"
-                    android:text="See news from archive"
+                    android:text="News Archive"
                     android:textColor="#00CCCF"
                     android:textSize="12dp" />
 

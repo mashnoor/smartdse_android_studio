@@ -223,10 +223,12 @@ public class DSE30List extends Activity {
                         item_color = R.drawable.border_drawer_green_percentage;
                     }
                     if (!changePercent.contains("--%")) {
+                        /***
                         DSE_Company_data currentCompany_data = new DSE_Company_data(
                                 companyString, lastTrade, change_ammount,
                                 changePercent, item_color);
-                        dse_Company_datas.add(currentCompany_data);
+                         ***/
+                       // dse_Company_datas.add(currentCompany_data);
                     }
 
                     // System.out.println(changePercent);

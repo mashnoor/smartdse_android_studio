@@ -1,5 +1,6 @@
 package com.smartdse2.android;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -40,17 +41,28 @@ public class Chat extends AppCompatActivity {
     Button sendButton;
     EditText chatMsgBox;
     String name;
+    ButtonController buttonController;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        name = LoginHelper.getUserName(this);
+        if (name.equals(Constants.LOGIN_NAME_NOT_SET))
+        {
+            Intent i = new Intent(Chat.this, Login_logout.class);
+            startActivity(i);
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
+        buttonController = new ButtonController(this);
 
         chatmsgs = new ArrayList<ChatMsg>();
         pubnub = new Pubnub("pub-c-6bf6a729-b60a-4296-94d9-0859668b63fc", "sub-c-6fe7e48c-e62d-11e5-a4f2-0619f8945a4f");
 
-        SharedPreferences prefs = getSharedPreferences(Constants.SHARED_PREF_NAME, MODE_PRIVATE);
-        name = prefs.getString(Constants.USER_NAME, "Not Set");
-        Log.i(Constants.DEBUG_TAG, name + " from fb");
 
         chatMsglist = (ListView) findViewById(R.id.chatList);
 
@@ -177,7 +189,7 @@ public class Chat extends AppCompatActivity {
                     @Override
                     public void run() {
                         chatAdapter.notifyDataSetChanged();
-                       // Toast.makeText(Chat.this, message.toString() + "  " + timetoken, Toast.LENGTH_LONG).show();
+                        // Toast.makeText(Chat.this, message.toString() + "  " + timetoken, Toast.LENGTH_LONG).show();
                     }
                 });
             }

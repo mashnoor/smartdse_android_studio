@@ -119,6 +119,7 @@ public class Watch_List_list_view extends Activity {
                     .findViewById(R.id.dse_last_trade);
             TextView tvchangepercentage = (TextView) workingView
                     .findViewById(R.id.dse_change_percentage);
+            TextView tvvolume = (TextView) workingView.findViewById(R.id.dse_volume);
             View percentage_backgroud = workingView
                     .findViewById(R.id.dse_item_like_percent6ageback);
             tvcompany.setText(current.getCompany_Name());
@@ -127,6 +128,7 @@ public class Watch_List_list_view extends Activity {
             tvchangepercentage.setText(current.getChange_percentage() + "%");
             tvchangetrade.setText(current.getChange_ammount());
             tvlasttrade.setText(current.getLaste_trade());
+            tvvolume.setText(current.getVolume());
 
             return workingView;
         }
@@ -150,7 +152,7 @@ public class Watch_List_list_view extends Activity {
 
         @Override
         protected String doInBackground(String... params) {
-            SrcGrabber grabber = new SrcGrabber();
+
             String string = "No Data";
 
             ArrayList<String> dse_item_watchlist = new ArrayList<String>();
@@ -171,7 +173,7 @@ public class Watch_List_list_view extends Activity {
 
             try {
                 if (Active_net_checking.testInte("104.131.22.246")) {
-                    string = grabber
+                    string = SrcGrabber
                             .grabSource("http://104.131.22.246/dev/smartdsefiles/itemvalues_all.txt");
 
                     DevTools.write_file(Watch_List_list_view.this, file_name,
@@ -210,6 +212,7 @@ public class Watch_List_list_view extends Activity {
                             .getString("changeAmount");
                     String changePercent = dse_json_object
                             .getString("changePercent");
+                    String volume = dse_json_object.getString("volume");
                     int cursour_length = cursor.getCount();
                     for (int j = 0; j < cursour_length; j++) {
                         if (dse_item_watchlist.get(j).equals(companyString)) {
@@ -229,7 +232,7 @@ public class Watch_List_list_view extends Activity {
                             }
                             DSE_Company_data currentCompany_data = new DSE_Company_data(
                                     companyString, lastTrade, changeAmount,
-                                    changePercent, item_color);
+                                    changePercent,volume, item_color);
                             dse_Company_datas.add(currentCompany_data);
                             break;
                         }

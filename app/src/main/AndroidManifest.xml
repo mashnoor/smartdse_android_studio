@@ -160,6 +160,14 @@
         <activity
             android:name=".Chat"
             android:label="@string/title_activity_chat"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Login_logout"
+            android:label="@string/title_activity_login_logout"
+            android:theme="@android:style/Theme.Holo.Light.Dialog" />
+        <activity
+            android:name=".StockOnNewsPaper"
+            android:label="@string/title_activity_stock_on_news_paper"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

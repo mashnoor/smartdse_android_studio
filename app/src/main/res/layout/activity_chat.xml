@@ -38,7 +38,7 @@
 
 
 
-        android:layout_alignParentBottom="true"
+        android:layout_above="@+id/down_panel_rellayout"
 
         android:weightSum="4"
         android:layout_height="wrap_content">
@@ -59,8 +59,16 @@
             android:text="Send"
             android:id="@+id/chatBtn" />
     </LinearLayout>
+    <include
+        android:id="@+id/down_panel_rellayout"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
 
-  </RelativeLayout>
+        layout="@layout/downpanel" />
+
+
+</RelativeLayout>
 
 
 

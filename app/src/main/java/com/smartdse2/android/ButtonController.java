@@ -3,6 +3,7 @@ package com.smartdse2.android;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -14,6 +15,7 @@ import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
 import android.text.style.UnderlineSpan;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -29,6 +31,8 @@ import com.facebook.ads.AdSize;
 import com.facebook.ads.AdView;
 import com.facebook.ads.InterstitialAd;
 import com.facebook.ads.InterstitialAdListener;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
@@ -42,7 +46,7 @@ public class ButtonController {
     final static String header_text_link = "http://104.131.22.246/dev/smartdsefiles/header_text_2.0.0.txt";
     final static String ADV_FILE_NAME = "advertise";
     public static ArrayList<String> header_texts;
-    Handler handler;
+   static Handler handler;
     Thread thread;
     int i = 0;
     public static Activity mainActivity;
@@ -171,6 +175,10 @@ public class ButtonController {
         PrimaryDrawerItem group_discussion = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.group_chat_logo)).withName("Group Discussion");
         PrimaryDrawerItem weekly_report = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.weekly_report_logo)).withName("Weekly Report");
         PrimaryDrawerItem like_us = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.fb_logo)).withName("Like Us");
+        PrimaryDrawerItem login_logout = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.login_logout)).withName("Login/Logout");
+        PrimaryDrawerItem stock_on_news = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.stockmarketonnewspaper)).withName("Financial News");
+        PrimaryDrawerItem sd_pro = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.sd_pro)).withName("Faster & Ads Free!");
+
 
 
 
@@ -204,10 +212,14 @@ public class ButtonController {
                         currency_convert_item,//10
                         gainerloser_item,//11
                         top20_item,//12
-                        like_us,//13
-                        info_item,//14
-                        rateus_item,//15
-                        quit_item//16
+                        stock_on_news,//13
+                        like_us,//14
+                        info_item,//15
+                        login_logout,//16
+                        sd_pro,//17
+                        rateus_item,//18
+                        quit_item//19
+
                         //new SecondaryDrawerItem().withName(R.string.drawer_item_settings)
                 )
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
@@ -315,7 +327,6 @@ public class ButtonController {
                         else if (position == 7)
                         {
                             //Group Discussion
-                           Toast.makeText(sentactivity, "Sit Tight! Feature on the way.", Toast.LENGTH_SHORT).show();
 
                             MainActivity.show = false;
                             Intent itemintent = new Intent(sentactivity,
@@ -366,6 +377,17 @@ public class ButtonController {
                         }
                         else if (position == 13)
                         {
+                            //Stock on Newspaper
+                            MainActivity.show = false;
+                            Intent intent = new Intent(sentactivity, StockOnNewsPaper.class);
+                            sentactivity.startActivity(intent);
+
+
+                        }
+
+
+                        else if (position == 14)
+                        {
                             //Like Us
                             try {
                                 sentactivity.getPackageManager().getPackageInfo("com.facebook.katana", 0);
@@ -376,16 +398,34 @@ public class ButtonController {
                                 sentactivity.startActivity(i);
                             }
                         }
-                        else if (position == 14)
+                        else if(position == 15)
                         {
                             //Info
                             MainActivity.show = false;
                             Intent intent = new Intent(sentactivity, About.class);
                             sentactivity.startActivity(intent);
 
+
+
+
+                        }
+                        else if (position == 16)
+                        {
+                            //Login Logout
+                            MainActivity.show = false;
+                            Intent intent = new Intent(sentactivity, Login_logout.class);
+                            sentactivity.startActivity(intent);
+
                         }
 
-                        else if(position == 15)
+                        else if(position == 17)
+                        {
+                           //SD Pro
+                            Toast.makeText(sentactivity, "Sit Tight! Pro version on the way", Toast.LENGTH_LONG).show();
+
+                        }
+
+                        else if(position == 18)
                         {
                             //Rate Us
                             sentactivity.startActivity(new Intent(Intent.ACTION_VIEW, Uri
@@ -393,7 +433,7 @@ public class ButtonController {
 
 
                         }
-                        else if(position == 16)
+                        else if(position == 19)
                         {
 
                             //Exit
@@ -403,6 +443,8 @@ public class ButtonController {
                             intent.addCategory(Intent.CATEGORY_HOME);
                             sentactivity.startActivity(intent);
                         }
+
+
 
 
 

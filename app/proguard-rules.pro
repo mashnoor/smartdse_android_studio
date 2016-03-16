@@ -8,8 +8,17 @@
 #   http://developer.android.com/guide/developing/tools/proguard.html
 
 # Add any project specific keep options here:
--keep class com.facebook.** { *; }
-
+-keep class com.facebook.** {
+   *;
+}
+-keep class org.apache.http.**{
+                                 *;
+                              }
+-dontwarn org.apache.**
+-dontwarn com.google.android.gms.**
+-keep class com.google.android.gms.**
+-keep interface org.apache.http.**
+-dontwarn android.net.**
 # If your project uses WebView with JS, uncomment the following
 # and specify the fully qualified class name to the JavaScript interface
 # class:
