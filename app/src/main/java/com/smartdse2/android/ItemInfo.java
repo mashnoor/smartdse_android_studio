@@ -195,6 +195,7 @@ public class ItemInfo extends Activity {
                             "Item removed from watchlist successfully.",
                             Toast.LENGTH_LONG).show();
                     change_button_text(watchlistButton, addtowatchlist);
+
                 }
 
             }

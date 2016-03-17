@@ -85,6 +85,7 @@ public class Login_logout extends Activity {
 
                     LoginHelper.setLoggedInUsing(Login_logout.this, Constants.LOGIN_NAME_NOT_SET);
                     LoginHelper.setName(Login_logout.this, Constants.LOGIN_NAME_NOT_SET);
+                    LoginHelper.setUserEmail(Login_logout.this, Constants.LOGIN_NAME_NOT_SET);
                     gmailsignInButton.setEnabled(true);
                 }
             }
@@ -173,9 +174,12 @@ public class Login_logout extends Activity {
             {
                 GoogleSignInAccount acct = result.getSignInAccount();
                 String userName = acct.getDisplayName();
+                String email = acct.getEmail();
+                Log.d("---------------------", email);
                 Toast.makeText(Login_logout.this, "Successfully logged in as: " + userName, Toast.LENGTH_LONG).show();
                 LoginHelper.setLoggedInUsing(Login_logout.this, Constants.LOGGED_IN_USING_GMAIL);
                 LoginHelper.setName(Login_logout.this, userName);
+                LoginHelper.setUserEmail(Login_logout.this, email);
                 setGooglePlusButtonText(gmailsignInButton, SIGN_OUT);
                 loginButton.setEnabled(false);
             }
@@ -189,6 +193,7 @@ public class Login_logout extends Activity {
             //signOutFromGmail();
             LoginHelper.setName(Login_logout.this, Constants.LOGIN_NAME_NOT_SET);
             LoginHelper.setLoggedInUsing(Login_logout.this, Constants.LOGIN_NAME_NOT_SET);
+            LoginHelper.setUserEmail(Login_logout.this, Constants.LOGIN_NAME_NOT_SET);
 
         }
     }
@@ -233,6 +238,9 @@ public class Login_logout extends Activity {
 
 
                                 String userName = object.getString("name");
+                                String email = object.getString("email");
+                                Log.d("---------------------", email);
+                                LoginHelper.setUserEmail(Login_logout.this, email);
                                 LoginHelper.setName(Login_logout.this, userName);
                                 LoginHelper.setLoggedInUsing(Login_logout.this, Constants.LOGGED_IN_USING_FB);
                                 //Log.d("KeyHash:", userName);

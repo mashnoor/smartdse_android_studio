@@ -24,7 +24,7 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -47,6 +47,7 @@ dependencies {
     compile 'com.android.support:design:23.1.1'
     compile 'com.facebook.android:facebook-android-sdk:4.6.0'
     compile 'com.github.PhilJay:MPAndroidChart:v2.1.6'
+    compile 'com.mani:ThinDownloadManager:1.2.3'
     compile 'com.pubnub:pubnub-android-debug:3.7.+'
     compile files('/home/mashnoor/AndroidStudioProjects/smartdse_android_studio/libs/AudienceNetwork.jar')
 }

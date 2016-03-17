@@ -38,6 +38,8 @@ public class PriceAlertService extends Service {
                     try
                     {
                         check_everything();
+
+
                         //Log.i(Constants.DEBUG_TAG, "Running");
                         Thread.sleep(10000);
 

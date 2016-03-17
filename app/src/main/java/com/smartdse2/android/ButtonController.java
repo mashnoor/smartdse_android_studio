@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Handler;
 import android.os.Message;
 import android.text.Html;
@@ -20,6 +21,7 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -83,6 +85,7 @@ public class ButtonController {
         }
 
     }
+
 
 
     public static void loadInterstitialAd(){
@@ -178,6 +181,7 @@ public class ButtonController {
         PrimaryDrawerItem login_logout = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.login_logout)).withName("Login/Logout");
         PrimaryDrawerItem stock_on_news = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.stockmarketonnewspaper)).withName("Financial News");
         PrimaryDrawerItem sd_pro = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.sd_pro)).withName("Faster & Ads Free!");
+        PrimaryDrawerItem sync_data_server = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.restore)).withName("Sync Your Data");
 
 
 
@@ -218,7 +222,8 @@ public class ButtonController {
                         login_logout,//16
                         sd_pro,//17
                         rateus_item,//18
-                        quit_item//19
+                        quit_item,//19
+                        sync_data_server
 
                         //new SecondaryDrawerItem().withName(R.string.drawer_item_settings)
                 )
@@ -443,7 +448,40 @@ public class ButtonController {
                             intent.addCategory(Intent.CATEGORY_HOME);
                             sentactivity.startActivity(intent);
                         }
+                        else if(position == 20) {
 
+                            //Sync
+                            if (LoginHelper.getUserName(sentactivity).equals(Constants.LOGIN_NAME_NOT_SET)) {
+                                Toast.makeText(sentactivity, "You need to Login to perform this operation!", Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(sentactivity, Login_logout.class);
+                                sentactivity.startActivity(intent);
+                            } else {
+                                LayoutInflater inflater = sentactivity.getLayoutInflater();
+                                View workingview = inflater.inflate(R.layout.backup_restore, null);
+                                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(sentactivity);
+                                alertBuilder.setView(workingview);
+                                alertBuilder.show();
+                                final Button backup_button = (Button) workingview.findViewById(R.id.btn_backup);
+                                Button restore_button = (Button) workingview.findViewById(R.id.btn_restore);
+                                restore_button.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        BackupRestore backupRestore = new BackupRestore(sentactivity);
+                                        backupRestore.restore();
+                                    }
+                                });
+                                backup_button.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        BackupRestore backupRestore = new BackupRestore(sentactivity);
+                                        backupRestore.backup();
+                                       // Toast.makeText(sentactivity, "Lol", Toast.LENGTH_LONG).show();
+
+                                    }
+                                });
+
+                            }
+                        }
 
 
 
@@ -554,6 +592,7 @@ public class ButtonController {
 
             }
         });
+
 
 		/*
 		 * This if for showing panel show/hide

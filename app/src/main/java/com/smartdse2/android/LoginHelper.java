@@ -1,6 +1,7 @@
 package com.smartdse2.android;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 
 /**
@@ -22,12 +23,26 @@ public class LoginHelper {
         }
 
     }
-    public static String getUserName(Activity activity)
+    public static String getUserName(Context activity)
     {
         SharedPreferences prefs = activity.getSharedPreferences(Constants.SHARED_PREF_NAME, Activity.MODE_PRIVATE);
         String name = prefs.getString(Constants.USER_NAME, Constants.LOGIN_NAME_NOT_SET);
         return name;
 
+    }
+    public static String getUserEmail(Context activity)
+    {
+        SharedPreferences prefs = activity.getSharedPreferences(Constants.SHARED_PREF_NAME, Activity.MODE_PRIVATE);
+        String email = prefs.getString(Constants.EMAIL, Constants.LOGIN_NAME_NOT_SET);
+        return email;
+    }
+    public static void setUserEmail(Context activity, String email)
+    {
+
+        SharedPreferences.Editor editor = activity.getSharedPreferences(Constants.SHARED_PREF_NAME, Activity.MODE_PRIVATE).edit();
+
+        editor.putString(Constants.EMAIL, email);
+        editor.commit();
     }
 
     public static void setName(Activity activity, String userName)

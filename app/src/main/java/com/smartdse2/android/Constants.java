@@ -37,6 +37,7 @@ public class Constants {
     public static final String DEBUG_TAG = "SmartDSE";
     public static final String SHARED_PREF_NAME = "LoginDetail";
     public static final String USER_NAME = "username";
+    public static final String EMAIL = "useremail";
     public static final String LOGGEDIN_USING = "loggedinusing";
 
     public static final String CHANNEL_NAME = "SmartDSE_Release";

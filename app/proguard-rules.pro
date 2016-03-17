@@ -14,11 +14,16 @@
 -keep class org.apache.http.**{
                                  *;
                               }
+-dontwarn com.facebook.**
 -dontwarn org.apache.**
 -dontwarn com.google.android.gms.**
 -keep class com.google.android.gms.**
 -keep interface org.apache.http.**
 -dontwarn android.net.**
+-dontnote android.net.http.*
+-dontnote org.apache.commons.codec.**
+-dontnote org.apache.http.**
+
 # If your project uses WebView with JS, uncomment the following
 # and specify the fully qualified class name to the JavaScript interface
 # class:

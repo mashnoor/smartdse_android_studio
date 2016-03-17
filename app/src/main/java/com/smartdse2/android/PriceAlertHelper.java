@@ -341,6 +341,7 @@ public class PriceAlertHelper {
                         String delete_query = "DELETE FROM " + Constants.PRICE_ALERT_TABLE + " WHERE item='" + item + "';";
                         dsebd.execSQL(delete_query);
 
+
                         AlertDialog alertDialog = new AlertDialog.Builder(
                                 activity)
                                 .setTitle("Removed!")
@@ -362,6 +363,7 @@ public class PriceAlertHelper {
                 });
         AlertDialog deletedialog = delete_notif.create();
         deletedialog.show();
+
     }
 
 

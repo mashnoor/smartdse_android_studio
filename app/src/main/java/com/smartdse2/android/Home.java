@@ -7,10 +7,11 @@ package com.smartdse2.android;
  * 
  * */
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -19,10 +20,8 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.Signature;
+
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -54,8 +53,12 @@ import com.facebook.appevents.AppEventsLogger;
 import com.facebook.applinks.AppLinkData;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
-import com.mikepenz.materialdrawer.DrawerBuilder;
 
+import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.thin.downloadmanager.DefaultRetryPolicy;
+import com.thin.downloadmanager.DownloadRequest;
+import com.thin.downloadmanager.DownloadStatusListener;
+import com.thin.downloadmanager.ThinDownloadManager;
 
 public class Home extends Activity {
 
@@ -68,7 +71,6 @@ public class Home extends Activity {
             tvdse_market_status, tvdse_lastupdate, tvdse_issue_advanced,
             tvdse_issue_declined, tvdse_issue_unchanged, header_server_data;
     LinearLayout dsex_index_Layout, dse30_index_Layout, dsex_whole, ds30_whole, dsex_graph_layout, volume_graph_layout;
-    final static String header_text_link = "http://104.131.22.246/dev/smartdsefiles/header_text.txt";
 
     ButtonController buttonController;
     GraphDrawer home_graph;
@@ -98,6 +100,7 @@ public class Home extends Activity {
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,9 +115,11 @@ public class Home extends Activity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
         setContentView(R.layout.activity_home);
+
+
+        //download();
+
         //Test
-
-
 
 
         initialize_variable();
@@ -433,6 +438,10 @@ public class Home extends Activity {
 
         @Override
         protected String[] doInBackground(String... arg0) {
+
+
+
+
             String home_data = "";
             SrcGrabber grabber = new SrcGrabber();
 
