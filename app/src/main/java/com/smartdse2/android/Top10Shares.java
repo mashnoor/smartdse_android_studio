@@ -62,6 +62,7 @@ public class Top10Shares extends Activity {
     public static final String byvolume = "Volume";
     public static final String bytrade = "Trade";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

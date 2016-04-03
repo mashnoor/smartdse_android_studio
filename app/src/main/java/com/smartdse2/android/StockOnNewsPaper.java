@@ -21,6 +21,7 @@ public class StockOnNewsPaper extends Activity {
 
     WebView stock_on_newspaperwebview;
     ButtonController buttonController;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -1,7 +1,6 @@
 apply plugin: 'com.android.application'
 
 
-apply plugin: 'com.google.gms.google-services'
 android {
     signingConfigs {
         SmartDSE {
@@ -17,8 +16,8 @@ android {
         applicationId "com.smartdse2.android"
         minSdkVersion 15
         targetSdkVersion 23
-        versionCode 3
-        versionName "2.0.2 (Beta Release)"
+        versionCode 4
+        versionName "2.1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.SmartDSE
     }
@@ -36,15 +35,21 @@ repositories {
     maven { url "https://jitpack.io" }
 }
 
+android {
+    useLibrary 'org.apache.http.legacy'
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile('com.mikepenz:materialdrawer:4.6.3@aar') {
         transitive = true
     }
-    compile 'com.google.android.gms:play-services-gcm:8.3.0'
-    compile 'com.google.android.gms:play-services-auth:8.3.0'
-    compile 'com.android.support:appcompat-v7:23.1.1'
-    compile 'com.android.support:design:23.1.1'
+    compile 'org.apache.httpcomponents:httpcore:4.4.1'
+    compile 'org.apache.httpcomponents:httpclient:4.5'
+    compile 'com.google.android.gms:play-services-gcm:8.4.0'
+    compile 'com.google.android.gms:play-services-auth:8.4.0'
+    compile 'com.android.support:appcompat-v7:23.2.0'
+    compile 'com.android.support:design:23.2.0'
     compile 'com.facebook.android:facebook-android-sdk:4.6.0'
     compile 'com.github.PhilJay:MPAndroidChart:v2.1.6'
     compile 'com.mani:ThinDownloadManager:1.2.3'
@@ -53,3 +58,5 @@ dependencies {
 }
 
 
+
+apply plugin: 'com.google.gms.google-services'

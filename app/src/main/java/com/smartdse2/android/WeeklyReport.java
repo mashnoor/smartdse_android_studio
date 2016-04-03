@@ -1,5 +1,6 @@
 package com.smartdse2.android;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -11,10 +12,13 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public class WeeklyReport extends AppCompatActivity {
+public class WeeklyReport extends Activity {
 
     WebView dse_weekly_report_webView;
     ButtonController buttonController;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

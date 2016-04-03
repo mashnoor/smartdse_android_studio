@@ -21,6 +21,8 @@ public class IPOActivity extends Activity {
 
     ButtonController buttonController;
     View agm_activity_tab;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

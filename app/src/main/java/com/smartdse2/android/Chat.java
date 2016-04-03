@@ -43,6 +43,7 @@ public class Chat extends AppCompatActivity {
     String name;
     ButtonController buttonController;
 
+
     @Override
     protected void onResume() {
         super.onResume();

@@ -38,6 +38,7 @@ public class FullScreenGraph extends AppCompatActivity {
     ArrayList<String> dsex_times;
     ArrayList<String> dsex_volume_times;
     TextView dsex_graph_index;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

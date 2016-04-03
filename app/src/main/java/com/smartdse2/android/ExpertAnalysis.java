@@ -16,6 +16,7 @@ public class ExpertAnalysis extends AppCompatActivity {
 
     ButtonController buttonController;
     WebView expert_analysis_web;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

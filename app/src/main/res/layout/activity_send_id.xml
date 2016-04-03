@@ -1,0 +1,87 @@
+<LinearLayout
+
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/md_black_1000"
+    android:padding="7dp"
+    android:orientation="vertical"
+    android:weightSum="4"
+    android:layout_height="match_parent" >
+
+
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_weight="2"
+        android:id="@+id/purchase_web"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal" />
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_weight="2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <RadioGroup
+            android:id="@+id/buy_options"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enter TnxID"
+                android:checked="true"
+                android:textColor="@color/md_white_1000"
+                android:id="@+id/opt_tnxid" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enter Activation Code"
+                android:textColor="@color/md_white_1000"
+                android:id="@+id/opt_code"
+                android:checked="false" />
+
+        </RadioGroup>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_white_1000"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Mobile Number:"
+            android:id="@+id/textView" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_white_1000"
+            android:id="@+id/buy_mobile" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_white_1000"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="TnxID:"
+            android:id="@+id/textView15" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_white_1000"
+            android:id="@+id/buy_tnx_activation" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send"
+            android:id="@+id/buy_btn_send_active"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout>
+</LinearLayout>

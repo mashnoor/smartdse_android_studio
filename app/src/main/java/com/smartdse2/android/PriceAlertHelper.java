@@ -224,7 +224,7 @@ public class PriceAlertHelper {
     private static boolean inputNotValid(TextView tvhigh, TextView tvlow) {
         String high = tvhigh.getText().toString();
         String low = tvlow.getText().toString();
-        if (Double.parseDouble(high) <= 0 | Double.parseDouble(low) <= 0)
+        if (Double.parseDouble(high) <= 0 | Double.parseDouble(low) <= 0 | Double.parseDouble(high)<Double.parseDouble(low))
         {
             return true;
         }

@@ -9,6 +9,7 @@ public class Currency extends AppCompatActivity {
 
     WebView currency_web;
     ButtonController buttonController;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

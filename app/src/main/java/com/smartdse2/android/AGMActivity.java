@@ -34,6 +34,8 @@ public class AGMActivity extends AppCompatActivity {
     ArrayAdapter<AGM> adapter;
     View ipo_activity_tab, news_tab;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

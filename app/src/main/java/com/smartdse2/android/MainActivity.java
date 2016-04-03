@@ -63,6 +63,7 @@ public class MainActivity extends Activity {
     public static final String ITEM_VALUES = "http://104.131.22.246/dev/smartdsefiles/itemvalues.txt";
     public static final String ITEM_VALUES_ALL = "http://104.131.22.246/dev/smartdsefiles/itemvalues_all.txt";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

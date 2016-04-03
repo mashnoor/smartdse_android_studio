@@ -41,7 +41,7 @@ public class PriceAlertService extends Service {
 
 
                         //Log.i(Constants.DEBUG_TAG, "Running");
-                        Thread.sleep(10000);
+                        Thread.sleep(100000);
 
                     }
                     catch (Exception e)

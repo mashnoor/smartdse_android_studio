@@ -53,6 +53,7 @@ public class Portfolio_activity extends Activity {
     boolean has_active_net = false; // This is for determining if we have a
     // active net connection
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

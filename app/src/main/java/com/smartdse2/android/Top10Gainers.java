@@ -55,6 +55,7 @@ public class Top10Gainers extends Activity {
     public static final String file_name_gainers = "dse_top10gainers";
     public static final String file_name_losers = "dse_top10losers";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

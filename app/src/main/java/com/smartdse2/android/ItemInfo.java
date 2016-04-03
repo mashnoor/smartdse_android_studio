@@ -60,6 +60,8 @@ public class ItemInfo extends Activity {
 
     String change_amout, ltp, change_percentage;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

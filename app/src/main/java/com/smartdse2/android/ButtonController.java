@@ -48,7 +48,7 @@ public class ButtonController {
     final static String header_text_link = "http://104.131.22.246/dev/smartdsefiles/header_text_2.0.0.txt";
     final static String ADV_FILE_NAME = "advertise";
     public static ArrayList<String> header_texts;
-   static Handler handler;
+    Handler handler;
     Thread thread;
     int i = 0;
     public static Activity mainActivity;
@@ -180,19 +180,8 @@ public class ButtonController {
         PrimaryDrawerItem like_us = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.fb_logo)).withName("Like Us");
         PrimaryDrawerItem login_logout = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.login_logout)).withName("Login/Logout");
         PrimaryDrawerItem stock_on_news = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.stockmarketonnewspaper)).withName("Financial News");
-        PrimaryDrawerItem sd_pro = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.sd_pro)).withName("Faster & Ads Free!");
+        PrimaryDrawerItem sd_pro = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.sd_pro)).withName("Go Pro!");
         PrimaryDrawerItem sync_data_server = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.restore)).withName("Sync Your Data");
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -220,10 +209,11 @@ public class ButtonController {
                         like_us,//14
                         info_item,//15
                         login_logout,//16
-                        sd_pro,//17
-                        rateus_item,//18
-                        quit_item,//19
-                        sync_data_server
+                        sync_data_server,//17
+                        sd_pro,//18
+                        rateus_item,//19
+                        quit_item//20
+
 
                         //new SecondaryDrawerItem().withName(R.string.drawer_item_settings)
                 )
@@ -242,6 +232,7 @@ public class ButtonController {
 
 
 
+
                         }
                       else if(position == 1)
                         {
@@ -250,6 +241,7 @@ public class ButtonController {
                             Intent itemintent = new Intent(sentactivity,
                                     MainActivity.class);
                             sentactivity.startActivity(itemintent);
+
                         }
                         else if(position == 2)
                         {
@@ -292,6 +284,7 @@ public class ButtonController {
                                         MainActivity.class);
                                 sentactivity.startActivity(itemintent);
                                 MainActivity.show = true;
+
                             }
 
                         }
@@ -303,6 +296,7 @@ public class ButtonController {
                                     Watch_List_list_view.class);
                             sentactivity.startActivity(watchlist);
 
+
                         }
                         else if (position == 4)
                         {
@@ -312,6 +306,7 @@ public class ButtonController {
                                     Portfolio_activity.class);
                             sentactivity.startActivity(itemintent);
 
+
                         }
                         else if (position == 5)
                         {
@@ -320,23 +315,33 @@ public class ButtonController {
                             Intent itemintent = new Intent(sentactivity,
                                     PriceAlert.class);
                             sentactivity.startActivity(itemintent);
+
                         }
                         else if (position == 6)
                         {
                             //Expert Analysis
+                            //Show Buy Activity if not bought
+                            startBuyActivity();
+
+
+                            /***
                             MainActivity.show = false;
                             Intent itemintent = new Intent(sentactivity,
                                     ExpertAnalysis.class);
                             sentactivity.startActivity(itemintent);
+                             ***/
                         }
                         else if (position == 7)
                         {
                             //Group Discussion
+                            startBuyActivity();
+                            /***
 
                             MainActivity.show = false;
                             Intent itemintent = new Intent(sentactivity,
                                     Chat.class);
                             sentactivity.startActivity(itemintent);
+                             ***/
 
                         }
                         else if(position == 8)
@@ -346,6 +351,7 @@ public class ButtonController {
                             Intent itemintent = new Intent(sentactivity,
                                     WeeklyReport.class);
                             sentactivity.startActivity(itemintent);
+
                         }
                         else if (position == 9)
                         {
@@ -354,6 +360,7 @@ public class ButtonController {
                             Intent itemintent = new Intent(sentactivity,
                                     NewsActivity.class);
                             sentactivity.startActivity(itemintent);
+
                         }
 
                         else if (position == 10)
@@ -363,6 +370,7 @@ public class ButtonController {
                             Intent expert_analysis_intent = new Intent(sentactivity,
                                     Currency.class);
                             sentactivity.startActivity(expert_analysis_intent);
+
                         }
                         else if (position == 11)
                         {
@@ -371,6 +379,7 @@ public class ButtonController {
                             Intent itemintent = new Intent(sentactivity,
                                     Top10Gainers.class);
                             sentactivity.startActivity(itemintent);
+
                         }
                         else if (position == 12)
                         {
@@ -379,6 +388,7 @@ public class ButtonController {
                             Intent itemintent = new Intent(sentactivity,
                                     Top10Shares.class);
                             sentactivity.startActivity(itemintent);
+
                         }
                         else if (position == 13)
                         {
@@ -386,6 +396,7 @@ public class ButtonController {
                             MainActivity.show = false;
                             Intent intent = new Intent(sentactivity, StockOnNewsPaper.class);
                             sentactivity.startActivity(intent);
+
 
 
                         }
@@ -416,21 +427,24 @@ public class ButtonController {
                         }
                         else if (position == 16)
                         {
+                            startBuyActivity();
                             //Login Logout
+                            /***
                             MainActivity.show = false;
                             Intent intent = new Intent(sentactivity, Login_logout.class);
                             sentactivity.startActivity(intent);
-
-                        }
-
-                        else if(position == 17)
-                        {
-                           //SD Pro
-                            Toast.makeText(sentactivity, "Sit Tight! Pro version on the way", Toast.LENGTH_LONG).show();
+                             ***/
 
                         }
 
                         else if(position == 18)
+                        {
+                           //SD Pro
+                            startBuyActivity();
+
+                        }
+
+                        else if(position == 19)
                         {
                             //Rate Us
                             sentactivity.startActivity(new Intent(Intent.ACTION_VIEW, Uri
@@ -438,18 +452,23 @@ public class ButtonController {
 
 
                         }
-                        else if(position == 19)
+                        else if(position == 20)
                         {
 
                             //Exit
-                            sentactivity.finish();
+
                             Intent intent = new Intent(Intent.ACTION_MAIN);
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             intent.addCategory(Intent.CATEGORY_HOME);
                             sentactivity.startActivity(intent);
-                        }
-                        else if(position == 20) {
 
+                        }
+                        else if(position == 17) {
+
+                            startBuyActivity();
+
+
+                            /***
                             //Sync
                             if (LoginHelper.getUserName(sentactivity).equals(Constants.LOGIN_NAME_NOT_SET)) {
                                 Toast.makeText(sentactivity, "You need to Login to perform this operation!", Toast.LENGTH_LONG).show();
@@ -481,6 +500,7 @@ public class ButtonController {
                                 });
 
                             }
+                            ***/
                         }
 
 
@@ -494,19 +514,7 @@ public class ButtonController {
 
 
 
-    /***
-        home = sentactivity.findViewById(R.id.dhome);
-        items = sentactivity.findViewById(R.id.ditem);
-        search = sentactivity.findViewById(R.id.dsearch);
-        watchlist = sentactivity.findViewById(R.id.dwatchlist);
-        portfolio = sentactivity.findViewById(R.id.dportfolio);
-        news = sentactivity.findViewById(R.id.dnews);
-        top20 = sentactivity.findViewById(R.id.dtop20);
-        gainerloser = sentactivity.findViewById(R.id.dgainerloser);
-        rateus = sentactivity.findViewById(R.id.drateus);
-        close_app = sentactivity.findViewById(R.id.dcloseapp);
 
-     ***/
         logo = sentactivity.findViewById(R.id.sdse_logo);
         menuicon = sentactivity.findViewById(R.id.menu_icon);
         update_status_tv = (TextView) sentactivity
@@ -594,247 +602,7 @@ public class ButtonController {
         });
 
 
-		/*
-		 * This if for showing panel show/hide
-		 * panel_show_hide_button.setOnClickListener(new View.OnClickListener()
-		 * {
-		 * 
-		 * @Override public void onClick(View arg0) {
-		 * 
-		 * if (isSentfromportfolioactivity()) { if
-		 * (showingmenuinportfolioactivity) {
-		 * 
-		 * RelativeLayout.LayoutParams lParams = new
-		 * RelativeLayout.LayoutParams( ViewGroup.LayoutParams.MATCH_PARENT,
-		 * ViewGroup.LayoutParams.WRAP_CONTENT);
-		 * lParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM); View view =
-		 * sentactivity .findViewById(R.id.totalcalculation);
-		 * 
-		 * view.setLayoutParams(lParams); showingmenuinportfolioactivity =
-		 * false; } else if (!showingmenuinportfolioactivity) {
-		 * RelativeLayout.LayoutParams lParams = new
-		 * RelativeLayout.LayoutParams( ViewGroup.LayoutParams.MATCH_PARENT,
-		 * ViewGroup.LayoutParams.WRAP_CONTENT);
-		 * lParams.addRule(RelativeLayout.ABOVE, R.id.down_panel_rellayout);
-		 * View view = sentactivity .findViewById(R.id.totalcalculation);
-		 * view.setLayoutParams(lParams); showingmenuinportfolioactivity = true;
-		 * }
-		 * 
-		 * }
-		 * 
-		 * if (PanelController.down_panel_show) { Animation animation; animation
-		 * = AnimationUtils.loadAnimation(sentactivity, R.anim.bottom_down);
-		 * downpanelLayout.setAnimation(animation);
-		 * downpanelLayout.setVisibility(View.GONE);
-		 * PanelController.down_panel_show = false; } else { Animation
-		 * animation; animation = AnimationUtils.loadAnimation(sentactivity,
-		 * R.anim.bottom_up); downpanelLayout.setAnimation(animation);
-		 * downpanelLayout.setVisibility(View.VISIBLE);
-		 * PanelController.down_panel_show = true; }
-		 * 
-		 * } });
-		 */
 
-        /***
-
-        // Home
-        home.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                if (!(sentactivity instanceof Home)) {
-                    MainActivity.show = false;
-                    Intent homeiIntent = new Intent(sentactivity, Home.class);
-                    sentactivity.startActivity(homeiIntent);
-
-                }
-
-            }
-        });
-
-        // Items
-        items.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-
-                if (sentactivity instanceof MainActivity) {
-                    Bundle tbBundle = sentactivity.getIntent().getExtras();
-                    if (tbBundle!=null) {
-                        Intent itemintent = new Intent(sentactivity,
-                                MainActivity.class);
-                        sentactivity.startActivity(itemintent);
-
-                    }
-                }
-
-                if (!(sentactivity instanceof MainActivity)) {
-                    MainActivity.show = false;
-                    Intent itemintent = new Intent(sentactivity,
-                            MainActivity.class);
-                    sentactivity.startActivity(itemintent);
-
-
-                }
-
-            }
-        });
-
-        // Search
-        search.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                if (sentactivity instanceof MainActivity) {
-                    View search_box = sentactivity
-                            .findViewById(R.id.dse_list_search_box);
-
-                    int search_box_visibility = search_box.getVisibility();
-                    if (search_box_visibility == View.GONE) {
-                        InputMethodManager imm = (InputMethodManager) sentactivity
-                                .getSystemService(Context.INPUT_METHOD_SERVICE);
-                        Animation animation;
-                        animation = AnimationUtils.loadAnimation(sentactivity,
-                                R.anim.fade_in);
-                        sentactivity.findViewById(R.id.dse_list_search_box)
-                                .setAnimation(animation);
-                        sentactivity.findViewById(R.id.dse_list_search_box)
-                                .setVisibility(View.VISIBLE);
-                        search_box.requestFocus();
-                        imm.showSoftInput(search_box, 0);
-
-                    } else if (search_box_visibility == View.VISIBLE) {
-                        InputMethodManager imm = (InputMethodManager) sentactivity
-                                .getSystemService(Context.INPUT_METHOD_SERVICE);
-                        Animation animation;
-                        animation = AnimationUtils.loadAnimation(sentactivity,
-                                R.anim.fade_out);
-                        sentactivity.findViewById(R.id.dse_list_search_box)
-                                .setAnimation(animation);
-                        sentactivity.findViewById(R.id.dse_list_search_box)
-                                .setVisibility(View.GONE);
-
-                        imm.hideSoftInputFromWindow(
-                                search_box.getWindowToken(), 0);
-                    }
-
-                } else {
-                    Intent itemintent = new Intent(sentactivity,
-                            MainActivity.class);
-                    sentactivity.startActivity(itemintent);
-                    MainActivity.show = true;
-                }
-
-            }
-        });
-
-        // Watchlist
-        watchlist.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                if (!(sentactivity instanceof Watch_List_list_view)) {
-                    MainActivity.show = false;
-                    Intent watchlist = new Intent(sentactivity,
-                            Watch_List_list_view.class);
-                    sentactivity.startActivity(watchlist);
-
-                }
-
-            }
-        });
-
-        // Portfolio
-        portfolio.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                if (!(sentactivity instanceof Portfolio_activity)) {
-                    MainActivity.show = false;
-                    Intent itemintent = new Intent(sentactivity,
-                            Portfolio_activity.class);
-                    sentactivity.startActivity(itemintent);
-
-                }
-
-            }
-        });
-
-        // News
-        news.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                if (!(sentactivity instanceof NewsActivity)) {
-                    MainActivity.show = false;
-                    Intent itemintent = new Intent(sentactivity,
-                            NewsActivity.class);
-                    sentactivity.startActivity(itemintent);
-
-                }
-
-            }
-        });
-
-        // top20
-        top20.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                if (!(sentactivity instanceof Top10Shares)) {
-                    MainActivity.show = false;
-                    Intent itemintent = new Intent(sentactivity,
-                            Top10Shares.class);
-                    sentactivity.startActivity(itemintent);
-
-                }
-
-            }
-        });
-
-        // 10gainerloser
-        gainerloser.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                if (!(sentactivity instanceof Top10Gainers)) {
-                    MainActivity.show = false;
-                    Intent itemintent = new Intent(sentactivity,
-                            Top10Gainers.class);
-                    sentactivity.startActivity(itemintent);
-
-                }
-
-            }
-        });
-
-        // Rate Us
-
-        rateus.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                sentactivity.startActivity(new Intent(Intent.ACTION_VIEW, Uri
-                        .parse("market://details?id=" + sentactivity.getApplicationContext().getPackageName())));
-
-            }
-        });
-
-        // Close App
-        close_app.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-                if (!(sentactivity instanceof About)) {
-                    MainActivity.show = false;
-                    Intent intent = new Intent(sentactivity, About.class);
-                    sentactivity.startActivity(intent);
-                }
-
-
-            }
-        });
-         ***/
         // Refresh Button
         refresh_button.setOnClickListener(new View.OnClickListener() {
 
@@ -845,13 +613,19 @@ public class ButtonController {
                 sentactivity.startActivity(refreshIntent);
                 sentactivity.finish();
 
+
             }
         });
 
     }
 
-    public boolean isSentfromportfolioactivity() {
-        return sentfromportfolioactivity;
+    private void startBuyActivity()
+    {
+        MainActivity.show = false;
+        Intent itemintent = new Intent(mainActivity,
+                BuyNow.class);
+        mainActivity.startActivity(itemintent);
+
     }
 
     public void setSentfromportfolioactivity(boolean sentfromportfolioactivity) {
