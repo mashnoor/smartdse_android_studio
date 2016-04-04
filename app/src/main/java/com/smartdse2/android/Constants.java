@@ -31,6 +31,10 @@ public class Constants {
     public static final String LOGIN_NAME_NOT_SET = "Not Set";
     public static final String LOGGED_IN_USING_FB = "F";
     public static final String  LOGGED_IN_USING_GMAIL = "G";
+    public static final String ACTIVATION_CODE = "activecode";
+    public static final String IS_ACTIVATE = "isactivate";
+    public static final String YES = "yes";
+    public static final String NO = "no";
 
 
     //SharedPref Infos

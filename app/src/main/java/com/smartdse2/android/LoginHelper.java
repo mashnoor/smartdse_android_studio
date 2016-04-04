@@ -42,7 +42,7 @@ public class LoginHelper {
         SharedPreferences.Editor editor = activity.getSharedPreferences(Constants.SHARED_PREF_NAME, Activity.MODE_PRIVATE).edit();
 
         editor.putString(Constants.EMAIL, email);
-        editor.commit();
+        editor.apply();
     }
 
     public static void setName(Activity activity, String userName)
@@ -50,21 +50,21 @@ public class LoginHelper {
         SharedPreferences.Editor editor = activity.getSharedPreferences(Constants.SHARED_PREF_NAME, Activity.MODE_PRIVATE).edit();
 
         editor.putString(Constants.USER_NAME, userName);
-        editor.commit();
+        editor.apply();
     }
     public static void removeName(Activity activity)
     {
         SharedPreferences.Editor editor = activity.getSharedPreferences(Constants.SHARED_PREF_NAME, Activity.MODE_PRIVATE).edit();
 
         editor.putString(Constants.USER_NAME, Constants.LOGIN_NAME_NOT_SET);
-        editor.commit();
+        editor.apply();
     }
     public static void setLoggedInUsing(Activity activity, String c)
     {
         SharedPreferences.Editor editor = activity.getSharedPreferences(Constants.SHARED_PREF_NAME, Activity.MODE_PRIVATE).edit();
 
         editor.putString(Constants.LOGGEDIN_USING, c);
-        editor.commit();
+        editor.apply();
     }
     public static String getLoggedInUsing(Activity activity)
     {
@@ -72,6 +72,25 @@ public class LoginHelper {
         String loggedInUsing = prefs.getString(Constants.LOGGEDIN_USING, Constants.LOGIN_NAME_NOT_SET);
         return loggedInUsing;
     }
+
+
+    //Some Functions for Checking
+    public static void setActivationCode(Activity activity, String code)
+    {
+        SharedPreferences.Editor editor = activity.getSharedPreferences(Constants.SHARED_PREF_NAME, Activity.MODE_PRIVATE).edit();
+
+        editor.putString(Constants.ACTIVATION_CODE, code);
+        editor.putBoolean(Constants.IS_ACTIVATE, true);
+        editor.apply();
+
+    }
+    public static boolean isActivate(Activity activity)
+    {
+        SharedPreferences prefs = activity.getSharedPreferences(Constants.SHARED_PREF_NAME, Activity.MODE_PRIVATE);
+        boolean status = prefs.getBoolean(Constants.IS_ACTIVATE, false);
+        return status;
+    }
+
 
 
 

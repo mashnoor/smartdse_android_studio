@@ -69,7 +69,7 @@
             android:textColor="@color/md_white_1000"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="TnxID:"
-            android:id="@+id/textView15" />
+            android:id="@+id/txtTxnActive" />
 
         <EditText
             android:layout_width="match_parent"

@@ -16,6 +16,8 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.http.HttpEntity;
@@ -37,6 +39,10 @@ public class SendID extends Activity {
     WebView purchase_web;
     Button buy_send_active;
     EditText buy_mobile, buy_tnxID;
+    RadioGroup buy_options;
+
+
+    TextView txtTxnActive;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,33 +56,88 @@ public class SendID extends Activity {
             @Override
             public void onClick(View v) {
 
-                if(LoginHelper.isLoggedin(SendID.this))
+                if(buy_options.getCheckedRadioButtonId() == R.id.opt_tnxid)
                 {
-                    String email = LoginHelper.getUserEmail(SendID.this);
-                    String loginWith = LoginHelper.getLoggedInUsing(SendID.this);
-                    String tnxID = buy_tnxID.getText().toString().trim();
-                    String mobile = buy_mobile.getText().toString().trim();
-                    String IMEI = getIMEI();
-                    if(isValid(email) && isValid(loginWith) && isValid(tnxID) && isValid(mobile))
-                    {
+                    //Send the tnxid to server
+                    sendToServer();
 
-                        new send_data_to_server().execute(email, loginWith, tnxID, mobile, IMEI);
-                    }
-                    else
-                    {
-                        showToast("Something wrong with your input. Please Check!");
-                    }
                 }
-                else
+                else if(buy_options.getCheckedRadioButtonId() == R.id.opt_code)
                 {
-                    showToast("Please login and try again!");
-                    Intent i = new Intent(SendID.this, Login_logout.class);
-                    startActivity(i);
+
+                    checkActivationCode();
+
+
                 }
+
+
+
 
             }
         });
+        buy_options.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if(checkedId==R.id.opt_tnxid)
+                {
+                    txtTxnActive.setText("Transaction ID:");
+                }
+                else if(checkedId==R.id.opt_code)
+                {
+                    txtTxnActive.setText("Activation Code:");
+                }
+            }
+        });
 
+
+
+
+
+
+
+    }
+
+    private void checkActivationCode() {
+
+        if (LoginHelper.isLoggedin(SendID.this)) {
+            String email = LoginHelper.getUserEmail(SendID.this);
+
+            String activation_code = buy_tnxID.getText().toString().trim();
+            String mobile = buy_mobile.getText().toString().trim();
+
+            if (isValid(email)  && isValid(activation_code) && isValid(mobile)) {
+
+                new check_and_active().execute(email, activation_code, mobile);
+            } else {
+                showToast("Something wrong with your input. Please Check!");
+            }
+        } else {
+            showToast("Please login and try again!");
+            Intent i = new Intent(SendID.this, Login_logout.class);
+            startActivity(i);
+        }
+
+    }
+
+    private void sendToServer() {
+
+        if (LoginHelper.isLoggedin(SendID.this)) {
+            String email = LoginHelper.getUserEmail(SendID.this);
+            String loginWith = LoginHelper.getLoggedInUsing(SendID.this);
+            String tnxID = buy_tnxID.getText().toString().trim();
+            String mobile = buy_mobile.getText().toString().trim();
+            String IMEI = getIMEI();
+            if (isValid(email) && isValid(loginWith) && isValid(tnxID) && isValid(mobile)) {
+
+                new send_data_to_server().execute(email, loginWith, tnxID, mobile, IMEI);
+            } else {
+                showToast("Something wrong with your input. Please Check!");
+            }
+        } else {
+            showToast("Please login and try again!");
+            Intent i = new Intent(SendID.this, Login_logout.class);
+            startActivity(i);
+        }
 
 
 
@@ -86,11 +147,81 @@ public class SendID extends Activity {
         Toast.makeText(SendID.this, s, Toast.LENGTH_LONG).show();
     }
 
+
+    //Class for Checking and active the app
+    class check_and_active extends AsyncTask<String, Void, String>
+    {
+
+        ProgressDialog progressDialog = ProgressDialog.show(SendID.this,
+                "", "Contacting with SmartDSE server...", true);
+        @Override
+        protected String doInBackground(String... params) {
+
+            String email =  params[0];
+
+            String code =  params[1];
+            String mobile = params[2];
+
+
+
+            HttpClient httpclient = new DefaultHttpClient();
+            HttpPost httppost = new HttpPost("http://104.131.22.246/dev/smartdsefiles/paid/save_payment.php");
+
+            try {
+                // Add your data
+                List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>();
+
+                nameValuePairs.add(new BasicNameValuePair("email", email));
+
+                nameValuePairs.add(new BasicNameValuePair("mobile", mobile));
+                nameValuePairs.add(new BasicNameValuePair("activation_code", code));
+
+                httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+                // Execute HTTP Post Request
+                HttpResponse response = httpclient.execute(httppost);
+                HttpEntity entity = response.getEntity();
+                String responseString = EntityUtils.toString(entity, "UTF-8");
+                Log.i("--------------", responseString);
+                return responseString;
+
+            } catch (Exception e)
+            {
+
+
+            }
+
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+
+            super.onPostExecute(s);
+            if(progressDialog!=null && progressDialog.isShowing())
+            {
+                progressDialog.dismiss();
+            }
+            if(s!=null)
+            {
+                showToast(s);
+            }
+            else
+            {
+                showToast("Can't connect to server! Check your internet");
+            }
+        }
+    }
+
+
+
+
     class send_data_to_server extends AsyncTask<String, Void, String>
     {
 
         ProgressDialog progressDialog = ProgressDialog.show(SendID.this,
-                "", "Retrieving Data...", true);
+                "", "Contacting with SmartDSE server...", true);
         @Override
         protected String doInBackground(String... params) {
 
@@ -175,6 +306,8 @@ public class SendID extends Activity {
         buy_send_active = (Button) findViewById(R.id.buy_btn_send_active);
         buy_mobile = (EditText) findViewById(R.id.buy_mobile);
         buy_tnxID = (EditText) findViewById(R.id.buy_tnx_activation);
+        buy_options = (RadioGroup) findViewById(R.id.buy_options);
+        txtTxnActive = (TextView) findViewById(R.id.txtTxnActive);
     }
 
 }
