@@ -1,5 +1,6 @@
 package com.smartdse2.android;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.pm.ActivityInfo;
 import android.graphics.Color;
@@ -26,7 +27,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class FullScreenGraph extends AppCompatActivity {
+public class FullScreenGraph extends Activity {
 
     ButtonController buttonController;
     GraphDrawer graphDrawer;

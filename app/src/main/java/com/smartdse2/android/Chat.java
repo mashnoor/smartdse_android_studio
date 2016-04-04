@@ -1,5 +1,6 @@
 package com.smartdse2.android;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -32,7 +33,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Hashtable;
 
-public class Chat extends AppCompatActivity {
+public class Chat extends Activity {
 
     ArrayList<ChatMsg> chatmsgs;
     Pubnub pubnub;

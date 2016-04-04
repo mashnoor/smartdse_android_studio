@@ -1,6 +1,7 @@
 package com.smartdse2.android;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -22,7 +23,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 
-public class MarketDepth extends AppCompatActivity {
+public class MarketDepth extends Activity {
 
     //md = market depth
     JSONObject md_object = null;

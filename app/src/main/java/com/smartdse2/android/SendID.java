@@ -46,17 +46,36 @@ public class SendID extends Activity {
 
     WebView purchase_web;
     Button buy_send_active;
-    EditText buy_mobile, buy_tnxID;
+    EditText buy_mobile, buy_tnxID, buy_email;
     RadioGroup buy_options;
 
 
     TextView txtTxnActive;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(!LoginHelper.isLoggedin(this))
+        {
+           buy_email.setText("Not Logged In");
+        }
+        else
+        {
+            buy_email.setText(LoginHelper.getUserEmail(SendID.this));
+        }
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_id);
 
         initialize_all();
+        if(!LoginHelper.isLoggedin(this))
+        {
+            Intent i = new Intent(SendID.this, Login_logout.class);
+            startActivity(i);
+        }
 
 
         purchase_web.getSettings();
@@ -112,7 +131,7 @@ public class SendID extends Activity {
     {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(SendID.this);
         builder1.setMessage("You have successfully activated this copy.\n" +
-                "Pleasr keep your User ID and Activation code for future use.");
+                "Please keep your User ID and Activation code for future use.");
         builder1.setTitle("Congratulations!");
         builder1.setCancelable(true);
 
@@ -124,6 +143,7 @@ public class SendID extends Activity {
                         doRestart(SendID.this);
                     }
                 });
+        builder1.setCancelable(false);
 
 
         AlertDialog alert11 = builder1.create();
@@ -434,6 +454,7 @@ public class SendID extends Activity {
         buy_tnxID = (EditText) findViewById(R.id.buy_tnx_activation);
         buy_options = (RadioGroup) findViewById(R.id.buy_options);
         txtTxnActive = (TextView) findViewById(R.id.txtTxnActive);
+        buy_email = (EditText) findViewById(R.id.buy_email);
     }
 
 }

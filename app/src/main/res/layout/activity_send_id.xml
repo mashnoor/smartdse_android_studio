@@ -10,13 +10,6 @@
     android:layout_height="match_parent" >
 
 
-    <WebView
-        android:layout_width="match_parent"
-        android:layout_weight="2"
-        android:id="@+id/purchase_web"
-        android:layout_height="0dp"
-        android:layout_gravity="center_horizontal" />
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_weight="2"
@@ -33,7 +26,7 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Enter TnxID"
+                android:text="Enter Transaction ID"
                 android:checked="true"
                 android:textColor="@color/md_white_1000"
                 android:id="@+id/opt_tnxid" />
@@ -54,6 +47,21 @@
             android:layout_height="wrap_content"
             android:textColor="@color/md_white_1000"
             android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Email:"
+            android:id="@+id/textView15" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:editable="false"
+            android:textColor="@color/md_white_1000"
+            android:id="@+id/buy_email" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/md_white_1000"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Mobile Number:"
             android:id="@+id/textView" />
 
@@ -68,7 +76,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/md_white_1000"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="TnxID:"
+            android:text="Transaction ID:"
             android:id="@+id/txtTxnActive" />
 
         <EditText
@@ -80,8 +88,16 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Send"
+            android:text="Process"
             android:id="@+id/buy_btn_send_active"
             android:layout_gravity="center_horizontal" />
     </LinearLayout>
+
+    <WebView
+        android:layout_width="match_parent"
+        android:layout_weight="2"
+        android:id="@+id/purchase_web"
+        android:layout_height="0dp"
+        android:layout_gravity="center_horizontal" />
+
 </LinearLayout>

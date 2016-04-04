@@ -1,11 +1,12 @@
 package com.smartdse2.android;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-public class Currency extends AppCompatActivity {
+public class Currency extends Activity {
 
     WebView currency_web;
     ButtonController buttonController;

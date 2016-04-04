@@ -25,6 +25,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -165,9 +166,13 @@ public class ButtonController {
 
         if(LoginHelper.isActivate(sentactivity))
         {
-            LinearLayout topbar_layout = (LinearLayout) sentactivity.findViewById(R.id.topbar_layout);
+            LinearLayout topbar_layout = (LinearLayout) sentactivity.findViewById(R.id.home_toppanel);
 
                 topbar_layout.setBackgroundColor(Color.parseColor("#F5891F"));
+            ImageView header_logo = (ImageView) sentactivity.findViewById(R.id.sdse_logo);
+            header_logo.setImageResource(R.drawable.header_logo_pro);
+            View line_down = sentactivity.findViewById(R.id.down_line);
+            line_down.setBackgroundColor(Color.parseColor("#F5891F"));
         }
         //
         // panel_show_hide_button =
@@ -197,7 +202,7 @@ public class ButtonController {
         PrimaryDrawerItem like_us = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.fb_logo)).withName("Like Us");
         PrimaryDrawerItem login_logout = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.login_logout)).withName("Login/Logout");
         PrimaryDrawerItem stock_on_news = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.stockmarketonnewspaper)).withName("Financial News");
-        PrimaryDrawerItem sd_pro = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.sd_pro)).withName("Go Pro!");
+        PrimaryDrawerItem sd_pro = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.sd_pro)).withName("Activate SmartDSE Pro!");
         PrimaryDrawerItem sync_data_server = new PrimaryDrawerItem().withIcon(sentactivity.getResources().getDrawable(R.drawable.restore)).withName("Sync Your Data");
 
 
@@ -360,14 +365,23 @@ public class ButtonController {
                         else if (position == 7)
                         {
                             //Group Discussion
-                            startBuyActivity();
-                            /***
+                            if(LoginHelper.isActivate(sentactivity))
+                            {
 
-                            MainActivity.show = false;
-                            Intent itemintent = new Intent(sentactivity,
-                                    Chat.class);
-                            sentactivity.startActivity(itemintent);
-                             ***/
+
+                                MainActivity.show = false;
+                                Intent itemintent = new Intent(sentactivity,
+                                        Chat.class);
+                                sentactivity.startActivity(itemintent);
+                            }
+                            else
+                            {
+                                startBuyActivity();
+                            }
+
+
+
+
 
                         }
                         else if(position == 8)
