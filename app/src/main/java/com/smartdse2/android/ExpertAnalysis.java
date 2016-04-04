@@ -1,17 +1,19 @@
 package com.smartdse2.android;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Window;
 import android.webkit.WebView;
 import android.widget.Toast;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-public class ExpertAnalysis extends AppCompatActivity {
+public class ExpertAnalysis extends Activity {
 
 
     ButtonController buttonController;
@@ -20,7 +22,10 @@ public class ExpertAnalysis extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_expert_analysis);
+
         buttonController = new ButtonController(this);
         expert_analysis_web = (WebView) findViewById(R.id.dse_expert_analysis);
         expert_analysis_web.getSettings();

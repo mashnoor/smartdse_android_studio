@@ -25,6 +25,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ import android.support.v4.content.LocalBroadcastManager;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,6 +52,7 @@ public class Splash_activity extends Activity {
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     private ProgressBar mRegistrationProgressBar;
     private TextView mInformationTextView;
+    ImageView splash_logo;
 
     private final static String USER_AGENT = "Mozilla/5.0";
     String cdate = new SimpleDateFormat("dd/MM/yyyy").format(Calendar
@@ -63,6 +66,12 @@ public class Splash_activity extends Activity {
 
 
         setContentView(R.layout.splash_activity);
+        splash_logo = (ImageView) findViewById(R.id.splash_logo);
+        if(LoginHelper.isActivate(Splash_activity.this))
+        {
+            splash_logo.setImageResource(R.drawable.sd_splash_pro);
+        }
+
         Intent i = new Intent(Splash_activity.this, PriceAlertService.class);
 
         if (!isMyServiceRunning(PriceAlertService.class))
@@ -193,7 +202,11 @@ public class Splash_activity extends Activity {
             }
             else {
                 Intent main_activity = new Intent(Splash_activity.this, Home.class);
-                Constants.showAdThread.start();
+                if(!LoginHelper.isActivate(Splash_activity.this))
+                {
+                    Constants.showAdThread.start();
+                }
+
                 startActivity(main_activity);
                 finish();
             }

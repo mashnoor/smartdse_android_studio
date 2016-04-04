@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Handler;
@@ -16,8 +17,10 @@ import android.text.TextPaint;
 import android.text.method.LinkMovementMethod;
 import android.text.style.URLSpan;
 import android.text.style.UnderlineSpan;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewStub;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
@@ -127,31 +130,45 @@ public class ButtonController {
         refresh_button = sentactivity.findViewById(R.id.dse_home_refresh);
         //For Advertisement
 
+
+
+
+
         mainActivity = sentactivity;
 
         AdView adView;
         LinearLayout downpanel = (LinearLayout) sentactivity.findViewById(R.id.down_panel_rellayout);
 
-        adView = new AdView(sentactivity, "535675923265633_535801366586422", AdSize.BANNER_HEIGHT_50);
+        if(!LoginHelper.isActivate(sentactivity))
+        {
+            adView = new AdView(sentactivity, "535675923265633_535801366586422", AdSize.BANNER_HEIGHT_50);
 
-        // Find the main layout of your activity
-
-
-        // Add the ad view to your activity layout
-
-        //Ramos Ad
-
-        //AdSettings.addTestDevice("61d78da414ad51907332a5ba6fe48850");
-        downpanel.addView(adView);
+            // Find the main layout of your activity
 
 
-        // Request to load an ad
+            // Add the ad view to your activity layout
 
-       // AdSettings.addTestDevice("ec28ff02bcceb8adfa267bf2dd96bbd0");
-       // AdSettings.addTestDevice("2b882904b155af13c2e85f9430e63bb2");
-        //loadInterstitialAd();
-        adView.loadAd();
+            //Ramos Ad
 
+            //AdSettings.addTestDevice("61d78da414ad51907332a5ba6fe48850");
+            downpanel.addView(adView);
+
+
+            // Request to load an ad
+
+            // AdSettings.addTestDevice("ec28ff02bcceb8adfa267bf2dd96bbd0");
+            // AdSettings.addTestDevice("2b882904b155af13c2e85f9430e63bb2");
+            //loadInterstitialAd();
+            adView.loadAd();
+        }
+
+
+        if(LoginHelper.isActivate(sentactivity))
+        {
+            LinearLayout topbar_layout = (LinearLayout) sentactivity.findViewById(R.id.topbar_layout);
+
+                topbar_layout.setBackgroundColor(Color.parseColor("#F5891F"));
+        }
         //
         // panel_show_hide_button =
         // sentactivity.findViewById(R.id.panel_show_hide);
@@ -210,9 +227,10 @@ public class ButtonController {
                         info_item,//15
                         login_logout,//16
                         sync_data_server,//17
-                        sd_pro,//18
-                        rateus_item,//19
-                        quit_item//20
+
+                        rateus_item,//18
+                        quit_item,//19
+                        sd_pro//20,
 
 
                         //new SecondaryDrawerItem().withName(R.string.drawer_item_settings)
@@ -321,15 +339,23 @@ public class ButtonController {
                         {
                             //Expert Analysis
                             //Show Buy Activity if not bought
-                            startBuyActivity();
+                            if(LoginHelper.isActivate(sentactivity))
+                            {
+                                MainActivity.show = false;
+                                Intent itemintent = new Intent(sentactivity,
+                                        ExpertAnalysis.class);
+                                sentactivity.startActivity(itemintent);
+                            }
+                            else
+                            {
+                                startBuyActivity();
+                            }
 
 
-                            /***
-                            MainActivity.show = false;
-                            Intent itemintent = new Intent(sentactivity,
-                                    ExpertAnalysis.class);
-                            sentactivity.startActivity(itemintent);
-                             ***/
+
+
+
+
                         }
                         else if (position == 7)
                         {
@@ -427,24 +453,31 @@ public class ButtonController {
                         }
                         else if (position == 16)
                         {
-                            startBuyActivity();
+                            if(LoginHelper.isActivate(sentactivity))
+                            {
+                                MainActivity.show = false;
+                                Intent intent = new Intent(sentactivity, Login_logout.class);
+                                sentactivity.startActivity(intent);
+
+                            }
+
                             //Login Logout
-                            /***
-                            MainActivity.show = false;
-                            Intent intent = new Intent(sentactivity, Login_logout.class);
-                            sentactivity.startActivity(intent);
-                             ***/
+                            else
+                            {
+                                startBuyActivity();
+                            }
+
 
                         }
 
-                        else if(position == 18)
+                        else if(position == 20)
                         {
                            //SD Pro
                             startBuyActivity();
 
                         }
 
-                        else if(position == 19)
+                        else if(position == 18)
                         {
                             //Rate Us
                             sentactivity.startActivity(new Intent(Intent.ACTION_VIEW, Uri
@@ -452,7 +485,7 @@ public class ButtonController {
 
 
                         }
-                        else if(position == 20)
+                        else if(position == 19)
                         {
 
                             //Exit
@@ -465,41 +498,54 @@ public class ButtonController {
                         }
                         else if(position == 17) {
 
-                            startBuyActivity();
+                            if(LoginHelper.isActivate(sentactivity))
+                            {
+
+                                //Sync
+                                if (LoginHelper.getUserName(sentactivity).equals(Constants.LOGIN_NAME_NOT_SET)) {
+                                    Toast.makeText(sentactivity, "You need to Login to perform this operation!", Toast.LENGTH_LONG).show();
+                                    Intent intent = new Intent(sentactivity, Login_logout.class);
+                                    sentactivity.startActivity(intent);
+                                } else {
+                                    LayoutInflater inflater = sentactivity.getLayoutInflater();
+                                    View workingview = inflater.inflate(R.layout.backup_restore, null);
+                                    AlertDialog.Builder alertBuilder = new AlertDialog.Builder(sentactivity);
+                                    alertBuilder.setView(workingview);
+                                    alertBuilder.show();
+                                    final Button backup_button = (Button) workingview.findViewById(R.id.btn_backup);
+                                    Button restore_button = (Button) workingview.findViewById(R.id.btn_restore);
+                                    restore_button.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            BackupRestore backupRestore = new BackupRestore(sentactivity);
+                                            backupRestore.restore();
+                                        }
+                                    });
+                                    backup_button.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            BackupRestore backupRestore = new BackupRestore(sentactivity);
+                                            backupRestore.backup();
+                                            // Toast.makeText(sentactivity, "Lol", Toast.LENGTH_LONG).show();
+
+                                        }
+                                    });
+
+                                }
+
+
+
+
+                            }
+                            else
+                            {
+                                startBuyActivity();
+                            }
+
 
 
                             /***
-                            //Sync
-                            if (LoginHelper.getUserName(sentactivity).equals(Constants.LOGIN_NAME_NOT_SET)) {
-                                Toast.makeText(sentactivity, "You need to Login to perform this operation!", Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(sentactivity, Login_logout.class);
-                                sentactivity.startActivity(intent);
-                            } else {
-                                LayoutInflater inflater = sentactivity.getLayoutInflater();
-                                View workingview = inflater.inflate(R.layout.backup_restore, null);
-                                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(sentactivity);
-                                alertBuilder.setView(workingview);
-                                alertBuilder.show();
-                                final Button backup_button = (Button) workingview.findViewById(R.id.btn_backup);
-                                Button restore_button = (Button) workingview.findViewById(R.id.btn_restore);
-                                restore_button.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        BackupRestore backupRestore = new BackupRestore(sentactivity);
-                                        backupRestore.restore();
-                                    }
-                                });
-                                backup_button.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        BackupRestore backupRestore = new BackupRestore(sentactivity);
-                                        backupRestore.backup();
-                                       // Toast.makeText(sentactivity, "Lol", Toast.LENGTH_LONG).show();
 
-                                    }
-                                });
-
-                            }
                             ***/
                         }
 
@@ -514,6 +560,10 @@ public class ButtonController {
 
 
 
+        if(LoginHelper.isActivate(sentactivity))
+        {
+            result.removeItem(sd_pro.getIdentifier());
+        }
 
         logo = sentactivity.findViewById(R.id.sdse_logo);
         menuicon = sentactivity.findViewById(R.id.menu_icon);

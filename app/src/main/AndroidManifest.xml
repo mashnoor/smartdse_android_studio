@@ -123,19 +123,21 @@
         <activity
             android:name=".AGMActivity"
             android:label="@string/title_activity_agm"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:screenOrientation="portrait"
+             />
         <activity
             android:name=".NewsDetail"
             android:label="@string/title_activity_news_detail"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".Currency"
             android:label="@string/title_activity_currency"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".MarketDepth"
             android:label="@string/title_activity_market_depth"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:screenOrientation="portrait" />
 
         <service
             android:name=".PriceAlertService"
@@ -145,23 +147,23 @@
         <activity
             android:name=".PriceAlert"
             android:label="@string/title_activity_price_alert"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ExpertAnalysis"
             android:label="@string/title_activity_expert_analysis"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".WeeklyReport"
             android:label="@string/title_activity_weekly_report"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".FullScreenGraph"
             android:label="@string/title_activity_full_screen_graph"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Chat"
             android:label="@string/title_activity_chat"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Login_logout"
             android:label="@string/title_activity_login_logout"
@@ -169,15 +171,16 @@
         <activity
             android:name=".StockOnNewsPaper"
             android:label="@string/title_activity_stock_on_news_paper"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".BuyNow"
             android:label="@string/title_activity_buy_now"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".SendID"
-            android:label="@string/title_activity_send_id"
-            android:theme="@android:style/Theme.Holo"></activity>
+            android:label="Activation Center"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Holo"/>]
     </application>
 
 </manifest>

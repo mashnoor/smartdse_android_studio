@@ -1,8 +1,14 @@
 package com.smartdse2.android;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -30,6 +36,8 @@ import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,14 +58,17 @@ public class SendID extends Activity {
 
         initialize_all();
 
+
         purchase_web.getSettings();
         purchase_web.setBackgroundColor(Color.BLACK);
+        new grab_instruction().execute();
         buy_send_active.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 if(buy_options.getCheckedRadioButtonId() == R.id.opt_tnxid)
                 {
+
                     //Send the tnxid to server
                     sendToServer();
 
@@ -96,6 +107,70 @@ public class SendID extends Activity {
 
 
     }
+
+    private void showDialog()
+    {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(SendID.this);
+        builder1.setMessage("You have successfully activated this copy.\n" +
+                "Pleasr keep your User ID and Activation code for future use.");
+        builder1.setTitle("Congratulations!");
+        builder1.setCancelable(true);
+
+        builder1.setPositiveButton(
+                "Restart SmartDSE",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                        doRestart(SendID.this);
+                    }
+                });
+
+
+        AlertDialog alert11 = builder1.create();
+        alert11.show();
+    }
+
+
+    public static void doRestart(Context c) {
+        try {
+            //check if the context is given
+            if (c != null) {
+                //fetch the packagemanager so we can get the default launch activity
+                // (you can replace this intent with any other activity if you want
+                PackageManager pm = c.getPackageManager();
+                //check if we got the PackageManager
+                if (pm != null) {
+                    //create the intent with the default start activity for your application
+                    Intent mStartActivity = pm.getLaunchIntentForPackage(
+                            c.getPackageName()
+                    );
+                    if (mStartActivity != null) {
+                        mStartActivity.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        //create a pending intent so the application is restarted after System.exit(0) was called.
+                        // We use an AlarmManager to call this intent in 100ms
+                        int mPendingIntentId = 223344;
+                        PendingIntent mPendingIntent = PendingIntent
+                                .getActivity(c, mPendingIntentId, mStartActivity,
+                                        PendingIntent.FLAG_CANCEL_CURRENT);
+                        AlarmManager mgr = (AlarmManager) c.getSystemService(Context.ALARM_SERVICE);
+                        mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100, mPendingIntent);
+                        //kill the application
+                        System.exit(0);
+                    } else {
+                        Log.e("-------------", "Was not able to restart application, mStartActivity null");
+                    }
+                } else {
+                    Log.e("---------", "Was not able to restart application, PM null");
+                }
+            } else {
+                Log.e("-------------", "Was not able to restart application, Context null");
+            }
+        } catch (Exception ex) {
+            Log.e("-----------------", "Was not able to restart application");
+        }
+    }
+
+
 
     private void checkActivationCode() {
 
@@ -165,7 +240,7 @@ public class SendID extends Activity {
 
 
             HttpClient httpclient = new DefaultHttpClient();
-            HttpPost httppost = new HttpPost("http://104.131.22.246/dev/smartdsefiles/paid/save_payment.php");
+            HttpPost httppost = new HttpPost("http://104.131.22.246/dev/smartdsefiles/paid/check_code.php");
 
             try {
                 // Add your data
@@ -206,6 +281,11 @@ public class SendID extends Activity {
             if(s!=null)
             {
                 showToast(s);
+                if(s.equals(Constants.ACTIVE_SUCCESS_MSG))
+                {
+                    LoginHelper.setActivationCode(SendID.this, buy_tnxID.getText().toString().trim());
+                    showDialog();
+                }
             }
             else
             {
@@ -281,6 +361,52 @@ public class SendID extends Activity {
             }
         }
     }
+
+
+
+    class grab_instruction extends AsyncTask<Void, Void, String>
+    {
+        ProgressDialog progressDialog = ProgressDialog.show(SendID.this, "",
+                "Retrieving Data...", true);
+        @Override
+        protected void onPostExecute(String result) {
+            // TODO Auto-generated method stub
+            super.onPostExecute(result);
+            if (progressDialog.isShowing() && progressDialog != null) {
+                progressDialog.dismiss();
+            }
+            if (result!=null) {
+                purchase_web.loadDataWithBaseURL(null, result, "text/html", "utf-8", null);
+            }
+            else
+            {
+                purchase_web.loadDataWithBaseURL(null, "<center><h1>Can't load instruction. Connect to the internet</h1></center>", "text/html", "utf-8", null);
+            }
+        }
+
+        @Override
+        protected String doInBackground(Void... params) {
+            SrcGrabber grabber = new SrcGrabber();
+            try {
+                if (Active_net_checking.testInte("104.131.22.246")) {
+                    String ipo_data = grabber.grabSource(Constants.PAID_NOTICE);
+                    return ipo_data;
+                }
+                else {
+                    return null;
+                }
+
+            } catch (IOException | URISyntaxException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                return null;
+            }
+
+
+        }
+
+    }
+
 
     private boolean isValid(String s) {
         if (s.equals("") || s==null)
