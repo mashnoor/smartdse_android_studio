@@ -123,17 +123,15 @@
         <activity
             android:name=".AGMActivity"
             android:label="@string/title_activity_agm"
-            android:screenOrientation="portrait"
-             />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".NewsDetail"
             android:label="@string/title_activity_news_detail"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Currency"
             android:label="@string/title_activity_currency"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MarketDepth"
             android:label="@string/title_activity_market_depth"
@@ -180,7 +178,12 @@
             android:name=".SendID"
             android:label="Activation Center"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Holo"/>]
+            android:theme="@android:style/Theme.Holo" />
+        ]
+        <activity
+            android:name=".ItemDetailWeb"
+            android:label="@string/title_activity_item_detail_web"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -47,18 +47,12 @@ public class Splash_activity extends Activity {
 
 
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
-    private static final String TAG = "MainActivity";
+
 
     private BroadcastReceiver mRegistrationBroadcastReceiver;
-    private ProgressBar mRegistrationProgressBar;
-    private TextView mInformationTextView;
+
     ImageView splash_logo;
 
-    private final static String USER_AGENT = "Mozilla/5.0";
-    String cdate = new SimpleDateFormat("dd/MM/yyyy").format(Calendar
-            .getInstance().getTime());
-    String ctime = new SimpleDateFormat("HH:mm").format(Calendar.getInstance()
-            .getTime());
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,14 +64,15 @@ public class Splash_activity extends Activity {
         if(LoginHelper.isActivate(Splash_activity.this))
         {
             splash_logo.setImageResource(R.drawable.sd_splash_pro);
+            Intent i = new Intent(Splash_activity.this, PriceAlertService.class);
+
+            if (!isMyServiceRunning(PriceAlertService.class))
+            {
+                startService(i);
+            }
         }
 
-        Intent i = new Intent(Splash_activity.this, PriceAlertService.class);
 
-        if (!isMyServiceRunning(PriceAlertService.class))
-        {
-            startService(i);
-        }
 
 
 
@@ -153,7 +148,7 @@ public class Splash_activity extends Activity {
                 apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
                         .show();
             } else {
-                Log.i(TAG, "This device is not supported.");
+                //Log.i(TAG, "This device is not supported.");
                 finish();
             }
             return false;
@@ -162,15 +157,7 @@ public class Splash_activity extends Activity {
     }
 
 
-    private static String removeLastChar(String str) {
-        return str.substring(0, str.length() - 1);
-    }
 
-    private String getIMIE() {
-        TelephonyManager tMgr = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        String imie = tMgr.getDeviceId();
-        return imie;
-    }
 
     class upload_to_server extends AsyncTask<String, String, String> {
 
@@ -235,135 +222,27 @@ public class Splash_activity extends Activity {
 
             try {
                 String adData;
-                SrcGrabber adgrabber = new SrcGrabber();
-                adData = adgrabber
+
+                adData = SrcGrabber
                         .grabSource(ButtonController.header_text_link);
 
                 process_josn(adData);
                 DevTools.write_file(Splash_activity.this,
                         ButtonController.ADV_FILE_NAME, adData);
 
-				/*
-				 * URL header_data_url; header_data_url = new
-				 * URL(ButtonController.header_text_link); Scanner scanner = new
-				 * Scanner(header_data_url.openStream());
-				 * 
-				 * 
-				 * while (scanner.hasNext()) { String temp_string =
-				 * scanner.nextLine(); System.out.println(temp_string);
-				 * 
-				 * ButtonController.header_texts.add(temp_string); }
-				 * scanner.close();
-				 */
+
 
             } catch (IOException | URISyntaxException | JSONException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
 
-            StringBuilder upload_string = new StringBuilder();
-            String l = "mashnoor";
-            upload_string.append("imie=" + getIMIE() + "&lastdate='" + cdate
-                    + "'&lasttime='" + ctime + "'&");
 
-            Map<String, String> portfolio_items = Portfolio_menu_helper
-                    .need_to_upload(Splash_activity.this);
-            if (portfolio_items == null) {
-
-                try {
-                    String url = "http://104.131.22.246/dev/smartdsefiles/update_portfolio.php";
-                    URL obj = new URL(url);
-                    HttpURLConnection con = (HttpURLConnection) obj
-                            .openConnection();
-
-                    // add reuqest header
-                    con.setRequestMethod("POST");
-                    con.setRequestProperty("User-Agent", USER_AGENT);
-                    con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
-
-                    String urlParameters = removeLastChar(upload_string
-                            .toString());
-
-                    // Send post request
-                    con.setDoOutput(true);
-                    DataOutputStream wr = new DataOutputStream(
-                            con.getOutputStream());
-                    wr.writeBytes(urlParameters);
-                    wr.flush();
-                    wr.close();
-
-                    int responseCode = con.getResponseCode();
-
-                    BufferedReader in = new BufferedReader(
-                            new InputStreamReader(con.getInputStream()));
-                    String inputLine;
-                    StringBuffer response = new StringBuffer();
-
-                    while ((inputLine = in.readLine()) != null) {
-                        response.append(inputLine);
-                    }
-                    in.close();
-
-                    // print result
-
-                } catch (Exception e) {
-                    // TODO: handle exception
-                }
 
                 return null;
             }
-            for (String key : portfolio_items.keySet()) {
 
-                upload_string
-                        .append(key + "=" + portfolio_items.get(key) + "&");
 
-            }
-
-            try {
-                String url = "http://104.131.22.246/dev/smartdsefiles/update_portfolio.php";
-                URL obj = new URL(url);
-                HttpURLConnection con = (HttpURLConnection) obj
-                        .openConnection();
-
-                // add reuqest header
-                con.setRequestMethod("POST");
-                con.setRequestProperty("User-Agent", USER_AGENT);
-                con.setRequestProperty("Accept-Language", "en-US,en;q=0.5");
-
-                String urlParameters = removeLastChar(upload_string.toString());
-
-                // Send post request
-                con.setDoOutput(true);
-                DataOutputStream wr = new DataOutputStream(
-                        con.getOutputStream());
-                wr.writeBytes(urlParameters);
-                wr.flush();
-                wr.close();
-
-                int responseCode = con.getResponseCode();
-				/*
-				 * System.out.println("\nSending 'POST' request to URL : " +
-				 * url); System.out.println("Post parameters : " +
-				 * urlParameters); System.out.println("Response Code : " +
-				 * responseCode);
-				 */
-                BufferedReader in = new BufferedReader(new InputStreamReader(
-                        con.getInputStream()));
-                String inputLine;
-                StringBuffer response = new StringBuffer();
-
-                while ((inputLine = in.readLine()) != null) {
-                    response.append(inputLine);
-                }
-                in.close();
-
-                // print result
-                // System.out.println(response.toString());
-            } catch (Exception e) {
-                // TODO: handle exception
-            }
-
-            return null;
         }
 
         private void process_josn(String adData) throws JSONException {
@@ -379,4 +258,4 @@ public class Splash_activity extends Activity {
 
     }
 
-}
+

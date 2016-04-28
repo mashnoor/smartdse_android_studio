@@ -119,15 +119,8 @@ public class Home extends Activity {
         setContentView(R.layout.activity_home);
 
 
-        //download();
-
-        //Test
-
 
         initialize_variable();
-
-//        dsex_graph_layout.setVisibility(View.INVISIBLE);
-        //      volume_graph_layout.setVisibility(View.INVISIBLE);
 
         new DrawerBuilder().withActivity(this).build();
 
@@ -233,9 +226,9 @@ public class Home extends Activity {
 
             @Override
             public void onClick(View view) {
-                itemlistIntent.putExtra("DSEX", "DSEX");
+                //itemlistIntent.putExtra("DSEX", "DSEX");
 
-                startActivity(itemlistIntent);
+                //startActivity(itemlistIntent);
 
             }
         });
@@ -244,8 +237,8 @@ public class Home extends Activity {
 
             @Override
             public void onClick(View arg0) {
-                Intent dse30listintent = new Intent(Home.this, DSE30List.class);
-                startActivity(dse30listintent);
+               // Intent dse30listintent = new Intent(Home.this, DSE30List.class);
+               // startActivity(dse30listintent);
 
             }
         });
@@ -253,8 +246,8 @@ public class Home extends Activity {
 
             @Override
             public void onClick(View view) {
-                itemlistIntent.putExtra("DSEX", "DSEX");
-                startActivity(itemlistIntent);
+                //itemlistIntent.putExtra("DSEX", "DSEX");
+                //startActivity(itemlistIntent);
 
             }
         });
@@ -275,11 +268,7 @@ public class Home extends Activity {
 
                 Intent fullScreenGraph = new Intent(Home.this, FullScreenGraph.class);
                 startActivity(fullScreenGraph);
-                /***
-                 dsex_graph_layout.setVisibility(View.VISIBLE);
-                 volume_graph_layout.setVisibility(View.VISIBLE);
-                 home_graph.drawHomeGraph();
-                 ***/
+
 
 
             }
@@ -445,13 +434,13 @@ public class Home extends Activity {
 
 
             String home_data = "";
-            SrcGrabber grabber = new SrcGrabber();
+
 
 
 
             try {
                 if (Active_net_checking.testInte("104.131.22.246")) {
-                    home_data = grabber
+                    home_data = SrcGrabber
                             .grabSource("http://104.131.22.246/dev/smartdsefiles/homedata.txt");
 
                     System.out.println(home_data);
@@ -469,6 +458,7 @@ public class Home extends Activity {
                 }
 
             } catch (IOException | URISyntaxException e) {
+
 
             }
 

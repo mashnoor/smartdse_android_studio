@@ -27,7 +27,7 @@ public class About extends Activity {
 
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        //BugSenseHandler.initAndStartSession(About.this, "25eb1027");
+
 
         setContentView(R.layout.activity_about);
         buttonController = new ButtonController(About.this);
@@ -83,52 +83,7 @@ public class About extends Activity {
 
         });
 
-        // Portfolio and Watchlist remove
-		/*
-		reset_portfolio_watchlist
-				.setOnClickListener(new View.OnClickListener() {
 
-					@Override
-					public void onClick(View v) {
-						String[] dont_delete_list = { "DSEX_DSES_DS30_INFOS",
-								"dse_data_files", "dse_top20shares_byvolume",
-								"dse_top20shares_bytrade", "dse_top10gainers",
-								"dse_top10losers", "dse30_data_files",
-								"dse_top20shares_byvalue" };
-
-						String[] files_list = getFilesDir().list();
-						int list_length = files_list.length;
-						String curr_filename;
-						boolean permit_delete;
-						for (int i = 0; i < list_length; i++) {
-							permit_delete = true;
-							curr_filename = files_list[i].toString();
-							for (int j = 0; j < 8; j++) {
-								if (curr_filename.equals(dont_delete_list[j])) {
-									permit_delete = false;
-									break;
-								}
-
-							}
-							if (permit_delete) {
-								deleteFile(files_list[i]);
-							}
-
-						}
-						deleteDatabase(db_name);
-						Toast.makeText(
-								About.this,
-								"Portfolio and Watchlist have been reseted Successfully!",
-								Toast.LENGTH_LONG).show();
-
-					}
-				});
-		String[] files_list = getFilesDir().list();
-		int list_length = files_list.length;
-		for (int i = 0; i < list_length; i++) {
-			System.out.println(files_list[i]);
-		}
-		*/
         reset_cache.setOnClickListener(new View.OnClickListener() {
 
             @Override

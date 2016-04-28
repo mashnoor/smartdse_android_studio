@@ -37,6 +37,7 @@ public class PriceAlertService extends Service {
                 {
                     try
                     {
+
                         check_everything();
 
 

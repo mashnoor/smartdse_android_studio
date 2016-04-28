@@ -13,12 +13,12 @@
     <WebView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/currency_web"
+        android:id="@+id/itemdetailWeb"
         android:layout_below="@id/home_toppanel"
         android:layout_above="@id/down_panel_rellayout"
 
 
-       />
+        />
     <include
         android:id="@+id/down_panel_rellayout"
 

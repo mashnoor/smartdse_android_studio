@@ -27,6 +27,7 @@ public class Constants {
     public static final String WEEKLY_REPORT = "http://104.131.22.246/dev/smartdsefiles/weekly_report.txt";
     public static final String STOCK_ON_NEWS_LINK = "http://104.131.22.246/dev/smartdsefiles/stock_on_news.txt";
     public static final String PAID_NOTICE = "http://104.131.22.246/dev/smartdsefiles/paid/paid_notice.txt";
+    public static final String ITEM_DETAIL_LINK = "http://104.131.22.246/dev/smartdsefiles/Sources/";
 
 
     public static final String LOGIN_NAME_NOT_SET = "Not Set";
@@ -85,7 +86,7 @@ public class Constants {
             {
                 try
                 {
-                    Thread.sleep(90000);
+                    Thread.sleep(30000);
                     new LoadAd().execute("");
 
 

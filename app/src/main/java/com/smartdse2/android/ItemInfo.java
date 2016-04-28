@@ -214,7 +214,8 @@ public class ItemInfo extends Activity {
 
     private void opensite(String Site) {
         Uri uri = Uri.parse(Site);
-        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        Intent intent = new Intent(ItemInfo.this,  ItemDetailWeb.class);
+        intent.putExtra("item", tradingcode);
         startActivity(intent);
 
     }

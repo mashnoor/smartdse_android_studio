@@ -6,13 +6,14 @@
     android:background="@color/md_black_1000"
     android:padding="7dp"
     android:orientation="vertical"
-    android:weightSum="4"
+    android:weightSum="6"
     android:layout_height="match_parent" >
 
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_weight="2"
+        android:layout_weight="4"
+        android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="0dp">
         <RadioGroup
@@ -26,7 +27,7 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Enter Transaction ID"
+                android:text="Transaction ID"
                 android:checked="true"
                 android:textColor="@color/md_white_1000"
                 android:id="@+id/opt_tnxid" />
@@ -34,7 +35,7 @@
             <RadioButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Enter Activation Code"
+                android:text="Activate"
                 android:textColor="@color/md_white_1000"
                 android:id="@+id/opt_code"
                 android:checked="false" />
@@ -61,13 +62,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/md_white_1000"
+
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Mobile Number:"
+
             android:id="@+id/textView" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
+            android:editable="false"
             android:textColor="@color/md_white_1000"
             android:id="@+id/buy_mobile" />
 
@@ -83,6 +88,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/md_white_1000"
+            android:editable="false"
             android:id="@+id/buy_tnx_activation" />
 
         <Button

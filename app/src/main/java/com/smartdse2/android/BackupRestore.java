@@ -41,7 +41,7 @@ public class BackupRestore {
 
 
         final ProgressDialog progressDialog = ProgressDialog.show(activity, "",
-                "Restoring your data from SmartDSE Server...", true);
+                "Restoring your backedup data from SmartDSE Server...", true);
 
 
 
@@ -55,7 +55,7 @@ public class BackupRestore {
                 .setDownloadListener(new DownloadStatusListener() {
                     @Override
                     public void onDownloadComplete(int id) {
-                        Log.d("----------------", "Complete");
+                        //Log.d("----------------", "Complete");
                         if(progressDialog.isShowing() && progressDialog!=null)
                         {
                             progressDialog.dismiss();
@@ -69,7 +69,7 @@ public class BackupRestore {
                     @Override
                     public void onDownloadFailed(int id, int errorCode, String errorMessage) {
 
-                        Log.d("----------------", "Failed");
+                       // Log.d("----------------", "Failed");
                         if(progressDialog.isShowing() && progressDialog!=null)
                         {
                             progressDialog.dismiss();
@@ -90,31 +90,13 @@ public class BackupRestore {
 
         downloadManager = new ThinDownloadManager();
         int downloadId = downloadManager.add(downloadRequest);
-        Log.d("_______________", "" + downloadId);
+       // Log.d("_______________", "" + downloadId);
 
 
 
 
     }
-    public class restore_async extends AsyncTask<Void, Void, Void>
-    {
-        final ProgressDialog progressDialog = ProgressDialog.show(activity, "",
-                "Restoring your data from SmartDSE Server...", true);
 
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-            if (progressDialog.isShowing() && progressDialog != null) {
-                progressDialog.dismiss();
-            }
-        }
-
-        @Override
-        protected Void doInBackground(Void... params) {
-
-            return null;
-        }
-    }
 
 
 
@@ -140,7 +122,7 @@ public class BackupRestore {
             String inFileName = activity.getDatabasePath("dsedatabase").getPath();
             try {
                 // Set your file path here
-                Log.i("fSnd", inFileName);
+               // Log.i("fSnd", inFileName);
                 FileInputStream fstrm = new FileInputStream(inFileName);
 
                 String fileName = LoginHelper.getUserEmail(activity);

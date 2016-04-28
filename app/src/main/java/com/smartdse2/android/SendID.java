@@ -17,11 +17,14 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.telephony.TelephonyManager;
+import android.text.InputType;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -85,15 +88,12 @@ public class SendID extends Activity {
             @Override
             public void onClick(View v) {
 
-                if(buy_options.getCheckedRadioButtonId() == R.id.opt_tnxid)
-                {
+                if (buy_options.getCheckedRadioButtonId() == R.id.opt_tnxid) {
 
                     //Send the tnxid to server
                     sendToServer();
 
-                }
-                else if(buy_options.getCheckedRadioButtonId() == R.id.opt_code)
-                {
+                } else if (buy_options.getCheckedRadioButtonId() == R.id.opt_code) {
 
                     checkActivationCode();
 
@@ -101,10 +101,30 @@ public class SendID extends Activity {
                 }
 
 
-
-
             }
         });
+        buy_mobile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                show_get_info_dialog("Mobile", "Mobile Number:", R.id.buy_mobile, buy_mobile.getText().toString());
+            }
+        });
+        buy_tnxID.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(buy_options.getCheckedRadioButtonId()==R.id.opt_tnxid)
+                {
+                    show_get_info_dialog("Transaction ID", "Transaction ID", R.id.buy_tnx_activation, buy_tnxID.getText().toString());
+
+                }
+                else
+                {
+                    show_get_info_dialog("Activation Code", "Activation Code", R.id.buy_tnx_activation, buy_tnxID.getText().toString());
+
+                }
+            }
+        });
+
         buy_options.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -446,6 +466,72 @@ public class SendID extends Activity {
         String imei = mngr.getDeviceId();
         return imei;
 
+    }
+
+    private void show_get_info_dialog(String title, String tv_text ,final int sent_from, String prev_data)
+    {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+        LinearLayout layout = new LinearLayout(this);
+        LinearLayout.LayoutParams parms = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setLayoutParams(parms);
+
+        layout.setGravity(Gravity.CLIP_VERTICAL);
+        layout.setPadding(2, 2, 2, 2);
+
+        TextView tv = new TextView(this);
+        tv.setText(tv_text);
+        tv.setPadding(40, 40, 40, 40);
+        tv.setGravity(Gravity.CENTER);
+        tv.setTextSize(20);
+
+        final EditText et = new EditText(this);
+        String etStr = et.getText().toString();
+        TextView tv1 = new TextView(this);
+        tv1.setText(tv_text);
+
+        LinearLayout.LayoutParams tv1Params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        tv1Params.bottomMargin = 5;
+        layout.addView(tv1, tv1Params);
+        layout.addView(et, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+
+        alertDialogBuilder.setView(layout);
+        alertDialogBuilder.setTitle(title);
+        // alertDialogBuilder.setMessage("Input Student ID");
+        alertDialogBuilder.setCustomTitle(tv);
+        et.setText(prev_data);
+        if(sent_from==R.id.buy_mobile)
+        {
+            et.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        }
+
+
+
+        // Setting Positive "Yes" Button
+        alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                if(sent_from==R.id.buy_mobile)
+                {
+                    buy_mobile.setText(et.getText().toString().trim());
+                }
+                else if(sent_from==R.id.buy_tnx_activation)
+                {
+                    buy_tnxID.setText(et.getText().toString().trim());
+                }
+
+            }
+        });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        try {
+            alertDialog.show();
+        } catch (Exception e) {
+            // WindowManager$BadTokenException will be caught and the app would
+            // not display the 'Force Close' message
+            e.printStackTrace();
+        }
     }
     private void initialize_all() {
         purchase_web = (WebView) findViewById(R.id.purchase_web);

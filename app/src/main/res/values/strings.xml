@@ -36,5 +36,6 @@
     <string name="title_activity_stock_on_news_paper">StockOnNewsPaper</string>
     <string name="title_activity_buy_now">BuyNow</string>
     <string name="title_activity_send_id">SendID</string>
+    <string name="title_activity_item_detail_web">ItemDetailWeb</string>
 
 </resources>

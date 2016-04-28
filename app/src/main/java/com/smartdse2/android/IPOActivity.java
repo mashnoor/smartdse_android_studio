@@ -84,10 +84,10 @@ public class IPOActivity extends Activity {
 
         @Override
         protected String doInBackground(Void... params) {
-            SrcGrabber grabber = new SrcGrabber();
+
             try {
                 if (Active_net_checking.testInte("104.131.22.246")) {
-                    String ipo_data = grabber.grabSource("http://104.131.22.246/dev/smartdsefiles/ipo.txt");
+                    String ipo_data = SrcGrabber.grabSource("http://104.131.22.246/dev/smartdsefiles/ipo.txt");
                     return ipo_data;
                 }
                 else {
