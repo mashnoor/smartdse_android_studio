@@ -10,14 +10,14 @@ android {
             storePassword 'menoncXe13@ctv'
         }
     }
-    compileSdkVersion 23
+    compileSdkVersion 25
     buildToolsVersion "23.0.2"
     defaultConfig {
         applicationId "com.smartdse2.android"
         minSdkVersion 15
-        targetSdkVersion 23
-        versionCode 5
-        versionName "2.2.0"
+        targetSdkVersion 25
+        versionCode 6
+        versionName "2.3.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.SmartDSE
     }
@@ -46,11 +46,11 @@ dependencies {
     }
     compile 'org.apache.httpcomponents:httpcore:4.4.1'
     compile 'org.apache.httpcomponents:httpclient:4.5'
-    compile 'com.google.android.gms:play-services-gcm:8.4.0'
-    compile 'com.google.android.gms:play-services-auth:8.4.0'
-    compile 'com.android.support:appcompat-v7:23.2.0'
-    compile 'com.android.support:design:23.2.0'
-    compile 'com.facebook.android:facebook-android-sdk:4.6.0'
+    compile 'com.google.android.gms:play-services-gcm:10.0.1'
+    compile 'com.google.android.gms:play-services-auth:10.0.1'
+    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile 'com.android.support:design:25.1.0'
+    compile 'com.facebook.android:facebook-android-sdk:4.18.0'
     compile 'com.github.PhilJay:MPAndroidChart:v2.1.6'
     compile 'com.mani:ThinDownloadManager:1.2.3'
     compile 'com.pubnub:pubnub-android-debug:3.7.+'

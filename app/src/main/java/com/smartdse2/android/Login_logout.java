@@ -159,7 +159,8 @@ public class Login_logout extends Activity {
 
 
     private void handleSignInResult(GoogleSignInResult result) {
-        //Log.d(Constants.DEBUG_TAG, "handleSignInResult:" + result.isSuccess());
+        Log.d("-------------------", "handleSignInResult:" + result.isSuccess());
+
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
             if(getGooglePlusButtonText(gmailsignInButton).equals(SIGN_OUT))

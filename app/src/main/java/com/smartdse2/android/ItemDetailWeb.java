@@ -35,11 +35,17 @@ public class ItemDetailWeb extends Activity {
         Log.d("-------------------", item);
         WebSettings settings = item_detail_web.getSettings();
         settings.setJavaScriptEnabled(true);
+        settings.setUseWideViewPort(true);
+        item_detail_web.setScrollbarFadingEnabled(false);
+        settings.setLoadWithOverviewMode(true);
+        item_detail_web.setInitialScale(1);
+        settings.setBuiltInZoomControls(true);
+        settings.setJavaScriptCanOpenWindowsAutomatically(true);
         item_detail_web.setScrollBarStyle(WebView.SCROLLBARS_OUTSIDE_OVERLAY);
 
         final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 
-        progressBar = ProgressDialog.show(ItemDetailWeb.this, "WebView Example", "Loading...");
+        progressBar = ProgressDialog.show(ItemDetailWeb.this, "Detail of " + item, "Loading...");
 
         item_detail_web.setWebViewClient(new WebViewClient() {
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -68,7 +74,7 @@ public class ItemDetailWeb extends Activity {
                 alertDialog.show();
             }
         });
-        item_detail_web.loadUrl(Constants.ITEM_DETAIL_LINK + item + ".txt");
+        item_detail_web.loadUrl(Constants.ITEM_DETAIL_LINK + item);
     }
 
 

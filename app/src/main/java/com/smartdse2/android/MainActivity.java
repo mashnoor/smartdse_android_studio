@@ -307,7 +307,7 @@ public class MainActivity extends Activity {
                     } else {
                         item_color = R.drawable.border_drawer_green_percentage;
                     }
-                    if (!changePercent.equals("--%")) {
+                    if (!changePercent.equals("--%") && !changePercent.equals("%")) {
                         if (!changePercent.equals("Not Traded Today%")) {
                             DSE_Company_data currentCompany_data = new DSE_Company_data(
                                     companyString, lastTrade, changeAmount,
