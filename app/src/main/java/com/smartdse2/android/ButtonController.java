@@ -30,6 +30,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.ads.AbstractAdListener;
 import com.facebook.ads.Ad;
 import com.facebook.ads.AdError;
 import com.facebook.ads.AdSettings;
@@ -107,6 +108,7 @@ public class ButtonController {
 
             @Override
             public void onError(Ad ad, AdError adError) {
+                Log.d("----------", adError.getErrorMessage());
 
             }
 
@@ -144,6 +146,7 @@ public class ButtonController {
         {
             adView = new AdView(sentactivity, "535675923265633_535801366586422", AdSize.BANNER_HEIGHT_50);
 
+
             // Find the main layout of your activity
 
 
@@ -161,6 +164,7 @@ public class ButtonController {
             // AdSettings.addTestDevice("2b882904b155af13c2e85f9430e63bb2");
             //loadInterstitialAd();
             adView.loadAd();
+
         }
 
 
@@ -334,17 +338,12 @@ public class ButtonController {
                         else if (position == 5)
                         {
                             //Price Alert
-                            if(LoginHelper.isActivate(sentactivity))
-                            {
+
                                 MainActivity.show = false;
                                 Intent itemintent = new Intent(sentactivity,
                                         PriceAlert.class);
                                 sentactivity.startActivity(itemintent);
-                            }
-                            else
-                            {
-                                startBuyActivity();
-                            }
+
 
 
 
@@ -374,19 +373,12 @@ public class ButtonController {
                         else if (position == 7)
                         {
                             //Group Discussion
-                            if(LoginHelper.isActivate(sentactivity))
-                            {
 
 
                                 MainActivity.show = false;
                                 Intent itemintent = new Intent(sentactivity,
                                         Chat.class);
                                 sentactivity.startActivity(itemintent);
-                            }
-                            else
-                            {
-                                startBuyActivity();
-                            }
 
 
 
@@ -485,19 +477,10 @@ public class ButtonController {
                         }
                         else if (position == 16)
                         {
-                            if(LoginHelper.isActivate(sentactivity))
-                            {
-                                MainActivity.show = false;
+                              MainActivity.show = false;
                                 Intent intent = new Intent(sentactivity, Login_logout.class);
                                 sentactivity.startActivity(intent);
 
-                            }
-
-                            //Login Logout
-                            else
-                            {
-                                startBuyActivity();
-                            }
 
 
                         }
@@ -531,8 +514,6 @@ public class ButtonController {
                         }
                         else if(position == 17) {
 
-                            if(LoginHelper.isActivate(sentactivity))
-                            {
 
                                 //Sync
                                 if (LoginHelper.getUserName(sentactivity).equals(Constants.LOGIN_NAME_NOT_SET)) {
@@ -569,11 +550,6 @@ public class ButtonController {
 
 
 
-                            }
-                            else
-                            {
-                                startBuyActivity();
-                            }
 
 
 

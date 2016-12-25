@@ -47,6 +47,7 @@ dependencies {
     compile 'org.apache.httpcomponents:httpcore:4.4.1'
     compile 'org.apache.httpcomponents:httpclient:4.5'
     compile 'com.google.android.gms:play-services-gcm:10.0.1'
+    compile 'com.google.android.gms:play-services-ads:10.0.1'
     compile 'com.google.android.gms:play-services-auth:10.0.1'
     compile 'com.android.support:appcompat-v7:25.1.0'
     compile 'com.android.support:design:25.1.0'
@@ -54,9 +55,11 @@ dependencies {
     compile 'com.github.PhilJay:MPAndroidChart:v2.1.6'
     compile 'com.mani:ThinDownloadManager:1.2.3'
     compile 'com.pubnub:pubnub-android-debug:3.7.+'
-    compile files('/home/mashnoor/AndroidStudioProjects/smartdse_android_studio/libs/AudienceNetwork.jar')
+    compile 'com.facebook.android:audience-network-sdk:4+'
+
+
 }
-
-
-
 apply plugin: 'com.google.gms.google-services'
+
+
+
