@@ -64,6 +64,18 @@ public class Top10Shares extends Activity {
 
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        GlobalVars.activtyPaused(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        GlobalVars.activityResumed(this);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);

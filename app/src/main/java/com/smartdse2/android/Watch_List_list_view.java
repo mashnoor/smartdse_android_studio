@@ -44,6 +44,17 @@ public class Watch_List_list_view extends Activity {
     ButtonController buttonController;
 
     public static final String file_name = "dse_data_files_all";
+    @Override
+    protected void onPause() {
+        super.onPause();
+        GlobalVars.activtyPaused(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        GlobalVars.activityResumed(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

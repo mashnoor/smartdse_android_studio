@@ -21,6 +21,17 @@ public class IPOActivity extends Activity {
 
     ButtonController buttonController;
     View agm_activity_tab;
+    @Override
+    protected void onPause() {
+        super.onPause();
+        GlobalVars.activtyPaused(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        GlobalVars.activityResumed(this);
+    }
 
 
     @Override

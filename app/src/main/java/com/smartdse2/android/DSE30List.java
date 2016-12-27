@@ -53,6 +53,17 @@ public class DSE30List extends Activity {
     // active net connection
 
     public static final String file_name = "dse30_data_files";
+    @Override
+    protected void onPause() {
+        super.onPause();
+        GlobalVars.activtyPaused(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        GlobalVars.activityResumed(this);
+    }
 
 
     @Override

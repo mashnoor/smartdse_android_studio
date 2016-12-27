@@ -18,6 +18,17 @@ public class WeeklyReport extends Activity {
     ButtonController buttonController;
 
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        GlobalVars.activtyPaused(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        GlobalVars.activityResumed(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

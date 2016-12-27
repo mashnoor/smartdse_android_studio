@@ -40,7 +40,7 @@ public class Portfolio_activity extends Activity {
     // Declare Variables
     ArrayList<DSE_Company_data> dse_Company_datas;
 
-    String comapnyname, lastTrade, changeAmount, changePercent;
+
     DSE_Company_data portfolio_clicked_company;
     ListView dse_portfolio_list_view;
     ButtonController buttonController;
@@ -52,6 +52,17 @@ public class Portfolio_activity extends Activity {
     // how the listview will be shown
     boolean has_active_net = false; // This is for determining if we have a
     // active net connection
+    @Override
+    protected void onPause() {
+        super.onPause();
+        GlobalVars.activtyPaused(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        GlobalVars.activityResumed(this);
+    }
 
 
     @Override

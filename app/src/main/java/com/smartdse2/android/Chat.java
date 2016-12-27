@@ -43,11 +43,18 @@ public class Chat extends Activity {
     EditText chatMsgBox;
     String name;
     ButtonController buttonController;
+    @Override
+    protected void onPause() {
+        super.onPause();
+        GlobalVars.activtyPaused(this);
+    }
+
 
 
     @Override
     protected void onResume() {
         super.onResume();
+        GlobalVars.activityResumed(this);
         name = LoginHelper.getUserName(this);
         if (name.equals(Constants.LOGIN_NAME_NOT_SET))
         {
@@ -157,7 +164,7 @@ public class Chat extends Activity {
                 }
 
 
-                System.out.println("Hist - " + message.toString());
+                //System.out.println("Hist - " + message.toString());
 
                 Log.i(Constants.DEBUG_TAG, message.toString());
             }

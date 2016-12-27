@@ -17,15 +17,22 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.*;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.TextPaint;
@@ -97,6 +104,37 @@ public class Home extends Activity {
 
 
 
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode) {
+
+            case 123:
+                if ((grantResults.length > 0) && (grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                    onCall();
+                } else {
+                    Toast.makeText(this, "Permission not granted. Try Again", Toast.LENGTH_LONG).show();
+                }
+                break;
+
+            default:
+                break;
+        }
+    }
+
+    public void onCall() {
+        int permissionCheck = ContextCompat.checkSelfPermission(this, android.Manifest.permission.CALL_PHONE);
+
+        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[]{android.Manifest.permission.CALL_PHONE},
+                    123);
+        } else {
+            startActivity(new Intent(Intent.ACTION_CALL).setData(Uri.parse("tel:+8801869660253")));
+            finish();
+        }
+    }
+
 
 
 
@@ -126,6 +164,19 @@ public class Home extends Activity {
 
 
         buttonController = new ButtonController(Home.this);
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Thread.sleep(2000);
+                    showCallNowDialog();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
 
         //Show Graph
 
@@ -172,6 +223,34 @@ public class Home extends Activity {
 
 
 
+    void showCallNowDialog()
+    {
+        if(!LoginHelper.isActivate(Home.this))
+        {
+
+            new AlertDialog.Builder(Home.this)
+                    .setTitle("STOP ADVERTISEMENT!!!")
+                    .setMessage("Upgrade to Smartdse pro - Remove ads and get more fast app.\nCall 01869660253")
+                    .setPositiveButton("Use App", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            dialog.dismiss();
+
+                        }
+                    })
+                    .setNegativeButton("Call Now", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                            onCall();
+                        }
+                    })
+
+                    .show();
+
+        }
+
+    }
+
 
     @Override
     protected void onResume() {
@@ -180,12 +259,14 @@ public class Home extends Activity {
 
         // Logs 'install' and 'app activate' App Events.
         AppEventsLogger.activateApp(this);
+        GlobalVars.activityResumed(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         AppEventsLogger.activateApp(this);
+        GlobalVars.activtyPaused(this);
     }
 
     class header_text_thread implements Runnable {

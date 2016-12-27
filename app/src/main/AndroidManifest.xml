@@ -2,10 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.smartdse2.android" xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <!-- [START gcm_permission] -->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
@@ -14,6 +16,8 @@
     <!-- [END gcm_permission] -->
     <application
         android:allowBackup="true"
+        android:name=".GlobalVars"
+
         android:icon="@drawable/splash_logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
@@ -25,48 +29,62 @@
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"
+            android:finishOnTaskLaunch="true"
             tools:replace="android:theme"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity android:name="com.facebook.ads.AudienceNetworkActivity"
+
+            android:finishOnTaskLaunch="true"
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name="com.facebook.ads.InterstitialAdActivity"
+            android:finishOnTaskLaunch="true"
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
             android:name=".MainActivity"
+            android:finishOnTaskLaunch="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
             android:name=".About"
+            android:finishOnTaskLaunch="true"
             android:label="@string/title_activity_about"
             android:screenOrientation="portrait" />
         <activity
             android:name=".DSE30List"
+            android:finishOnTaskLaunch="true"
             android:label="@string/title_activity_dse30_list"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Home"
+            android:finishOnTaskLaunch="true"
             android:label="@string/title_activity_home"
             android:screenOrientation="portrait" />
         <activity
             android:name=".IPOActivity"
+            android:finishOnTaskLaunch="true"
             android:label="@string/title_activity_ipo"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ItemInfo"
+            android:finishOnTaskLaunch="true"
             android:label="@string/title_activity_item_info"
             android:screenOrientation="portrait" />
         <activity
             android:name=".NewsActivity"
+            android:finishOnTaskLaunch="true"
             android:label="@string/title_activity_news"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Portfolio_activity"
+            android:finishOnTaskLaunch="true"
             android:label="@string/title_activity_portfolio_activity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Splash_activity"
             android:label="SmartDSE"
+            android:launchMode="singleTask"
+            android:clearTaskOnLaunch="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -76,14 +94,17 @@
         </activity>
         <activity
             android:name=".Top10Gainers"
+            android:finishOnTaskLaunch="true"
             android:label="@string/title_activity_top10_gainers"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Top10Shares"
+            android:finishOnTaskLaunch="true"
             android:label="@string/title_activity_top10_shares"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Watch_List_list_view"
+            android:finishOnTaskLaunch="true"
             android:label="@string/title_activity_watch__list_list_view"
             android:screenOrientation="portrait" />
 
@@ -126,18 +147,22 @@
         <activity
             android:name=".AGMActivity"
             android:label="@string/title_activity_agm"
+            android:finishOnTaskLaunch="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".NewsDetail"
             android:label="@string/title_activity_news_detail"
+            android:finishOnTaskLaunch="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Currency"
             android:label="@string/title_activity_currency"
+            android:finishOnTaskLaunch="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".MarketDepth"
             android:label="@string/title_activity_market_depth"
+            android:finishOnTaskLaunch="true"
             android:screenOrientation="portrait" />
 
         <service
@@ -147,46 +172,58 @@
 
         <activity
             android:name=".PriceAlert"
+            android:finishOnTaskLaunch="true"
             android:label="@string/title_activity_price_alert"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ExpertAnalysis"
             android:label="@string/title_activity_expert_analysis"
+            android:finishOnTaskLaunch="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".WeeklyReport"
             android:label="@string/title_activity_weekly_report"
+            android:finishOnTaskLaunch="true"
+
             android:screenOrientation="portrait" />
         <activity
             android:name=".FullScreenGraph"
             android:label="@string/title_activity_full_screen_graph"
+            android:finishOnTaskLaunch="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Chat"
             android:label="@string/title_activity_chat"
+            android:windowSoftInputMode="adjustPan"
+            android:finishOnTaskLaunch="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Login_logout"
             android:label="@string/title_activity_login_logout"
+            android:finishOnTaskLaunch="true"
             android:theme="@android:style/Theme.Holo.Light.Dialog" />
         <activity
             android:name=".StockOnNewsPaper"
             android:label="@string/title_activity_stock_on_news_paper"
+            android:finishOnTaskLaunch="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".BuyNow"
             android:label="@string/title_activity_buy_now"
+
+            android:finishOnTaskLaunch="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".SendID"
             android:label="Activation Center"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo" />
-        ]
+
         <activity
             android:name=".ItemDetailWeb"
+            android:finishOnTaskLaunch="true"
             android:label="@string/title_activity_item_detail_web"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

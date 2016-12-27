@@ -39,6 +39,17 @@ public class MarketDepth extends Activity {
     ArrayAdapter<MarketDepthValue> md_buy_adapter; // This array adapter will describe
     ArrayAdapter<MarketDepthValue> md_sell_adapter;
     String company;
+    @Override
+    protected void onPause() {
+        super.onPause();
+        GlobalVars.activtyPaused(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        GlobalVars.activityResumed(this);
+    }
 
 
     // how the listview will be shown

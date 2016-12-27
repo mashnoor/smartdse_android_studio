@@ -12,11 +12,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.telephony.TelephonyManager;
+
 import android.text.InputType;
 import android.util.Log;
 import android.view.Gravity;
@@ -44,6 +40,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class SendID extends Activity {
 
 
@@ -54,10 +51,21 @@ public class SendID extends Activity {
 
 
     TextView txtTxnActive;
+    final int REQUEST_READ_PHONE_STATE = 11234;
+    String imei;
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        GlobalVars.activtyPaused(this);
+    }
+
+
 
     @Override
     protected void onResume() {
         super.onResume();
+        GlobalVars.activityResumed(this);
         if(!LoginHelper.isLoggedin(this))
         {
            buy_email.setText("Not Logged In");
@@ -79,6 +87,7 @@ public class SendID extends Activity {
             Intent i = new Intent(SendID.this, Login_logout.class);
             startActivity(i);
         }
+
 
 
         purchase_web.getSettings();
@@ -114,7 +123,7 @@ public class SendID extends Activity {
             public void onClick(View v) {
                 if(buy_options.getCheckedRadioButtonId()==R.id.opt_tnxid)
                 {
-                    show_get_info_dialog("Transaction ID", "Transaction ID", R.id.buy_tnx_activation, buy_tnxID.getText().toString());
+                    show_get_info_dialog("TTrx ID / Number:", "TTrx ID / Number:", R.id.buy_tnx_activation, buy_tnxID.getText().toString());
 
                 }
                 else
@@ -130,7 +139,7 @@ public class SendID extends Activity {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if(checkedId==R.id.opt_tnxid)
                 {
-                    txtTxnActive.setText("Transaction ID:");
+                    txtTxnActive.setText("Trx ID / Number:");
                 }
                 else if(checkedId==R.id.opt_code)
                 {
@@ -241,7 +250,7 @@ public class SendID extends Activity {
             String loginWith = LoginHelper.getLoggedInUsing(SendID.this);
             String tnxID = buy_tnxID.getText().toString().trim();
             String mobile = buy_mobile.getText().toString().trim();
-            String IMEI = getIMEI();
+            String IMEI = "Black";
             if (isValid(email) && isValid(loginWith) && isValid(tnxID) && isValid(mobile)) {
 
                 new send_data_to_server().execute(email, loginWith, tnxID, mobile, IMEI);
@@ -460,13 +469,9 @@ public class SendID extends Activity {
     }
 
 
-    private String getIMEI(){
 
-        TelephonyManager mngr = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-        String imei = mngr.getDeviceId();
-        return imei;
 
-    }
+
 
     private void show_get_info_dialog(String title, String tv_text ,final int sent_from, String prev_data)
     {
@@ -487,12 +492,14 @@ public class SendID extends Activity {
         tv.setTextSize(20);
 
         final EditText et = new EditText(this);
+
         String etStr = et.getText().toString();
         TextView tv1 = new TextView(this);
         tv1.setText(tv_text);
 
         LinearLayout.LayoutParams tv1Params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         tv1Params.bottomMargin = 5;
+
         layout.addView(tv1, tv1Params);
         layout.addView(et, new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
 
@@ -501,11 +508,8 @@ public class SendID extends Activity {
         // alertDialogBuilder.setMessage("Input Student ID");
         alertDialogBuilder.setCustomTitle(tv);
         et.setText(prev_data);
-        if(sent_from==R.id.buy_mobile)
-        {
-            et.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_NUMBER_FLAG_DECIMAL);
-        }
 
+        et.setInputType(InputType.TYPE_CLASS_NUMBER);
 
 
         // Setting Positive "Yes" Button

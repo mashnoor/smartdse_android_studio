@@ -72,6 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
+
             android:editable="false"
             android:textColor="@color/md_white_1000"
             android:id="@+id/buy_mobile" />
@@ -81,7 +82,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/md_white_1000"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Transaction ID:"
+            android:text="Trx ID / Number:"
             android:id="@+id/txtTxnActive" />
 
         <EditText

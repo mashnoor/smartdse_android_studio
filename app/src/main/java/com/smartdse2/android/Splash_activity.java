@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -16,6 +18,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.*;
+import android.Manifest;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.AlertDialog;
@@ -25,13 +29,20 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
 import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.telephony.TelephonyManager;
+import android.util.Base64;
 import android.util.Log;
 import android.view.Window;
 import android.widget.ImageView;
@@ -60,6 +71,7 @@ public class Splash_activity extends Activity {
 
 
         setContentView(R.layout.splash_activity);
+
         splash_logo = (ImageView) findViewById(R.id.splash_logo);
         if(LoginHelper.isActivate(Splash_activity.this))
         {
@@ -148,7 +160,7 @@ public class Splash_activity extends Activity {
                 apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
                         .show();
             } else {
-                //Log.i(TAG, "This device is not supported.");
+
                 finish();
             }
             return false;
@@ -160,6 +172,7 @@ public class Splash_activity extends Activity {
 
 
     class upload_to_server extends AsyncTask<String, String, String> {
+
 
         @Override
         protected void onPostExecute(String result) {
@@ -188,14 +201,18 @@ public class Splash_activity extends Activity {
                                 }).setCancelable(false).show();
             }
             else {
-                Intent main_activity = new Intent(Splash_activity.this, Home.class);
-                if(!LoginHelper.isActivate(Splash_activity.this))
-                {
-                    Constants.showAdThread.start();
-                }
+                final Intent main_activity = new Intent(Splash_activity.this, Home.class);
 
+                    if(!Constants.showAdThread.isAlive())
+                    {
+                        Constants.showAdThread.start();
+                    }
                 startActivity(main_activity);
+
                 finish();
+
+
+
             }
 
 

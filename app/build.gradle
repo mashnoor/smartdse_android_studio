@@ -4,20 +4,20 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         SmartDSE {
-            storeFile file('/home/mashnoor/AndroidStudioProjects/smartdse_android_studio/SmartDSE2.jks')
+            storeFile file('/Users/menon/AndroidStudioProjects/smartdse_android_studio/SmartDSE2.jks')
             keyAlias 'SmartDSE'
             keyPassword 'menoncXe13@ctv'
             storePassword 'menoncXe13@ctv'
         }
     }
     compileSdkVersion 25
-    buildToolsVersion "23.0.2"
+    buildToolsVersion "23.0.3"
     defaultConfig {
         applicationId "com.smartdse2.android"
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 6
-        versionName "2.3.0"
+        versionCode 8
+        versionName "2.5.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.SmartDSE
     }

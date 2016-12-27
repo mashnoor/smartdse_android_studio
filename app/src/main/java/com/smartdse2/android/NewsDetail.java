@@ -37,6 +37,17 @@ public class NewsDetail extends Activity {
     ArrayAdapter<News> adapter; // This array adapter will describe
     // how the listview will be shown
     @Override
+    protected void onPause() {
+        super.onPause();
+        GlobalVars.activtyPaused(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        GlobalVars.activityResumed(this);
+    }
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news_detail);

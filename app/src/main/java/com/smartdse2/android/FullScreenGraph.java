@@ -40,6 +40,13 @@ public class FullScreenGraph extends Activity {
     ArrayList<String> dsex_volume_times;
     TextView dsex_graph_index;
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        GlobalVars.activityResumed(this);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +65,7 @@ public class FullScreenGraph extends Activity {
     @Override
     public void onPause() {
         super.onPause();
+        GlobalVars.activtyPaused(this);
 
         if ((progressDialog != null) && progressDialog.isShowing())
             progressDialog.dismiss();

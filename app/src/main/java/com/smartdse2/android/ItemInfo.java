@@ -60,6 +60,19 @@ public class ItemInfo extends Activity {
 
     String change_amout, ltp, change_percentage;
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        GlobalVars.activtyPaused(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        GlobalVars.activityResumed(this);
+    }
+
+
 
 
     @Override

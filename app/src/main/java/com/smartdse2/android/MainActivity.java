@@ -63,6 +63,17 @@ public class MainActivity extends Activity {
     public static final String ITEM_VALUES = "http://104.131.22.246/dev/smartdsefiles/itemvalues.txt";
     public static final String ITEM_VALUES_ALL = "http://104.131.22.246/dev/smartdsefiles/itemvalues_all.txt";
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        GlobalVars.activtyPaused(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        GlobalVars.activityResumed(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,8 +83,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         buttonController = new ButtonController(MainActivity.this);
-        dse_Company_datas = new ArrayList<DSE_Company_data>();
-        dse_Company_datas_for_search = new ArrayList<DSE_Company_data>();
+        dse_Company_datas = new ArrayList<>();
+        dse_Company_datas_for_search = new ArrayList<>();
 
         search_text_box = (TextView) findViewById(R.id.dse_list_search_box);
         search_text_box.setVisibility(View.GONE);
@@ -81,6 +92,7 @@ public class MainActivity extends Activity {
             search_text_box.setVisibility(View.VISIBLE);
 
         }
+
 
 		/*
 		 * search_text_box .setOnFocusChangeListener(new

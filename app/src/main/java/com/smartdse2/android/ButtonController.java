@@ -1,6 +1,7 @@
 package com.smartdse2.android;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -32,12 +33,16 @@ import android.widget.Toast;
 
 import com.facebook.ads.AbstractAdListener;
 import com.facebook.ads.Ad;
+import com.facebook.ads.AdChoicesView;
 import com.facebook.ads.AdError;
+import com.facebook.ads.AdListener;
 import com.facebook.ads.AdSettings;
 import com.facebook.ads.AdSize;
 import com.facebook.ads.AdView;
 import com.facebook.ads.InterstitialAd;
 import com.facebook.ads.InterstitialAdListener;
+import com.facebook.ads.MediaView;
+import com.facebook.ads.NativeAd;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.mikepenz.materialdrawer.Drawer;
@@ -50,7 +55,7 @@ public class ButtonController {
     private boolean sentfromportfolioactivity = false;
     public static String update_status = "Not Updated Yet";
     //Header Text for Version 2.0.0 (Beta Release)
-    final static String header_text_link = "http://104.131.22.246/dev/smartdsefiles/header_text_2.3.0.txt";
+    final static String header_text_link = "http://104.131.22.246/dev/smartdsefiles/header_text_2.5.0.txt";
     final static String ADV_FILE_NAME = "advertise";
     public static ArrayList<String> header_texts;
     Handler handler;
@@ -61,6 +66,7 @@ public class ButtonController {
     private volatile boolean thread_flag = false;
 
     public static InterstitialAd interstitialAd;
+
 
     class header_text_thread implements Runnable {
 
@@ -93,11 +99,16 @@ public class ButtonController {
 
 
 
-    public static void loadInterstitialAd(){
+
+
+
+
+     static void loadInterstitialAd(){
         interstitialAd = new InterstitialAd(mainActivity, "535675923265633_537478036418755");
         interstitialAd.setAdListener(new InterstitialAdListener() {
             @Override
             public void onInterstitialDisplayed(Ad ad) {
+
 
             }
 
@@ -115,7 +126,15 @@ public class ButtonController {
             @Override
             public void onAdLoaded(Ad ad) {
 
-                interstitialAd.show();
+                if(!GlobalVars.isAllActivityPaused() && !LoginHelper.isActivate(mainActivity))
+                {
+                    interstitialAd.show();
+                }
+               // mainActivity.finishAffinity();
+
+
+
+
             }
 
             @Override
@@ -128,7 +147,7 @@ public class ButtonController {
 
     public ButtonController(final Activity sentactivity) {
 
-        final View logo, home, items, search, watchlist, portfolio, news, top20, gainerloser, close_app, rateus, refresh_button, menuicon;
+        final View logo, refresh_button, menuicon;
         final TextView update_status_tv;
         refresh_button = sentactivity.findViewById(R.id.dse_home_refresh);
         //For Advertisement
@@ -162,8 +181,9 @@ public class ButtonController {
 
             // AdSettings.addTestDevice("ec28ff02bcceb8adfa267bf2dd96bbd0");
             // AdSettings.addTestDevice("2b882904b155af13c2e85f9430e63bb2");
-            //loadInterstitialAd();
+            loadInterstitialAd();
             adView.loadAd();
+
 
         }
 
@@ -352,17 +372,12 @@ public class ButtonController {
                         {
                             //Expert Analysis
                             //Show Buy Activity if not bought
-                            if(LoginHelper.isActivate(sentactivity))
-                            {
+
                                 MainActivity.show = false;
                                 Intent itemintent = new Intent(sentactivity,
                                         ExpertAnalysis.class);
                                 sentactivity.startActivity(itemintent);
-                            }
-                            else
-                            {
-                                startBuyActivity();
-                            }
+
 
 
 
@@ -434,19 +449,11 @@ public class ButtonController {
                         else if (position == 13)
                         {
                             //Stock on Newspaper
-                            if(LoginHelper.isActivate(sentactivity))
-                            {
-
 
                                 MainActivity.show = false;
                                 Intent itemintent = new Intent(sentactivity,
                                         StockOnNewsPaper.class);
                                 sentactivity.startActivity(itemintent);
-                            }
-                            else
-                            {
-                                startBuyActivity();
-                            }
 
 
                         }

@@ -48,6 +48,17 @@ public class NewsActivity extends Activity {
     // how the listview will be shown
     boolean has_active_net = false; // This is for determining if we have a
     // active net connection
+    @Override
+    protected void onPause() {
+        super.onPause();
+        GlobalVars.activtyPaused(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        GlobalVars.activityResumed(this);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

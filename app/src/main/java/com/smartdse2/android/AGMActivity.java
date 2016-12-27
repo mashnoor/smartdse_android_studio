@@ -34,6 +34,17 @@ public class AGMActivity extends Activity {
     ButtonController buttonController;
     ArrayAdapter<AGM> adapter;
     View ipo_activity_tab, news_tab;
+    @Override
+    protected void onPause() {
+        super.onPause();
+        GlobalVars.activtyPaused(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        GlobalVars.activityResumed(this);
+    }
 
 
 
