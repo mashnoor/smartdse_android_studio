@@ -10,12 +10,12 @@ android {
             storePassword 'menoncXe13@ctv'
         }
     }
-    compileSdkVersion 25
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 26
+    buildToolsVersion "26.0.0"
     defaultConfig {
         applicationId "com.smartdse2.android"
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 26
         versionCode 8
         versionName "2.5.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -35,9 +35,7 @@ repositories {
     maven { url "https://jitpack.io" }
 }
 
-android {
-    useLibrary 'org.apache.http.legacy'
-}
+
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
@@ -49,8 +47,7 @@ dependencies {
     compile 'com.google.android.gms:play-services-gcm:10.0.1'
     compile 'com.google.android.gms:play-services-ads:10.0.1'
     compile 'com.google.android.gms:play-services-auth:10.0.1'
-    compile 'com.android.support:appcompat-v7:25.1.0'
-    compile 'com.android.support:design:25.1.0'
+
     compile 'com.facebook.android:facebook-android-sdk:4.18.0'
     compile 'com.github.PhilJay:MPAndroidChart:v2.1.6'
     compile 'com.mani:ThinDownloadManager:1.2.3'
