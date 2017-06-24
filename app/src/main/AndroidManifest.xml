@@ -16,7 +16,7 @@
     <!-- [END gcm_permission] -->
     <application
         android:allowBackup="true"
-        android:name=".GlobalVars"
+        android:name=".utils.GlobalVars"
 
         android:icon="@drawable/splash_logo"
         android:label="@string/app_name"
@@ -41,47 +41,47 @@
             android:finishOnTaskLaunch="true"
             android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:finishOnTaskLaunch="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".About"
+            android:name=".activities.About"
             android:finishOnTaskLaunch="true"
             android:label="@string/title_activity_about"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".DSE30List"
+            android:name=".activities.DSE30List"
             android:finishOnTaskLaunch="true"
             android:label="@string/title_activity_dse30_list"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Home"
+            android:name=".activities.Home"
             android:finishOnTaskLaunch="true"
             android:label="@string/title_activity_home"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".IPOActivity"
+            android:name=".activities.IPOActivity"
             android:finishOnTaskLaunch="true"
             android:label="@string/title_activity_ipo"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ItemInfo"
+            android:name=".activities.ItemInfo"
             android:finishOnTaskLaunch="true"
             android:label="@string/title_activity_item_info"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".NewsActivity"
+            android:name=".activities.NewsActivity"
             android:finishOnTaskLaunch="true"
             android:label="@string/title_activity_news"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Portfolio_activity"
+            android:name=".activities.Portfolio_activity"
             android:finishOnTaskLaunch="true"
             android:label="@string/title_activity_portfolio_activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Splash_activity"
+            android:name=".activities.Splash_activity"
             android:label="SmartDSE"
             android:launchMode="singleTask"
             android:clearTaskOnLaunch="true"
@@ -93,17 +93,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Top10Gainers"
+            android:name=".activities.Top10Gainers"
             android:finishOnTaskLaunch="true"
             android:label="@string/title_activity_top10_gainers"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Top10Shares"
+            android:name=".activities.Top10Shares"
             android:finishOnTaskLaunch="true"
             android:label="@string/title_activity_top10_shares"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Watch_List_list_view"
+            android:name=".activities.Watch_List_list_view"
             android:finishOnTaskLaunch="true"
             android:label="@string/title_activity_watch__list_list_view"
             android:screenOrientation="portrait" />
@@ -124,7 +124,7 @@
 
         <!-- [START gcm_listener] -->
         <service
-            android:name=".MyGcmListenerService"
+            android:name=".services.MyGcmListenerService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
@@ -133,7 +133,7 @@
         <!-- [END gcm_listener] -->
         <!-- [START instanceId_listener] -->
         <service
-            android:name=".MyInstanceIDListenerService"
+            android:name=".services.MyInstanceIDListenerService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.android.gms.iid.InstanceID" />
@@ -141,86 +141,86 @@
         </service>
         <!-- [END instanceId_listener] -->
         <service
-            android:name=".RegistrationIntentService"
+            android:name=".services.RegistrationIntentService"
             android:exported="false" />
 
         <activity
-            android:name=".AGMActivity"
+            android:name=".activities.AGMActivity"
             android:label="@string/title_activity_agm"
             android:finishOnTaskLaunch="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".NewsDetail"
+            android:name=".activities.NewsDetail"
             android:label="@string/title_activity_news_detail"
             android:finishOnTaskLaunch="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Currency"
+            android:name=".activities.Currency"
             android:label="@string/title_activity_currency"
             android:finishOnTaskLaunch="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MarketDepth"
+            android:name=".activities.MarketDepth"
             android:label="@string/title_activity_market_depth"
             android:finishOnTaskLaunch="true"
             android:screenOrientation="portrait" />
 
         <service
-            android:name=".PriceAlertService"
+            android:name=".services.PriceAlertService"
             android:enabled="true"
             android:exported="true" />
 
         <activity
-            android:name=".PriceAlert"
+            android:name=".activities.PriceAlert"
             android:finishOnTaskLaunch="true"
             android:label="@string/title_activity_price_alert"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ExpertAnalysis"
+            android:name=".activities.ExpertAnalysis"
             android:label="@string/title_activity_expert_analysis"
             android:finishOnTaskLaunch="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".WeeklyReport"
+            android:name=".activities.WeeklyReport"
             android:label="@string/title_activity_weekly_report"
             android:finishOnTaskLaunch="true"
 
             android:screenOrientation="portrait" />
         <activity
-            android:name=".FullScreenGraph"
+            android:name=".activities.FullScreenGraph"
             android:label="@string/title_activity_full_screen_graph"
             android:finishOnTaskLaunch="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Chat"
+            android:name=".activities.Chat"
             android:label="@string/title_activity_chat"
             android:windowSoftInputMode="adjustPan"
             android:finishOnTaskLaunch="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Login_logout"
+            android:name=".activities.Login_logout"
             android:label="@string/title_activity_login_logout"
             android:finishOnTaskLaunch="true"
             android:theme="@android:style/Theme.Holo.Light.Dialog" />
         <activity
-            android:name=".StockOnNewsPaper"
+            android:name=".activities.StockOnNewsPaper"
             android:label="@string/title_activity_stock_on_news_paper"
             android:finishOnTaskLaunch="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".BuyNow"
+            android:name=".activities.BuyNow"
             android:label="@string/title_activity_buy_now"
 
             android:finishOnTaskLaunch="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SendID"
+            android:name=".activities.SendID"
             android:label="Activation Center"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Holo" />
 
         <activity
-            android:name=".ItemDetailWeb"
+            android:name=".activities.ItemDetailWeb"
             android:finishOnTaskLaunch="true"
             android:label="@string/title_activity_item_detail_web"
             android:theme="@style/AppTheme.NoActionBar" />
