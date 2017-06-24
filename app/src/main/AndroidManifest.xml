@@ -81,7 +81,7 @@
             android:label="@string/title_activity_portfolio_activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.Splash_activity"
+            android:name=".activities.SplashActivity"
             android:label="SmartDSE"
             android:launchMode="singleTask"
             android:clearTaskOnLaunch="true"
@@ -103,7 +103,7 @@
             android:label="@string/title_activity_top10_shares"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activities.Watch_List_list_view"
+            android:name=".activities.WatchListActivity"
             android:finishOnTaskLaunch="true"
             android:label="@string/title_activity_watch__list_list_view"
             android:screenOrientation="portrait" />

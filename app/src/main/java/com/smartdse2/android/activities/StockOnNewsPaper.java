@@ -5,50 +5,46 @@ import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+
 import android.webkit.WebView;
 import android.widget.Toast;
 
+import com.loopj.android.http.AsyncHttpClient;
 import com.smartdse2.android.R;
 import com.smartdse2.android.utils.Active_net_checking;
 import com.smartdse2.android.utils.ButtonController;
 import com.smartdse2.android.utils.Constants;
-import com.smartdse2.android.utils.GlobalVars;
-import com.smartdse2.android.utils.SrcGrabber;
+
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 
+import butterknife.BindView;
+
 public class StockOnNewsPaper extends Activity {
 
 
+    @BindView(R.id.stock_on_newspaper_web)
     WebView stock_on_newspaperwebview;
     ButtonController buttonController;
-    @Override
-    protected void onPause() {
-        super.onPause();
-        GlobalVars.activtyPaused(this);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        GlobalVars.activityResumed(this);
-    }
+    AsyncHttpClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stock_on_news_paper);
         buttonController = new ButtonController(this);
-        stock_on_newspaperwebview = (WebView) findViewById(R.id.stock_on_newspaper_web);
 
         stock_on_newspaperwebview.getSettings();
         stock_on_newspaperwebview.setBackgroundColor(Color.BLACK);
         new grab_stock_on_newspaper().execute();
 
 
+
+    }
+
+    private void showNews()
+    {
 
     }
 

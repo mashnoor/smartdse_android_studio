@@ -23,6 +23,9 @@
 -dontnote android.net.http.*
 -dontnote org.apache.commons.codec.**
 -dontnote org.apache.http.**
+-keep class dmax.dialog.** {
+    *;
+}
 
 # If your project uses WebView with JS, uncomment the following
 # and specify the fully qualified class name to the JavaScript interface

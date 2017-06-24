@@ -24,18 +24,6 @@ public class About extends Activity {
     final static String db_name = "dsedatabase";
     final static String DSE_SITE = "http://www.dsebd.org";
     ButtonController buttonController;
-    @Override
-    protected void onPause() {
-        super.onPause();
-        GlobalVars.activtyPaused(this);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        GlobalVars.activityResumed(this);
-    }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

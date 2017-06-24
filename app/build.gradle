@@ -53,6 +53,12 @@ dependencies {
     compile 'com.mani:ThinDownloadManager:1.2.3'
     compile 'com.pubnub:pubnub-android-debug:3.7.+'
     compile 'com.facebook.android:audience-network-sdk:4+'
+    compile 'com.jakewharton:butterknife:8.6.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
+    compile 'com.loopj.android:android-async-http:1.4.9'
+    compile 'com.google.code.gson:gson:2.8.1'
+    compile 'com.sromku:simple-storage:1.2.1'
+    compile 'com.github.d-max:spots-dialog:0.7@aar'
 
 
 }

@@ -34,7 +34,7 @@ import com.smartdse2.android.utils.GlobalVars;
 import com.smartdse2.android.utils.SrcGrabber;
 
 
-public class Watch_List_list_view extends Activity {
+public class WatchListActivity extends Activity {
     // Declare Variables
 
     TextView tView;
@@ -43,7 +43,7 @@ public class Watch_List_list_view extends Activity {
     JSONArray dse_jsonArray = null;
     ArrayList<DSE_Company_data> dse_Company_datas;
 
-    String comapnyname, lastTrade, changeAmount, changePercent;
+
     StringBuilder builder;
     ListView dse_list_view;
     TextView search_text_box;
@@ -52,17 +52,7 @@ public class Watch_List_list_view extends Activity {
     ButtonController buttonController;
 
     public static final String file_name = "dse_data_files_all";
-    @Override
-    protected void onPause() {
-        super.onPause();
-        GlobalVars.activtyPaused(this);
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        GlobalVars.activityResumed(this);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +61,7 @@ public class Watch_List_list_view extends Activity {
 
         setContentView(R.layout.activity_main);
         dse_Company_datas = new ArrayList<DSE_Company_data>();
-        buttonController = new ButtonController(Watch_List_list_view.this);
+        buttonController = new ButtonController(WatchListActivity.this);
 
 
         search_text_box = (TextView) findViewById(R.id.dse_list_search_box);
@@ -87,7 +77,7 @@ public class Watch_List_list_view extends Activity {
         dse_list_view.setAdapter(adapter);
 
         if (dse_Company_datas.size() == 0) {
-            Toast.makeText(Watch_List_list_view.this, "No item in watchlist!",
+            Toast.makeText(WatchListActivity.this, "No item in watchlist!",
                     Toast.LENGTH_LONG).show();
 
         }
@@ -105,7 +95,7 @@ public class Watch_List_list_view extends Activity {
                         DSE_Company_data clicked_Company_data = dse_Company_datas
                                 .get(position);
                         Intent detail_info_intent = new Intent(
-                                Watch_List_list_view.this, ItemInfo.class);
+                                WatchListActivity.this, ItemInfo.class);
                         detail_info_intent.putExtra("TradingCode",
                                 clicked_Company_data.getCompany_Name());
                         startActivity(detail_info_intent);
@@ -157,7 +147,7 @@ public class Watch_List_list_view extends Activity {
     class read_and_write_data extends AsyncTask<String, Void, String> {
 
         ProgressDialog progressDialog = ProgressDialog.show(
-                Watch_List_list_view.this, "", "Retrieving Data...", true);
+                WatchListActivity.this, "", "Retrieving Data...", true);
 
         @Override
         protected void onPostExecute(String result) {
@@ -195,13 +185,13 @@ public class Watch_List_list_view extends Activity {
                     string = SrcGrabber
                             .grabSource("http://104.131.22.246/dev/smartdsefiles/itemvalues_all.txt");
 
-                    DevTools.write_file(Watch_List_list_view.this, file_name,
+                    DevTools.write_file(WatchListActivity.this, file_name,
                             string);
                     has_active_net = true;
-                } else if (DevTools.fileExistance(Watch_List_list_view.this,
+                } else if (DevTools.fileExistance(WatchListActivity.this,
                         file_name)) {
 
-                    string = DevTools.read_file(Watch_List_list_view.this,
+                    string = DevTools.read_file(WatchListActivity.this,
                             file_name);
                     has_active_net = false;
 
